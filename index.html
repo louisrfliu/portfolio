@@ -866,6 +866,54 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .signals-table-row, .signals-table-head { grid-template-columns: 1fr; }
   .signals-table-insight { border-left: none; border-top: 2px solid var(--accent); padding-left: 0; padding-top: 10px; }
 }
+
+/* ── Signals v2 ── */
+.sig-problem-section {
+  padding: 64px var(--gutter); max-width: 1280px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 40px;
+}
+.sig-problem-text {
+  font-size: clamp(20px, 2.8vw, 28px); line-height: 1.5;
+  color: var(--ink); font-weight: 500; max-width: 820px;
+}
+.sig-meta-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  border-top: 1px solid var(--ink-line); padding-top: 36px;
+}
+@media (max-width: 600px) { .sig-meta-row { grid-template-columns: 1fr; gap: 28px; } }
+.sig-meta-label {
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 10px;
+}
+.sig-meta-body { font-size: 15px; color: var(--ink-muted); line-height: 1.75; }
+
+.sig-process-step {
+  display: grid; grid-template-columns: 72px 1fr; gap: 40px;
+  padding: 56px var(--gutter); max-width: 1280px; margin: 0 auto;
+  border-top: 1px solid var(--ink-line);
+}
+@media (max-width: 640px) { .sig-process-step { grid-template-columns: 1fr; gap: 20px; } }
+.sig-step-num {
+  font-size: 52px; font-weight: 700; color: var(--ink-line);
+  line-height: 1; padding-top: 2px;
+}
+.sig-step-content { display: flex; flex-direction: column; gap: 20px; }
+.sig-step-title {
+  font-size: clamp(18px, 2.2vw, 22px); font-weight: 600;
+  color: var(--ink); line-height: 1.3; margin: 0;
+}
+.sig-step-body { font-size: 15px; color: var(--ink-muted); line-height: 1.8; margin: 0; }
+
+.sig-finding {
+  background: var(--bg-surface); border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0; padding: 20px 24px;
+}
+.sig-finding-label {
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 10px;
+}
+.sig-finding p { font-size: 15px; color: var(--ink); line-height: 1.75; margin: 0; }
+.sig-finding em { color: var(--accent); font-style: italic; }
     </style>
     <script
       src="https://unpkg.com/react@18.3.1/umd/react.development.js"
@@ -1531,15 +1579,38 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
         const decisions = [
           {
             insight: "Signals demand immediate attention",
-            decision: "Placed in main nav, visible on landing — zero friction to reach",
+            decision: "Featured in main nav, visible on landing for all users",
           },
           {
             insight: "Explainability drives adoption",
-            decision: "All event types and conditions visible in one view, no extra clicks",
+            decision: "All event types and conditions shown in one view — no extra clicks",
           },
           {
             insight: "Signals must fit existing workflows",
-            decision: "Surfaced directly inside downstream apps — no context switching",
+            decision: "Surfaced inside downstream apps so sellers never lose context",
+          },
+        ];
+
+        const reflections = [
+          {
+            label: "Did we solve the problem?",
+            body: "The Beta designs shipped on schedule with a fully functional configuration experience — a meaningful step toward replacing manual, reactive tracking with a scalable, event-driven GTM workflow. Full impact will be measurable post-GA in August 2026.",
+          },
+          {
+            label: "What this meant for users",
+            body: "Sellers and marketers can now act on real-time business events with context, rather than guessing at timing or doing manual research. The explainability built into each signal directly addresses the frustration of 6sense feeling like a black box.",
+          },
+          {
+            label: "What this meant for the business",
+            body: "Signals is 6sense's top priority for 2026. Delivering solid Beta designs on a compressed timeline kept the product roadmap on track and gave engineering a stable foundation to build from.",
+          },
+          {
+            label: "What I'd do differently",
+            body: "I'd push for sharper persona definitions and more discovery-style exploration before the project formally kicked off. Entering concept design with clearer user profiles would have reduced ambiguity in the early stakeholder reviews and likely sharpened the research questions too.",
+          },
+          {
+            label: "Biggest challenge",
+            body: "Balancing speed with quality as the sole owner of research and design, in a quarter shortened by holidays, on a feature that had significant cross-functional visibility. The 4IAB model and proactive documentation were what made it workable.",
           },
         ];
 
@@ -1559,95 +1630,93 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
               ]}
             />
 
-            {/* Problem + Goal */}
-            <section className="signals-two-col">
-              <div className="signals-card">
-                <div className="signals-lbl">The problem</div>
-                <h2>B2B teams miss high-value buying windows</h2>
-                <p>Sales teams rely on manual tracking and static lists. 6sense had powerful predictive data, but it functioned as a "black box" — users couldn't act on it confidently or quickly.</p>
+            {/* Context */}
+            <CaseText
+              eyebrow="Context"
+              body={"6sense helps B2B sales and marketing teams identify and act on buying intent. While the platform's predictive data is powerful, it functioned as a \"black box\" — users trusted the outputs but couldn't interpret or act on them with confidence. Signals was identified as the top priority feature leading to GA in August 2026, and I was brought in as design lead to own the experience from research through handoff in one quarter."}
+            />
+
+            {/* Problem */}
+            <section className="sig-problem-section">
+              <div>
+                <Eyebrow>Problem</Eyebrow>
+                <p className="sig-problem-text">GTM teams miss high-value buying windows because they have no scalable way to detect and act on real-time business events like funding rounds, hiring surges, or technology changes.</p>
               </div>
-              <div className="signals-card goal">
-                <div className="signals-lbl">My goal</div>
-                <h2>Design a centralized signal configuration experience</h2>
-                <p>Surface real-time business events — funding rounds, hiring, tech adoption — and trigger timely GTM action. Launching in Beta with 4 signal types, scoped toward 35 at GA.</p>
+              <div className="sig-meta-row">
+                <div>
+                  <div className="sig-meta-label">Goal</div>
+                  <p className="sig-meta-body">Give sales and marketing teams a way to configure, manage, and act on real-time business events — so outreach is timely, relevant, and coordinated.</p>
+                </div>
+                <div>
+                  <div className="sig-meta-label">Audience</div>
+                  <p className="sig-meta-body">Operations users who configure signals, and frontline sellers and marketers who consume them daily.</p>
+                </div>
               </div>
             </section>
 
-            {/* Constraints */}
-            <CaseText eyebrow="My constraints">
-              <div className="signals-chip-row">
-                <span className="signals-chip">One quarter to complete research and design</span>
-                <span className="signals-chip">Q4 overlapping three US holidays</span>
-                <span className="signals-chip">Sole owner of research and design execution</span>
-              </div>
-            </CaseText>
-
-            {/* What I Did */}
+            {/* Solution */}
             <CaseText
-              eyebrow="What I did"
-              title="Research, alignment, and design — end to end."
+              eyebrow="Solution"
+              title="A centralized hub for real-time GTM triggers"
+              body={"A centralized Signals feature — accessible from the main navigation — where users can create and manage event-based triggers tied to their GTM workflows. The Beta delivered 4 fully functional signal types (of 35 planned for GA), a configuration experience with clear event types and conditions, volume estimation during setup, and signal visibility directly inside downstream sales and marketing tools."}
             />
+            <CaseImage src="assets/signals-img-4.png" />
 
-            <DualBlocks
-              items={[
-                {
-                  title: "User research",
-                  body: "Led 10–12 moderated user interviews to map mental models around signals. Key finding: users treat signals as urgency triggers, not just data points — they need to understand the why behind each alert to act on it confidently.",
-                },
-                {
-                  title: "Cross-functional alignment",
-                  body: "Introduced a \"4IAB\" collaboration model (Design, PM, Engineering, Program Management) to keep teams independently informed. Secured two rounds of stakeholder concept reviews spanning Data Science, Engineering, and Design leadership.",
-                },
-              ]}
-            />
+            {/* Process header */}
+            <CaseText eyebrow="Process" title="How I got there." />
 
-            {/* Decision table */}
-            <CaseText eyebrow="Design decisions driven by research">
-              <div className="signals-table">
-                <div className="signals-table-head">
-                  <span>Research insight</span>
-                  <span>Design decision</span>
+            {/* Step 01 */}
+            <section className="sig-process-step">
+              <div className="sig-step-num" aria-hidden="true">01</div>
+              <div className="sig-step-content">
+                <h3 className="sig-step-title">Research first, design in parallel</h3>
+                <p className="sig-step-body">With only one quarter and sole ownership of both research and design, I ran 10–12 moderated user interviews while simultaneously sketching early concepts — iterating as insights surfaced rather than waiting for research to close.</p>
+                <div className="sig-finding">
+                  <div className="sig-finding-label">Key research finding</div>
+                  <p>Users treat signals as urgency triggers, not data points. They need to understand the <em>why</em> behind each alert before they'll act on it — making explainability a core design requirement, not a nice-to-have.</p>
                 </div>
-                {decisions.map((d, i) => (
-                  <div key={i} className="signals-table-row">
-                    <div className="signals-table-insight">{d.insight}</div>
-                    <div className="signals-table-decision">{d.decision}</div>
+                <div className="signals-table">
+                  <div className="signals-table-head">
+                    <span>Research insight</span>
+                    <span>Design decision</span>
                   </div>
-                ))}
+                  {decisions.map((d, i) => (
+                    <div key={i} className="signals-table-row">
+                      <div className="signals-table-insight">{d.insight}</div>
+                      <div className="signals-table-decision">{d.decision}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </CaseText>
+            </section>
 
-            {/* Hi-fi designs */}
-            <ImageWithCaption
-              src="assets/signals-img-4.png"
-              captionTitle="Main nav placement — visible on landing"
-              captionBody="Signal feature placed at the top level, immediately accessible to operations users, frontline sellers, and marketers without any extra navigation."
-            />
-            <ImageWithCaption
-              src="assets/signals-img-3.png"
-              captionTitle="All event types and conditions in one view"
-              captionBody="Every configured event type and condition is visible without additional clicks — making each signal transparent, reviewable, and easy to hand off."
-            />
-            <ImageWithCaption
-              src="assets/signals-img-5.png"
-              captionTitle="Signals inside downstream apps"
-              captionBody="Signal data surfaced directly within the workflows where sellers and marketers already operate. No context switching, no friction."
-            />
+            <CaseImage src="assets/signals-img-3.png" />
 
-            {/* Outcome */}
-            <div className="signals-outcome">
-              <div className="signals-outcome-card">
-                <div className="signals-lbl">Outcome</div>
-                <p>Delivered Beta-ready designs on schedule — fully functional signal configuration experience, volume estimation during creation, and a scalable architecture supporting 35+ future signal types.</p>
+            {/* Step 02 */}
+            <section className="sig-process-step">
+              <div className="sig-step-num" aria-hidden="true">02</div>
+              <div className="sig-step-content">
+                <h3 className="sig-step-title">Aligning a large, cross-functional team</h3>
+                <p className="sig-step-body">The project spanned Data Science, Engineering, PM, Program Management, Content Design, and UX Research — all moving fast through Q4 holidays. I introduced a "4IAB" collaboration model, ensuring Design, PM, Engineering, and Program Management could each answer questions independently without bottlenecking on each other. I facilitated experience planning sessions and secured two rounds of stakeholder concept reviews, keeping decisions documented and momentum intact.</p>
               </div>
-            </div>
+            </section>
 
-            {/* Retrospective */}
-            <CaseText
-              eyebrow="What I'd do differently"
-              title="Start discovery earlier."
-              body="Earlier discovery research and sharper persona definitions before entering concept design would have sharpened the design direction and reduced iteration mid-process."
-            />
+            {/* Step 03 */}
+            <section className="sig-process-step">
+              <div className="sig-step-num" aria-hidden="true">03</div>
+              <div className="sig-step-content">
+                <h3 className="sig-step-title">Low-fi before high-fi</h3>
+                <p className="sig-step-body">I ran working sessions to map the full GTM-to-signal workflow, then used low-fidelity concepts to align teams on information architecture before investing in high-fidelity designs. This surfaced structural disagreements early, when they were cheap to resolve.</p>
+              </div>
+            </section>
+
+            <CaseImage src="assets/signals-img-5.png" />
+
+            {/* Reflection */}
+            <CaseText eyebrow="Reflection" title="Looking back." />
+            {reflections.map((r, i) => (
+              <ListRow key={i} label={r.label} body={r.body} />
+            ))}
 
             <ContactBand navigate={navigate} variant="case" />
             <Footer />
