@@ -1,0 +1,1780 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Louis Liu — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+/* ============================================================
+   Louis Liu — Portfolio  |  Design System 1.0
+   Dark theme · Camboge (#FFAE32) · Playfair Display + Inter
+============================================================ */
+
+:root {
+  /* Backgrounds */
+  --bg: #0F1113;
+  --bg-card: #1A1D20;
+  --bg-surface: #2E3338;
+  --bg-surface-hover: #374145;
+
+  /* Text */
+  --ink: #FFFFFF;
+  --ink-soft: #A7ADB3;
+  --ink-muted: rgba(167, 173, 179, 0.75);
+  --ink-line: rgba(255, 255, 255, 0.07);
+  --ink-line-strong: rgba(255, 255, 255, 0.13);
+
+  /* Accent — Camboge */
+  --accent: #FFAE32;
+  --accent-dark: #F08A00;
+  --accent-soft: rgba(255, 174, 50, 0.13);
+  --accent-softer: rgba(255, 174, 50, 0.06);
+
+  /* Legacy aliases kept for JSX compatibility */
+  --pink: #232728;
+  --pink-stroke: rgba(255, 255, 255, 0.13);
+  --orange-text: #FFAE32;
+  --green: #6BA368;
+  --slate: #475156;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg); color: var(--ink);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; text-decoration: none; }
+
+img { display: block; max-width: 100%; }
+
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+
+/* ── type ── */
+.eyebrow {
+  font-family: "Inter", sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-soft); line-height: 1.5;
+}
+.h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(40px, 6vw, 56px);
+  font-weight: 700; letter-spacing: -0.02em;
+  line-height: 1.1; margin: 0;
+}
+.h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 600; letter-spacing: -0.015em;
+  line-height: 1.2; margin: 0;
+}
+.h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 28px; font-weight: 600;
+  letter-spacing: -0.01em; line-height: 1.2; margin: 0;
+}
+.h4 {
+  font-family: "Inter", sans-serif;
+  font-size: 17px; font-weight: 700;
+  letter-spacing: -0.01em; line-height: 1.3; margin: 0;
+}
+.lede {
+  font-size: 18px; font-weight: 400;
+  color: var(--ink-soft); line-height: 1.65;
+  letter-spacing: 0; margin: 0;
+}
+.body {
+  font-size: 16px; font-weight: 400;
+  color: var(--ink-soft); line-height: 1.65;
+  letter-spacing: 0; margin: 0;
+}
+.body-sm { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+.muted { color: var(--ink-soft); }
+
+/* ── layout ── */
+.page { max-width: 1200px; margin: 0 auto; width: 100%; }
+.section { padding: 80px 24px; }
+.section-narrow { padding: 80px 200px; }
+@media (max-width: 980px) {
+  .section, .section-narrow { padding: 64px 16px; }
+}
+
+/* ── nav ── */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(15, 17, 19, 0.75);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  border-bottom: 1px solid transparent;
+  transition: background 240ms ease, border-color 240ms ease;
+}
+.nav.is-scrolled {
+  background: rgba(15, 17, 19, 0.95);
+  border-bottom-color: var(--ink-line-strong);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  height: 68px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+@media (max-width: 980px) { .nav-inner { padding: 0 16px; height: 60px; } }
+
+.brand {
+  display: inline-flex; align-items: center; gap: 10px;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.brand-icon { display: flex; align-items: center; flex-shrink: 0; }
+.brand-text {
+  font-family: "Inter", sans-serif;
+  font-weight: 700; font-size: 13px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink); transition: color 200ms ease;
+}
+.brand:hover .brand-text { color: var(--accent); }
+/* keep old selectors from breaking */
+.brand-name { display: none; }
+.brand-dot, .brand-name-soft { display: none; }
+
+.nav-links { display: flex; gap: 2px; align-items: center; }
+.nav-link {
+  position: relative;
+  font-family: "Inter", sans-serif;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+  cursor: pointer; padding: 10px 13px;
+  color: var(--ink-soft); background: transparent; border: 0;
+  transition: color 200ms ease;
+}
+.nav-link::after {
+  content: ""; position: absolute;
+  left: 13px; right: 13px; bottom: 5px;
+  height: 1.5px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-link:hover { color: var(--ink); }
+.nav-link.is-active { color: var(--ink); font-weight: 600; }
+.nav-link.is-active::after { transform: scaleX(1); }
+
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-left: 14px; padding: 9px 18px;
+  border-radius: 6px;
+  background: var(--accent); color: #0F1113;
+  font-family: "Inter", sans-serif;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+  cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, transform 200ms ease;
+}
+.nav-cta:hover { background: var(--accent-dark); transform: translateY(-1px); }
+.nav-cta-dot { display: none; }
+@media (max-width: 640px) { .nav-cta { display: none; } }
+
+.nav-back {
+  font-family: "Inter", sans-serif;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+  cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px 8px 10px; border-radius: 6px;
+  color: var(--ink-soft); background: transparent;
+  border: 1px solid var(--ink-line-strong);
+  transition: gap 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.nav-back:hover { gap: 12px; color: var(--ink); border-color: var(--ink-soft); }
+.nav-back .arrow { display: inline-block; transition: transform 200ms ease; }
+.nav-back:hover .arrow { transform: translateX(-3px); }
+
+/* ── minimal home ── */
+.home-min { --gutter: 24px; }
+@media (max-width: 980px) { .home-min { --gutter: 16px; } }
+
+.hero-min {
+  max-width: 1200px; margin: 0 auto;
+  padding: 140px var(--gutter) 96px;
+  display: flex; flex-direction: column; gap: 32px;
+}
+@media (max-width: 980px) { .hero-min { padding: 80px var(--gutter) 56px; gap: 24px; } }
+.hero-min-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.hero-min-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(255, 174, 50, 0.18);
+  animation: heroDotPulse 2.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes heroDotPulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(255, 174, 50, 0.18); }
+  50%       { box-shadow: 0 0 0 8px rgba(255, 174, 50, 0.06); }
+}
+.hero-min-title {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(48px, 8vw, 100px);
+  font-weight: 700; letter-spacing: -0.03em;
+  line-height: 1.0; color: var(--ink); max-width: 1100px;
+}
+.hero-min-title em {
+  font-style: italic; font-weight: 600; color: var(--accent);
+}
+.hero-min-sub {
+  margin: 0;
+  font-size: clamp(16px, 1.4vw, 20px);
+  font-weight: 400; line-height: 1.65; letter-spacing: 0;
+  color: var(--ink-soft); max-width: 580px;
+}
+.hero-min-meta {
+  margin-top: 8px; display: flex; align-items: center;
+  gap: 12px; flex-wrap: wrap;
+  font-family: "Inter", sans-serif;
+  font-size: 13px; color: var(--ink-soft); letter-spacing: 0.01em;
+}
+.hero-min-meta-strong { color: var(--accent); font-weight: 700; }
+.hero-min-divider { width: 20px; height: 1px; background: var(--ink-line-strong); }
+
+/* ── section labels ── */
+.work-min, .walks-min {
+  max-width: 1200px; margin: 0 auto; padding: 56px var(--gutter);
+}
+.work-min-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  border-bottom: 1px solid var(--ink-line-strong);
+  padding-bottom: 16px; margin-bottom: 8px;
+}
+.section-label {
+  font-family: "Inter", sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft);
+}
+.section-count {
+  font-family: "Inter", sans-serif;
+  font-size: 12px; font-weight: 600;
+  color: var(--ink-soft); font-variant-numeric: tabular-nums; letter-spacing: 0.06em;
+}
+
+/* ── work rows ── */
+.work-list { list-style: none; margin: 0; padding: 0; }
+.work-row {
+  display: grid;
+  grid-template-columns: 48px 1fr 88px 100px;
+  align-items: center; gap: 28px;
+  padding: 28px 12px;
+  border-bottom: 1px solid var(--ink-line);
+  position: relative; transition: padding 240ms ease, background 240ms ease;
+}
+.work-row.is-clickable { cursor: pointer; }
+.work-row.is-clickable:hover {
+  padding-left: 24px; padding-right: 24px;
+  background: rgba(255,255,255,0.015);
+}
+.work-row.is-clickable::before {
+  content: ""; position: absolute;
+  left: 0; top: 0; bottom: 0; width: 0;
+  background: var(--accent); transition: width 240ms ease;
+}
+.work-row.is-clickable:hover::before { width: 3px; }
+.work-row.is-disabled { opacity: 0.38; }
+.work-row-num {
+  font-family: "Inter", sans-serif;
+  font-size: 12px; font-weight: 700;
+  color: var(--ink-soft); font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+.work-row-text { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.work-row-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 600; letter-spacing: -0.01em;
+  line-height: 1.2; color: var(--ink);
+}
+.work-row-q {
+  font-size: 13px; font-weight: 400;
+  color: var(--ink-soft); line-height: 1.6;
+  letter-spacing: 0; max-width: 600px;
+}
+.work-row-thumb {
+  width: 88px; height: 60px; border-radius: 8px;
+  background-size: cover; background-position: center;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--ink-line);
+  transform: rotate(-2deg);
+  transition: transform 240ms ease, box-shadow 240ms ease;
+}
+.work-row.is-clickable:hover .work-row-thumb {
+  transform: rotate(0deg) scale(1.04);
+  box-shadow: 0 12px 24px -12px rgba(0,0,0,0.5);
+}
+.work-row-cta {
+  justify-self: end; display: inline-flex; align-items: center; gap: 6px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-soft); white-space: nowrap;
+}
+.work-row-cta .arrow { transition: transform 200ms ease; }
+.work-row.is-clickable:hover .work-row-cta { color: var(--accent); }
+.work-row.is-clickable:hover .work-row-cta .arrow { transform: translateX(6px); }
+.work-row-cta.coming-soon { color: var(--ink-soft); }
+@media (max-width: 860px) {
+  .work-row { grid-template-columns: 32px 1fr; gap: 14px; padding: 20px 4px; }
+  .work-row-thumb, .work-row-cta { grid-column: 2; justify-self: start; }
+  .work-row-thumb { width: 72px; height: 48px; }
+}
+
+/* ── walkthroughs ── */
+.walks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+@media (max-width: 860px) { .walks-grid { grid-template-columns: 1fr; } }
+.walk-card {
+  border: 1px solid var(--ink-line);
+  border-radius: 12px; overflow: hidden;
+  display: flex; flex-direction: column;
+  background: var(--bg-card); cursor: pointer;
+  transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+}
+.walk-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--ink-line-strong);
+  box-shadow: 0 24px 48px -24px rgba(0,0,0,0.5);
+}
+.walk-card-img {
+  height: 220px; background-size: cover;
+  background-position: center; background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--ink-line);
+}
+.walk-card-text { padding: 24px 24px 28px; display: flex; flex-direction: column; gap: 10px; }
+.walk-card-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 20px; font-weight: 600;
+  letter-spacing: -0.01em; line-height: 1.25; color: var(--ink);
+}
+.walk-card-q {
+  margin: 0; font-size: 14px; font-weight: 400;
+  color: var(--ink-soft); line-height: 1.6; letter-spacing: 0;
+}
+.walk-card-link {
+  margin-top: 8px; display: inline-flex; align-items: center; gap: 6px;
+  font-family: "Inter", sans-serif;
+  font-size: 11px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase;
+}
+.walk-card-link .arrow { transition: transform 200ms ease; }
+.walk-card:hover .walk-card-link .arrow { transform: translateX(4px); }
+
+/* ── contact band ── */
+.contact {
+  padding: 80px 24px 96px;
+  max-width: 1200px; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+  border-top: 1px solid var(--ink-line);
+}
+.contact-email { text-align: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 6px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+}
+.btn-primary { background: var(--accent); color: #0F1113; border: none; }
+.btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
+.btn-ghost { border: 1px solid var(--ink-line-strong); color: var(--ink); background: transparent; }
+.btn-ghost:hover { border-color: var(--ink-soft); background: rgba(255,255,255,0.04); }
+
+/* ── footer ── */
+.footer {
+  border-top: 1px solid var(--ink-line);
+  padding: 40px 24px; text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em;
+}
+
+/* ── about ── */
+.about-min-hero { padding-bottom: 56px; }
+.about-min-meta {
+  margin-top: 8px; display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0;
+  border-top: 1px solid var(--ink-line-strong); border-bottom: 1px solid var(--ink-line-strong);
+}
+@media (max-width: 860px) { .about-min-meta { grid-template-columns: 1fr 1fr; } }
+.about-min-fact {
+  padding: 20px 24px 22px; display: flex; flex-direction: column; gap: 6px;
+  border-right: 1px solid var(--ink-line);
+}
+.about-min-fact:first-child { padding-left: 0; }
+.about-min-fact:last-child { border-right: 0; padding-right: 0; }
+@media (max-width: 860px) {
+  .about-min-fact { padding: 16px 18px; }
+  .about-min-fact:nth-child(odd) { padding-left: 0; }
+  .about-min-fact:nth-child(even) { padding-right: 0; border-right: 0; }
+  .about-min-fact:nth-child(1), .about-min-fact:nth-child(2) { border-bottom: 1px solid var(--ink-line); }
+}
+.about-min-fact-k {
+  font-family: "Inter", sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+}
+.about-min-fact-v { font-size: 16px; font-weight: 500; letter-spacing: 0; color: var(--ink); }
+.about-min-links { margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap; }
+.about-min-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: 6px;
+  border: 1px solid var(--ink-line-strong);
+  font-family: "Inter", sans-serif;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+  color: var(--ink); background: transparent;
+  transition: border-color 200ms ease, transform 200ms ease, color 200ms ease;
+}
+.about-min-link svg { fill: currentColor; }
+.about-min-link .arrow { transition: transform 200ms ease; color: var(--ink-soft); }
+.about-min-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+.about-min-link:hover .arrow { transform: translate(2px,-2px); color: var(--accent); }
+
+.about-min-portrait-section {
+  max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter) 24px;
+}
+.about-min-portrait {
+  width: 100%; aspect-ratio: 16/9; border-radius: 16px;
+  background-size: cover; background-position: center 42%;
+  background-color: var(--bg-surface); border: 1px solid var(--ink-line);
+}
+@media (max-width: 860px) { .about-min-portrait { aspect-ratio: 4/5; } }
+
+.about-min-intro { display: flex; flex-direction: column; gap: 12px; margin: 24px 0 32px; max-width: 720px; }
+.about-min-h2 {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(28px, 4vw, 48px); font-weight: 600;
+  letter-spacing: -0.02em; line-height: 1.1; color: var(--ink);
+}
+.about-min-p { margin: 0; font-size: 16px; font-weight: 400; line-height: 1.65; color: var(--ink-soft); max-width: 600px; }
+.about-min-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+@media (max-width: 860px) { .about-min-grid-3 { grid-template-columns: 1fr; } }
+.about-min-photo-square { aspect-ratio: 1/1; }
+
+/* Travel mosaic */
+.about-min-travel {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 260px 260px;
+  gap: 12px;
+}
+.about-min-travel .about-min-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--ink-line);
+  display: block;
+}
+.about-min-travel .about-min-photo:nth-child(1) { grid-area: 1 / 1 / 2 / 2; }
+.about-min-travel .about-min-photo:nth-child(2) { grid-area: 1 / 2 / 3 / 3; }
+.about-min-travel .about-min-photo:nth-child(3) { grid-area: 1 / 3 / 2 / 4; }
+.about-min-travel .about-min-photo:nth-child(4) { grid-area: 2 / 1 / 3 / 2; }
+.about-min-travel .about-min-photo:nth-child(5) { grid-area: 2 / 3 / 3 / 4; }
+@media (max-width: 860px) {
+  .about-min-travel {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200px 200px 200px;
+  }
+  .about-min-travel .about-min-photo:nth-child(1) { grid-area: 1 / 1 / 2 / 2; }
+  .about-min-travel .about-min-photo:nth-child(2) { grid-area: 1 / 2 / 3 / 3; }
+  .about-min-travel .about-min-photo:nth-child(3) { grid-area: 2 / 1 / 3 / 2; }
+  .about-min-travel .about-min-photo:nth-child(4) { grid-area: 3 / 1 / 4 / 2; }
+  .about-min-travel .about-min-photo:nth-child(5) { grid-area: 3 / 2 / 4 / 3; }
+}
+.about-min-photo {
+  border-radius: 10px; background-size: cover; background-position: center;
+  background-color: var(--bg-surface); border: 1px solid var(--ink-line);
+  transition: transform 320ms ease, box-shadow 320ms ease;
+}
+.about-min-photo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px -20px rgba(0, 0, 0, 0.2);
+}
+
+/* ----------------- case study ----------------- */
+.case-hero {
+  padding: 120px 240px 64px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+@media (max-width: 980px) {
+  .case-hero {
+    padding: 64px 28px 32px;
+  }
+}
+.case-hero .timeline {
+  font-size: 18px;
+  color: var(--ink-soft);
+  letter-spacing: -0.005em;
+}
+.case-hero .author {
+  font-size: 18px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+}
+
+.case-image {
+  padding: 32px 64px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+@media (max-width: 980px) {
+  .case-image {
+    padding: 24px 28px;
+  }
+}
+.case-image .frame {
+  width: 100%;
+  aspect-ratio: 1152 / 533;
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--ink-line);
+}
+.case-image .frame.no-border {
+  border: 0;
+}
+
+.context-row {
+  padding: 32px 240px;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+@media (max-width: 980px) {
+  .context-row {
+    grid-template-columns: 1fr;
+    padding: 24px 28px;
+  }
+}
+.context-block {
+  border: 1px solid var(--ink-line);
+  border-radius: 8px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 1fr;
+}
+.context-block .top,
+.context-block .bottom {
+  padding: 14px 20px;
+  text-align: center;
+  font-size: 18px;
+  color: var(--ink-soft);
+  letter-spacing: -0.005em;
+}
+.context-block .top {
+  background: var(--bg-surface);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.case-text {
+  padding: 64px 240px;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+@media (max-width: 980px) {
+  .case-text {
+    padding: 48px 28px;
+  }
+}
+.case-text p {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.case-image-with-caption {
+  padding: 0 64px 64px;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: center;
+}
+@media (max-width: 980px) {
+  .case-image-with-caption {
+    padding: 0 28px 48px;
+  }
+}
+.case-image-with-caption .caption {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+.case-image-with-caption .caption h4 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.dual-blocks {
+  padding: 0 240px 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 980px) {
+  .dual-blocks {
+    padding: 0 28px 24px;
+    grid-template-columns: 1fr;
+  }
+}
+.dual-block {
+  background: var(--accent-soft);
+  border: 1px solid var(--ink-line);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.dual-block.pink {
+  background: rgba(255, 255, 255, 0.03);
+}
+.dual-block .lbl {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+.dual-block p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.callout {
+  border: 1px solid var(--ink-line);
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  padding: 12px 18px;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-soft);
+  background: var(--accent-softer);
+  margin-top: 8px;
+}
+
+.list-row {
+  padding: 16px 240px 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+}
+@media (max-width: 860px) {
+  .list-row {
+    padding: 8px 28px;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+.list-row .lbl {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 4px;
+}
+.list-row .body {
+  white-space: pre-line;
+}
+
+/* pull quote */
+.pullquote {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 64px;
+}
+@media (max-width: 980px) {
+  .pullquote {
+    padding: 56px 28px;
+  }
+}
+.pullquote-inner {
+  border: 1px solid var(--ink-line);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+  padding: 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: var(--bg-card);
+}
+
+/* transitions */
+.page-fade {
+  animation: pageFade 320ms ease both;
+}
+@keyframes pageFade {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* scroll progress */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  z-index: 100;
+  transition: width 80ms linear;
+  pointer-events: none;
+}
+
+/* divider */
+.divider {
+  height: 1px;
+  background: var(--ink-line);
+  margin: 0;
+}
+
+/* focus indicators */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 9999;
+  background: var(--accent);
+  color: #0F1113;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  transition: top 200ms;
+}
+.skip-link:focus { top: 0; }
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .page-fade { animation: none; opacity: 1; }
+}
+    </style>
+    <script
+      src="https://unpkg.com/react@18.3.1/umd/react.development.js"
+      integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
+      integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
+      integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useEffect, useState, useRef } = React;
+
+      /* ============================================================
+         PRIMITIVES — Nav, Footer, ContactBand, case study helpers
+      ============================================================ */
+
+      function Nav({ route, navigate }) {
+        const isCase = route.name === "crm" || route.name === "signals";
+        const [scrolled, setScrolled] = useState(false);
+        useEffect(() => {
+          const onScroll = () => setScrolled(window.scrollY > 8);
+          onScroll();
+          window.addEventListener("scroll", onScroll, { passive: true });
+          return () => window.removeEventListener("scroll", onScroll);
+        }, []);
+        return (
+          <header className={"nav" + (scrolled ? " is-scrolled" : "")}>
+            <div className="nav-inner">
+              <button className="brand" onClick={() => navigate({ name: "home" })} aria-label="Home">
+                <span className="brand-icon">
+                  <svg width="24" height="24" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+                    <path d="M13 1 L25 13 L13 25 L1 13 Z" stroke="#FFAE32" strokeWidth="2" strokeLinejoin="round"/>
+                    <path d="M13 7 L19 13 L13 19 L7 13 Z" fill="#FFAE32"/>
+                  </svg>
+                </span>
+                <span className="brand-text">Louis Liu</span>
+              </button>
+              {isCase ? (
+                <button className="nav-back" onClick={() => navigate({ name: "home" })}>
+                  <span className="arrow">←</span>
+                  <span>Back to home</span>
+                </button>
+              ) : (
+                <nav className="nav-links" aria-label="Primary">
+                  <button
+                    className={"nav-link" + (route.name === "home" ? " is-active" : "")}
+                    onClick={() => navigate({ name: "home" })}
+                  >
+                    Home
+                  </button>
+                  <button
+                    className={"nav-link" + (route.name === "about" ? " is-active" : "")}
+                    onClick={() => navigate({ name: "about" })}
+                  >
+                    About
+                  </button>
+                  <a className="nav-cta" href="mailto:Louis.rf.liu@gmail.com" aria-label="Email Louis">
+                    Let's Connect →
+                  </a>
+                </nav>
+              )}
+            </div>
+          </header>
+        );
+      }
+
+      function Footer() {
+        return <footer className="footer">© 2026 Louis Liu. All rights reserved.</footer>;
+      }
+
+      function ContactBand({ navigate, variant = "home" }) {
+        const [copied, setCopied] = useState(false);
+        const greeting =
+          variant === "home" ? "👋 Get in touch at" : "Enjoy reading my work? Come say hi 👋";
+        return (
+          <section className="contact">
+            <div className="contact-email">
+              <p className="body" style={{ marginBottom: 12 }}>{greeting}</p>
+              <p className="h2" style={{ margin: 0 }}>
+                <span>
+                  Louis.rf.liu@gmail.com
+                </span>
+              </p>
+            </div>
+            <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center" }}>
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  navigator.clipboard?.writeText("Louis.rf.liu@gmail.com");
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                }}
+              >
+                {copied ? "Copied ✓" : "Copy email"}
+              </button>
+              <a className="btn btn-ghost" href="mailto:Louis.rf.liu@gmail.com">
+                Let's connect →
+              </a>
+            </div>
+          </section>
+        );
+      }
+
+      function Eyebrow({ children }) {
+        return <div className="eyebrow">{children}</div>;
+      }
+
+      function CaseHero({ timeline, title, author = "Louis, 6sense" }) {
+        return (
+          <section className="case-hero page-fade">
+            <div className="timeline">{timeline}</div>
+            <h1 className="h1" style={{ maxWidth: 900 }}>{title}</h1>
+            <div className="author">{author}</div>
+          </section>
+        );
+      }
+
+      function CaseImage({ src, noBorder = false }) {
+        return (
+          <div className="case-image">
+            <div
+              className={"frame" + (noBorder ? " no-border" : "")}
+              style={{ backgroundImage: `url(${src})` }}
+            />
+          </div>
+        );
+      }
+
+      function ContextRow({ items }) {
+        return (
+          <section className="context-row">
+            {items.map((it, i) => (
+              <div key={i} className="context-block">
+                <div className="top">{it.label}</div>
+                <div className="bottom">{it.value}</div>
+              </div>
+            ))}
+          </section>
+        );
+      }
+
+      function CaseText({ eyebrow, title, body, children }) {
+        return (
+          <section className="case-text">
+            {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
+            {title ? <h2 className="h2">{title}</h2> : null}
+            {body ? <p className="body">{body}</p> : null}
+            {children}
+          </section>
+        );
+      }
+
+      function ImageWithCaption({ src, captionTitle, captionBody, noBorder = false }) {
+        return (
+          <section className="case-image-with-caption">
+            <div className="case-image" style={{ padding: 0, width: "100%" }}>
+              <div
+                className={"frame" + (noBorder ? " no-border" : "")}
+                style={{ backgroundImage: `url(${src})` }}
+              />
+            </div>
+            <div className="caption">
+              <h4>{captionTitle}</h4>
+              <p className="body" style={{ whiteSpace: "pre-line" }}>{captionBody}</p>
+            </div>
+          </section>
+        );
+      }
+
+      function DualBlocks({ items, tone = "accent" }) {
+        return (
+          <div className="dual-blocks">
+            {items.map((it, i) => (
+              <div key={i} className={"dual-block" + (tone === "pink" ? " pink" : "")}>
+                <div className="lbl">{it.title}</div>
+                <p>{it.body}</p>
+              </div>
+            ))}
+          </div>
+        );
+      }
+
+      function Callout({ children }) {
+        return <div className="callout">{children}</div>;
+      }
+
+      function ListRow({ label, body }) {
+        return (
+          <section className="list-row">
+            <div className="lbl">{label}</div>
+            <p className="body">{body}</p>
+          </section>
+        );
+      }
+
+      /* ============================================================
+         HOME PAGE
+      ============================================================ */
+
+      function Home({ navigate }) {
+        const cards = [
+          {
+            title: "Signals expansion",
+            q: "How might we help GTM teams detect and act on business events to engage prospects at the right moment?",
+            img: "assets/home-card-signals.png",
+            target: "signals",
+            cta: "View case study",
+          },
+          {
+            title: "CRM object permissions",
+            q: "How might we empower admins to independently diagnose CRM permission statuses?",
+            img: "assets/home-card-crm.png",
+            target: "crm",
+            cta: "View case study",
+          },
+          {
+            title: "Taxonomy for predictive models",
+            q: "How might we empower admins to confidently classify their data for 6sense predictive models during onboarding?",
+            img: "assets/home-card-taxonomy.png",
+            target: null,
+            cta: "Coming soon",
+          },
+        ];
+
+        const walkthroughs = [
+          {
+            title: "Insurance content display and prioritization",
+            q: "How can insurance brokers quickly and easily gather regulatory information from carriers?",
+            img: "assets/home-insurance.png",
+            link: "https://xd.adobe.com/view/b7440248-60d6-4353-903f-31ead172239c-e217/",
+          },
+          {
+            title: "Intelligent farming with FurrowTechnik",
+            q: "How do we help farmers stay informed and maintain precise control over their equipment during farming activities?",
+            img: "assets/home-farming.jpg",
+            link: "https://xd.adobe.com/view/11e5b7e0-ddb7-45db-972d-78c451c8c679-44b6/?fullscreen",
+          },
+        ];
+
+        return (
+          <main className="page-fade home-min" id="main-content">
+            {/* Hero */}
+            <section className="hero-min">
+              <div className="hero-min-eyebrow">
+                <span className="hero-min-dot" />
+                Product Designer · Saint Paul, MN
+              </div>
+              <h1 className="hero-min-title">
+                Transforming complex data
+                <br />
+                into <em>intelligent</em> actions.
+              </h1>
+              <p className="hero-min-sub">
+                I turn intricate B2B SaaS systems into clear, calm interfaces — built
+                on system-level thinking and a love for craft.
+              </p>
+
+            </section>
+
+            {/* Selected work */}
+            <section className="work-min">
+              <div className="work-min-head">
+                <h2 className="section-label">Selected work</h2>
+                <span className="section-count">0{cards.length}</span>
+              </div>
+              <ul className="work-list">
+                {cards.map((c, i) => {
+                  const clickable = !!c.target;
+                  return (
+                    <li
+                      key={i}
+                      className={"work-row " + (clickable ? "is-clickable" : "is-disabled")}
+                      onClick={() => clickable && navigate({ name: c.target })}
+                      role={clickable ? "button" : undefined}
+                      tabIndex={0}
+                      aria-disabled={!clickable}
+                      onKeyDown={(e) => {
+                        if (clickable && (e.key === "Enter" || e.key === " ")) {
+                          e.preventDefault();
+                          navigate({ name: c.target });
+                        }
+                      }}
+                    >
+                      <span className="work-row-num">{String(i + 1).padStart(2, "0")}</span>
+                      <div className="work-row-text">
+                        <div className="work-row-title">{c.title}</div>
+                        <div className="work-row-q">{c.q}</div>
+                      </div>
+                      <div
+                        className="work-row-thumb"
+                        style={{ backgroundImage: `url(${c.img})` }}
+                        aria-hidden="true"
+                      />
+                      <span className={"work-row-cta" + (c.cta === "Coming soon" ? " coming-soon" : "")}>
+                        {c.cta === "Coming soon" ? "Coming soon" : "Read"}
+                        {c.cta !== "Coming soon" && <span className="arrow">→</span>}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+
+            {/* Walkthroughs */}
+            <section className="walks-min">
+              <div className="work-min-head">
+                <h2 className="section-label">Walkthroughs</h2>
+                <span className="section-count">0{walkthroughs.length}</span>
+              </div>
+              <div className="walks-grid">
+                {walkthroughs.map((w, i) => (
+                  <article
+                    key={i}
+                    className={"walk-card" + (w.link ? " is-clickable" : "")}
+                    onClick={() => w.link && window.open(w.link, "_blank", "noopener,noreferrer")}
+                    role={w.link ? "link" : undefined}
+                    tabIndex={w.link ? 0 : undefined}
+                    onKeyDown={(e) => {
+                      if (w.link && (e.key === "Enter" || e.key === " ")) {
+                        e.preventDefault();
+                        window.open(w.link, "_blank", "noopener,noreferrer");
+                      }
+                    }}
+                  >
+                    <div
+                      className="walk-card-img"
+                      style={{ backgroundImage: `url(${w.img})` }}
+                      aria-hidden="true"
+                    />
+                    <div className="walk-card-text">
+                      <h3 className="walk-card-title">{w.title}</h3>
+                      <p className="walk-card-q">{w.q}</p>
+                      {w.link && (
+                        <div className="walk-card-link" aria-hidden="true">
+                          Open link <span className="arrow">→</span>
+                        </div>
+                      )}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            <ContactBand navigate={navigate} variant="home" />
+            <Footer />
+          </main>
+        );
+      }
+
+      /* ============================================================
+         ABOUT PAGE
+      ============================================================ */
+
+      function About({ navigate }) {
+        const wood = ["assets/wood-1.jpg", "assets/wood-2.jpg", "assets/wood-3.jpg"];
+        const facts = [
+          { k: "Based in", v: "Saint Paul, MN" },
+          { k: "Languages", v: <span>English · <span lang="zh">中文</span></span> },
+          { k: "Currently", v: "Senior PD @ 6sense" },
+          { k: "Off the clock", v: "Woodworking · Travel" },
+        ];
+        return (
+          <main className="page-fade home-min" id="main-content">
+            {/* Hero */}
+            <section className="hero-min about-min-hero">
+              <div className="hero-min-eyebrow">
+                <span className="hero-min-dot" />
+                About · Saint Paul, MN
+              </div>
+              <h1 className="hero-min-title">
+                Hi, it's <em>Louis</em>.
+              </h1>
+              <p className="hero-min-sub">
+                Born in China, raised between two languages, and now building a
+                wonderfully chaotic life with my family in Saint Paul, MN. I bring
+                the same clarity I practice at the workbench to every product I design.
+              </p>
+
+              <div className="about-min-meta">
+                {facts.map((f) => (
+                  <div key={f.k} className="about-min-fact">
+                    <span className="about-min-fact-k">{f.k}</span>
+                    <span className="about-min-fact-v">{f.v}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="about-min-links">
+                <a
+                  className="about-min-link"
+                  href="https://www.linkedin.com/in/louis-rf-liu/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 11.01-4.13 2.06 2.06 0 01-.01 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .77 0 1.73v20.54C0 23.23.8 24 1.78 24h20.44c.99 0 1.78-.77 1.78-1.73V1.73C24 .77 23.21 0 22.22 0z" />
+                  </svg>
+                  LinkedIn
+                  <span className="arrow">↗</span>
+                </a>
+                <a
+                  className="about-min-link"
+                  href="#"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+                  </svg>
+                  Download résumé
+                  <span className="arrow">↓</span>
+                </a>
+              </div>
+            </section>
+
+            {/* Portrait */}
+            <section className="about-min-portrait-section">
+              <div
+                className="about-min-portrait"
+                style={{ backgroundImage: "url(assets/about-portrait.jpg)" }}
+                role="img"
+                aria-label="Louis standing next to the Louisa St street sign"
+              />
+            </section>
+
+            {/* Off the clock — woodworking */}
+            <section className="work-min">
+              <div className="work-min-head">
+                <h2 className="section-label">Off the clock</h2>
+                <span className="section-count">0{wood.length}</span>
+              </div>
+              <div className="about-min-intro">
+                <h3 className="about-min-h2">I enjoy being crafty.</h3>
+                <p className="about-min-p">
+                  A few woodworking projects from over the years — a hobby that
+                  balances creativity with a satisfying amount of measuring twice.
+                </p>
+              </div>
+              <div className="about-min-grid-3">
+                {wood.map((src, i) => (
+                  <div
+                    key={i}
+                    className="about-min-photo about-min-photo-square"
+                    style={{ backgroundImage: `url(${src})` }}
+                    aria-hidden="true"
+                  />
+                ))}
+              </div>
+            </section>
+
+            {/* Travel */}
+            <section className="walks-min">
+              <div className="work-min-head">
+                <h2 className="section-label">Off the clock</h2>
+                <span className="section-count">07</span>
+              </div>
+              <div className="about-min-intro">
+                <h3 className="about-min-h2">I enjoy traveling.</h3>
+                <p className="about-min-p">
+                  Some moments captured where I could look back and say "oh yeah, that was cool."
+                </p>
+              </div>
+              <div className="about-min-travel">
+                <div className="about-min-photo about-min-tall" style={{ backgroundImage: "url(assets/travel-1.jpg)" }} aria-hidden="true" />
+                <div className="about-min-photo about-min-wide" style={{ backgroundImage: "url(assets/travel-2.jpg)" }} aria-hidden="true" />
+                <div className="about-min-photo about-min-square" style={{ backgroundImage: "url(assets/travel-3.jpg)" }} aria-hidden="true" />
+                <div className="about-min-photo about-min-square" style={{ backgroundImage: "url(assets/travel-4.jpg)" }} aria-hidden="true" />
+                <div className="about-min-photo about-min-horiz" style={{ backgroundImage: "url(assets/travel-5.jpg)" }} aria-hidden="true" />
+              </div>
+            </section>
+
+            <ContactBand navigate={navigate} variant="case" />
+            <Footer />
+          </main>
+        );
+      }
+
+      /* ============================================================
+         CRM CASE STUDY
+      ============================================================ */
+
+      function CRMCase({ navigate }) {
+        return (
+          <main className="page-fade" id="main-content">
+            <CaseHero
+              timeline="May 2025 – July 2025"
+              title="CRM object permissions"
+            />
+            <CaseImage src="assets/crm-hero.png" />
+
+            <ContextRow
+              items={[
+                { label: "My role", value: "Design lead" },
+                { label: "Collaboration", value: "Product Management, Content Design" },
+              ]}
+            />
+
+            <CaseText
+              eyebrow="Project context"
+              title="Prevent incomplete CRM data ingestion through upfront permission verification"
+              body={"Today, Revenue Operations and IT Admins can finish setting up a CRM integration even if they have not granted 6sense permissions to all mandatory CRM objects. As a result, teams often discover missing permissions later through sync failures or incomplete data ingestion, which creates confusion, delays onboarding, and increases Support and CSM escalations.\n\nThis project aims to improve the CRM connection experience and proactively prevent setup failures caused by missing mandatory object permissions.\n\nThe core idea behind the work is to make permission status clear and actionable during initial setup, and to enforce completion criteria: block users from completing the integration until all mandatory object permissions are verified."}
+            />
+
+            <CaseText
+              eyebrow="Current state"
+              title="Admins bypass critical permissions because required objects stay hidden"
+              body={"During onboarding, 6sense internal teams (professional services, customer success) help admins configure CRM integrations. While our KnowledgeBase documents the required data objects for each CRM platform and customer package, permission requirements vary based on the platform and purchased features.\n\nOur support team reports this causes approximately 6–8 cases monthly where admins complete CRM integration unaware that required permissions were missing, causing errors that surface during downstream data sync."}
+            />
+
+            <ImageWithCaption
+              src="assets/crm-pain-1.png"
+              noBorder
+              captionTitle="Pain point #1: Low discoverability of help articles makes CRM setup unguided"
+              captionBody="While minimum requirements are clearly documented and available to all customers, admins often must search through numerous support articles to find the information they need. This breaks their workflow and creates friction during the setup process."
+            />
+
+            <ImageWithCaption
+              src="assets/crm-pain-2.png"
+              noBorder
+              captionTitle="Pain point #2: Hidden permissions create a false sense of completion"
+              captionBody={"During the CRM integration setup flow, admins can only see the top 9 data objects, with the remainder hidden behind a \"view all\" button. This design means permission errors don't display on the primary view. Even when errors are present, the main \"Finish\" button remains active and unblocked, creating an illusion of success.\n\nThis problem compounds over time: when customers purchase additional features requiring new data object permissions, these objects appear only within the \"view all\" button."}
+            />
+
+            <section className="case-image-with-caption">
+              <div className="caption" style={{ maxWidth: 800 }}>
+                <h4>Pain point #3: Permission instructions are buried and friction-heavy</h4>
+                <p className="body">
+                  While the Data Sync step includes step-by-step guidance for granting
+                  permissions, the majority of the content is positioned below the fold and
+                  requires scrolling to discover. Even when admins find these instructions,
+                  following them demands multiple clicks because of lack of refresh capability.
+                </p>
+              </div>
+            </section>
+
+            <CaseText
+              eyebrow="Design preparation"
+              title="JTBD"
+              body="As an admin, when activating CRM integration with 6sense, I want to make sure 6sense has permissions to all required data objects from my CRM, so I can set up CRM connection successfully and enable downstream onboarding setups."
+            />
+
+            <DualBlocks
+              items={[
+                {
+                  title: "Problem statement",
+                  body: "Admins are often unaware that permissions have not been granted for certain CRM objects because identifying which object lacks the necessary permissions isn't immediately obvious — making them feel confused and delaying fixes for data sync errors.",
+                },
+                {
+                  title: "Design hypothesis",
+                  body: "If we make required data object permission statuses visible at a glance, then admins will be able to stay well-informed during CRM setup and ensure an error-free data connection.",
+                },
+              ]}
+            />
+
+            <ListRow
+              label="Outcomes"
+              body={"Clear visibility of permission status for all required objects\nAbility to identify and fix permission gaps early\nFaster completion of CRM integration\nReduced troubleshooting with internal teams\nA more predictable, reliable setup experience"}
+            />
+            <ListRow
+              label="Concerns"
+              body={"Uncertainty whether all required permissions are captured\nFear of missed objects causing integration failure\nConfusion from technical or ambiguous permission labels\nNeeding help from IT to correct permissions\nRisk of misconfiguration or sync issues due to blind spots"}
+            />
+
+            <CaseText
+              eyebrow="User flow"
+              title="Similar setup flow, less friction"
+              body="Bringing visibility during CRM setup and providing sufficient contextual support is key to a more efficient setup experience and reduces future support cases. From the user flow chart, I identified two areas to improve."
+            />
+
+            <ImageWithCaption
+              src="assets/crm-feature.png"
+              captionTitle="#1 — Enable real-time permission status validation"
+              captionBody="Currently, after granting permissions, admins must re-enter the setup flow to trigger the API call and retrieve updated permission statuses. This is a redundant and frustrating step that breaks the workflow."
+            />
+            <section className="case-image-with-caption" style={{ paddingTop: 0 }}>
+              <div className="caption">
+                <Callout>
+                  <strong>Proposed improvement:</strong> add a refresh button within the Data
+                  Sync step to trigger the API call and immediately fetch updated permission
+                  statuses without requiring admins to restart the setup flow.
+                </Callout>
+              </div>
+            </section>
+
+            <section className="case-image-with-caption">
+              <div className="caption">
+                <h4>#2 — Consolidate setup guidance in one accessible location</h4>
+                <p className="body">
+                  Currently, admins seeking setup guidance must piece together information from
+                  multiple sources. Instructions scattered throughout the setup screen and
+                  relevant support articles requiring external searches create friction and
+                  increase the risk of missed best practices.
+                </p>
+                <Callout>
+                  <strong>Proposed improvement:</strong> surface all related documentation
+                  links contextually within the setup flow, allowing admins to access guidance
+                  without leaving the interface.
+                </Callout>
+              </div>
+            </section>
+
+            <CaseText
+              eyebrow="Hierarchy and layout"
+              title="Prioritize and separate essential vs. advanced objects"
+              body={"A key improvement is to reorganize how data objects are displayed. Through cross-functional collaboration with product, professional services, and engineering, we identified that all data objects fall into two distinct categories:\n\nEssential — mandatory objects admins must grant permissions to during initial onboarding.\nAdvanced — objects added post-onboarding when customers purchase additional feature suites or upsells."}
+            />
+            <CaseImage src="assets/crm-hierarchy.png" />
+
+            <CaseText
+              eyebrow="Call to attention"
+              title="Surface permission errors prominently"
+              body="Once the high-level structure is there, the next consideration is to make sure data objects that do not have the proper permissions granted surface up top for more visibility."
+            />
+            <CaseImage src="assets/crm-attention.png" />
+
+            <CaseText eyebrow="High-fidelity solutions" title="Bringing it all together" />
+
+            <CaseText
+              title="Keeping all instructions in context"
+              body={'Displaying contextual help in the drawer when clicking on "how to grant permissions" provides admins with a comprehensive one-page view of everything they need.'}
+            />
+            <CaseText
+              title="Designated section for advanced objects"
+              body="Additional objects that are required after onboarding will be displayed in the Advanced Objects section. These objects do not hinder the initial CRM setup but are crucial for unblocking downstream applications."
+            />
+
+            <CaseText eyebrow="Retrospective" title="Strengths and opportunities for growth" />
+            <DualBlocks
+              tone="pink"
+              items={[
+                {
+                  title: "What went well",
+                  body: "Effective cross-functional collaboration that unified internal knowledge and perspectives across teams.\nStrong partnership with content design to establish clear content hierarchy and visual clarity.\nSeamless knowledge transfer from support insights directly into feature enhancements.",
+                },
+                {
+                  title: "What could improve",
+                  body: "Establish more robust success metrics earlier to better measure and demonstrate impact.\nAccelerate feedback loops with the support team to address recurring issues more quickly.",
+                },
+              ]}
+            />
+
+            <ContactBand navigate={navigate} variant="case" />
+            <Footer />
+          </main>
+        );
+      }
+
+      /* ============================================================
+         SIGNALS CASE STUDY
+      ============================================================ */
+
+      function SignalsCase({ navigate }) {
+        return (
+          <main className="page-fade" id="main-content">
+            <CaseHero
+              timeline="November 2025 – January 2026"
+              title="Signals expansion"
+            />
+            <CaseImage src="assets/signals-hero.png" />
+
+            <ContextRow
+              items={[
+                { label: "My role", value: "Design lead" },
+                {
+                  label: "Collaboration",
+                  value: "Product Management, Data Science, Program Management, UX Research, Content Design, Product Marketing",
+                },
+              ]}
+            />
+
+            <CaseText
+              eyebrow="Project context"
+              title="Mastering the Timing of Engaging: A Key to GTM Success"
+              body={"One key challenge in B2B sales and marketing is knowing when to engage. Without timely triggers like hiring, funding, or tech adoption, teams rely on static lists and generic outreach that could potentially miss key windows of receptivity. Poor timing leads to lower conversion rates, longer sales cycles, weaker ROI, and a brand-perception issue.\n\nTo improve the transparency and explainability of 6sense data while helping users know the best time to act, we're introducing a new feature named Signals, our top priority leading up to general availability in August 2026. The Signals Configuration team will build a centralized interface for users to create and manage these signals."}
+            />
+
+            <section className="pullquote">
+              <div className="pullquote-inner">
+                <h2 className="h3">
+                  "Signal" is time-relevant information that helps users make a decision.
+                </h2>
+                <p className="lede">
+                  For instance, companies that have just secured a funding round represent a
+                  time-sensitive opportunity in the market. When a company completes a new
+                  funding round, it often results in increased purchasing power or a heightened
+                  need to buy. As a salesperson, recognizing this signal can be crucial for
+                  closing new deals.
+                </p>
+              </div>
+            </section>
+
+            <CaseText
+              eyebrow="Baseline alignment"
+              title="From Reactive to Proactive: Enabling Event-Driven GTM Strategy"
+              body="GTM teams struggle to act on real-time business events because manual tracking is time-consuming and unscalable. A unified Signal feature will recognize meaningful events, understand when timely personalized outreach is needed, and ensure efforts are prioritized, accelerated, and ultimately impactful."
+            />
+
+            <ListRow
+              label="Goal"
+              body="Ability to act on near real-time business events, triggers for more timely sales and marketing outreach."
+            />
+            <ListRow
+              label="Main themes"
+              body={"1. Timing and precision — Awareness of key market and account events so GTM teams can act at the right moment.\n2. Automate GTM actions — A way to turn key triggers into timely, consistent actions across their GTM efforts and buying stages.\n3. Personalize GTM messaging — Tailor messaging and playbooks based on the business event affecting their accounts.\n4. Prioritize outreach — Focus on accounts and contacts actively progressing in their buying journeys."}
+            />
+            <ListRow
+              label="Why"
+              body="GTM teams lack real-time triggers; they are forced to rely on guesswork instead of timely, automated, high-impact GTM actions."
+            />
+
+            <CaseText
+              eyebrow="Design preparation"
+              title="JTBD"
+              body="As a GTM team member, I want timely triggers and guidance when key events happen in my accounts, so I can engage more effectively and drive better results."
+            />
+
+            <DualBlocks
+              items={[
+                {
+                  title: "Problem statement",
+                  body: "GTM teams are frustrated when trying to engage prospects at the right time because staying on top of important market events involves extensive manual effort that is inefficient and unscalable — leaving them feeling reactive and struggling to prioritize.",
+                },
+                {
+                  title: "Design hypothesis",
+                  body: "If we build a single, real-time system that automatically identifies and acts on business events, then GTM teams will be able to engage prospects at the right time with personalized, scalable outreach.",
+                },
+              ]}
+            />
+
+            <ListRow
+              label="Wants/Needs"
+              body={"1. Detect meaningful business events in real time.\n2. Reduce time spent on manual tracking and research.\n3. Leverage event details to make outreach more relevant."}
+            />
+            <ListRow
+              label="Outcomes"
+              body={"1. Faster, consistent activation across the funnel.\n2. Increased relevance leading to higher conversion rates.\n3. Increase revenue with well-timed engagement."}
+            />
+            <ListRow
+              label="Concerns"
+              body={"1. Signal accuracy and reliability\n2. Difficulty setting up conditions\n3. Integration with current tools\n4. Data privacy and compliance"}
+            />
+
+            <CaseImage src="assets/signals-img-1.jpg" noBorder />
+
+            <CaseText
+              eyebrow="Phase 1: Planning and preparations"
+              title="Navigating constraints and aligning stakeholders for accelerated delivery"
+              body="To ensure a high expressive standard for my designs while pushing this project forward, I documented my concerns and shared with stakeholders to establish a mutual understanding. Once it was established, teams could agree to disagree without losing momentum."
+            />
+
+            <ListRow
+              label="Time"
+              body="I had one quarter of time to complete both research and designs. This meant that I had to move quickly with certain uncertainties while delivering reasonably high-quality designs by quarter's end."
+            />
+            <ListRow
+              label="Team availability"
+              body="This project took place in Q4, which runs from November through January, a period that includes three major US holidays. I had to take in the considerations that any team members and potential research participants would take extended time off work."
+            />
+            <ListRow
+              label="Capacity"
+              body="As the owner of both research and design, this required careful prioritization of what I could and couldn't accomplish."
+            />
+
+            <CaseText
+              title="4IAB: collaboration is key to success"
+              body={"Given the rapid pace of this project, effective collaboration among Product Design, Product Management, Software Engineering, and Program Management is essential for its success.\n\nWe will know this is true when any of the 4 roles feel confident answering questions independently from any cross-functional partners."}
+            />
+
+            <CaseText
+              eyebrow="Phase 2: Research preparation"
+              title="Uncovering user mental models to define signals that fit real workflows"
+              body={"In this research, we wanted to understand how users perceive, describe, and think about what we currently call \"signals\", even though they have not used them before. We aimed to learn who our users are and what their workflow looks like, uncover gaps, pain points, and needs, and better understand where \"signals\" could meaningfully fit into their workflow.\n\nWith the help of this research, we were able to compare our findings against the existing JTBDs. This research was conducted through moderated and exploratory interviews to understand our users' mental models."}
+            />
+
+            <ContextRow
+              items={[
+                { label: "Method", value: "User interviews, cognitive walkthroughs" },
+                { label: "Sample size", value: "10–13" },
+                { label: "Session length", value: "45 min" },
+                { label: "Tool", value: "Userlytcs" },
+              ]}
+            />
+
+            <CaseText>
+              <Callout>
+                <strong>Goal #1</strong> — Explore how participants describe and contextualize a feature like "signals".<br />
+                <em>Question #1:</em> How do users interpret or describe signals or similar concepts?
+              </Callout>
+              <Callout>
+                <strong>Goal #2</strong> — Identify how users can create successful signals.<br />
+                <em>Question #2:</em> Who, in customer's organizations, is responsible for defining signals?<br />
+                <em>Question #3:</em> What is considered when defining signals?<br />
+                <em>Question #4:</em> What makes a signal successful?
+              </Callout>
+              <Callout>
+                <strong>Goal #3</strong> — Uncover the outcomes users expect signals to help them achieve.<br />
+                <em>Question #5:</em> What actions are intended once a signal is created?
+              </Callout>
+            </CaseText>
+
+            <CaseText
+              eyebrow="Key learnings"
+              title="From noise to signal: research insights that will shape our configuration experience"
+            />
+
+            <DualBlocks
+              items={[
+                { title: "No.1", body: "A signal is an alert that demands immediate attention and prompts a timely decision." },
+                { title: "No.2", body: "Roles closest to the go-to-market activities should be able to configure signals." },
+                { title: "No.3", body: "Signals should focus on the metrics users value most and connect to keep each alert relevant and effective." },
+                { title: "No.4", body: "Successful signals drive meaningful outcomes for both the business and the individual, backed by credible, well-governed data." },
+                { title: "No.5", body: "Once a signal is created, teams initiate timely outreach, update records, and reprioritize accounts to advance the right opportunities." },
+              ]}
+            />
+
+            <DualBlocks
+              items={[
+                {
+                  title: "Signals should",
+                  body: "1. Grab attention and triage urgency\n2. Explain the 'why' behind the alert\n3. Guide users toward meaningful action\n4. Fit users' context and workflows\n5. Drive individuals, coordinated action",
+                },
+                {
+                  title: "Signals should not",
+                  body: "1. Be vague or unexplained\n2. Create noise or false urgency\n3. Require extensive configuration\n4. Be siloed or hard to share\n5. Be incomplete and lack follow-through",
+                },
+              ]}
+            />
+
+            <CaseText
+              eyebrow="Phase 3: Concept designs and reviews"
+              title="Accelerating Through Collaboration: From Early Concepts to Stakeholder Alignment"
+              body={"While scheduling and conducting research calls, I began exploring early-stage design concepts in parallel. Given the tight timeline, I needed to start designing before completing research to help non-design partners visualize what each section could look like. This saved time from small-scale functional reviews. I then increased the fidelity of low-level concepts to help non-design partners visualize what each section could look like.\n\nCollaborating with the Program Manager to stay on track, I secured two rounds of concept reviews with the majority of the internal stakeholders, covering Data Science, Software Engineering, Product leadership, and Design leadership. These calls kept everyone informed of my progress while allowing me to gather insights and feedback from diverse perspectives."}
+            />
+
+            <CaseText
+              title="Transform Your Go-to-Market Process into Effective Signals Configuration"
+              body={"To align the team effectively, I've outlined a high-level journey for a typical go-to-market process. Next, direct focus on the Signals feature and see how it integrates into our users' workflows.\n\nWhile hyper-focused on the details, it is also important to keep the bigger picture in mind!"}
+            />
+
+            <CaseText
+              title="Visualize Your Decision-Making Process in Signal Creation"
+              body="During this exercise, I facilitated working sessions with my core teams to thoroughly explore the signals creation process. Our goal was to pinpoint potential use cases and decisions throughout this journey. We can easily make and assess adjustments with teams that share the same mindset."
+            />
+
+            <CaseText
+              title="Define Your Page Structure: Key Concepts for Each Area's Purpose"
+              body="After reviewing the insights and discussions, I developed low-fidelity concepts to help core teams concentrate on the information architecture. The aim was to organize ideas into specific page areas and clarify their purposes. I've also documented the decisions for future reference."
+            />
+
+            <CaseText
+              eyebrow="Phase 4: High-fidelity solutions"
+              title="Refining Designs and Building Momentum for Beta Release"
+              body={"As the deliverable for this quarter, my goal was to handoff designs that meet the Beta requirements, which are:\n1. 4 types of functioning signals (out of 35 types for GA)\n2. Fully functional configuration experience\n3. Ability to find, create, and manage signals with ease\n4. Ability to estimate potential signal volume during creation\n5. Have scalability in mind for future improvements"}
+            />
+
+            <ImageWithCaption
+              src="assets/signals-img-4.png"
+              captionTitle="Signal feature is located on the main navigation bar"
+              captionBody={"The central interface of Signals, this space will be essential for operations users, frontline sellers, and marketers.\n\nResearch insight: Signals play a role in assessing urgency and driving go-to-market success.\n\nDesign decision:\n1. Placing Signals feature on the main navigation\n2. Accessible to all users upon landing"}
+            />
+
+            <ImageWithCaption
+              src="assets/signals-img-3.png"
+              captionTitle="Clear event types and conditions for each Signal"
+              captionBody={"Expressability is essential in the creation, editing, and evaluation of signals. Offering a clear perspective on each signal's configuration is crucial for facilitating downstream usage and reporting issues.\n\nResearch insight: Clarity of each signal is key to adoption.\n\nDesign decision:\n1. All selected event types are displayed in the same view without additional clicks\n2. Configurable conditions are clearly laid out"}
+            />
+
+            <ImageWithCaption
+              src="assets/signals-img-5.png"
+              captionTitle="Signals are accessible directly within downstream applications where users are present"
+              captionBody={"Should be easily accessible as core data configurations within the workflows of sellers and marketers. Frequent back-and-forth navigation is not ideal.\n\nResearch insight: Signals must align with users' contexts and workflows, prompting swift and coordinated actions.\n\nDesign decision:\n1. Surface configured signals directly within downstream apps for easy consumption\n2. Display signal configuration details when referenced to help explain the \"whys\" behind them"}
+            />
+
+            <CaseText eyebrow="Looking ahead" title="Maintain forward momentum while addressing knowledge gap" />
+            <DualBlocks
+              tone="pink"
+              items={[
+                {
+                  title: "What went well",
+                  body: "1. Close collaboration with the 4IAB concept\n2. Decisions are well-documented\n3. Insights are effectively communicated across all teams",
+                },
+                {
+                  title: "What could improve",
+                  body: "1. More discovery-type explorations at the beginning of the project planning\n2. More concrete persona details and market preferences to the feature early in the process",
+                },
+              ]}
+            />
+
+            <ContactBand navigate={navigate} variant="case" />
+            <Footer />
+          </main>
+        );
+      }
+
+      /* ============================================================
+         APP — routing + scroll progress
+      ============================================================ */
+
+      function parseHash() {
+        const h = (window.location.hash || "#/").replace(/^#/, "");
+        const [, name = "home"] = h.split("/");
+        const valid = ["home", "about", "crm", "signals"];
+        return { name: valid.includes(name) ? name : "home" };
+      }
+
+      function ScrollProgress() {
+        const [w, setW] = useState(0);
+        useEffect(() => {
+          const onScroll = () => {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+            setW(pct);
+          };
+          onScroll();
+          window.addEventListener("scroll", onScroll, { passive: true });
+          return () => window.removeEventListener("scroll", onScroll);
+        }, []);
+        return <div className="scroll-progress" style={{ width: `${w}%` }} aria-hidden="true" role="presentation" />;
+      }
+
+      function App() {
+        const [route, setRoute] = useState(parseHash());
+        useEffect(() => {
+          const onHash = () => setRoute(parseHash());
+          window.addEventListener("hashchange", onHash);
+          return () => window.removeEventListener("hashchange", onHash);
+        }, []);
+
+        const navigate = (next) => {
+          window.location.hash = "#/" + next.name;
+          window.scrollTo({ top: 0, behavior: "instant" });
+        };
+
+        useEffect(() => {
+          window.scrollTo({ top: 0, behavior: "instant" });
+          const titles = {
+            home: "Louis Liu — Portfolio",
+            about: "About — Louis Liu",
+            crm: "CRM Object Permissions — Louis Liu",
+            signals: "Signals Expansion — Louis Liu",
+          };
+          document.title = titles[route.name] || "Louis Liu — Portfolio";
+        }, [route.name]);
+
+        let page = null;
+        if (route.name === "home")    page = <Home navigate={navigate} key="home" />;
+        else if (route.name === "about")   page = <About navigate={navigate} key="about" />;
+        else if (route.name === "crm")     page = <CRMCase navigate={navigate} key="crm" />;
+        else if (route.name === "signals") page = <SignalsCase navigate={navigate} key="signals" />;
+
+        return (
+          <>
+            <ScrollProgress />
+            <Nav route={route} navigate={navigate} />
+            {page}
+          </>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>

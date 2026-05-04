@@ -1,0 +1,33 @@
+.nav {
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  gap: 16px;
+  padding: 8px;
+  background: rgba(223, 219, 215, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 999px;
+  box-shadow: 0 4px 24px rgba(160, 150, 140, 0.2), inset 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 10px 20px;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--text-main);
+  background: var(--bg-color);
+  box-shadow: var(--shadow-soft), var(--rim-light);
+}

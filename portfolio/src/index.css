@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg-color: #DFDBD7;
+  --color-sand: #CDA98B;
+  --color-ceramic: #DEC6B0;
+  --color-cream: #EAE6E1;
+  --color-terracotta: #C4765A;
+  --color-gray: #9E9D99;
+  --color-track: #E3D3BE;
+
+  --text-main: #4A4744;
+  --text-muted: #8A8580;
+  --text-accent: #C4765A;
+
+  --shadow-soft:
+    12px 12px 24px rgba(160, 150, 140, 0.4),
+    -8px -8px 24px rgba(255, 255, 255, 0.7);
+  --shadow-hover:
+    16px 16px 32px rgba(160, 150, 140, 0.35),
+    -12px -12px 32px rgba(255, 255, 255, 0.8);
+  --shadow-inset:
+    inset 6px 6px 12px rgba(160, 150, 140, 0.25),
+    inset -6px -6px 12px rgba(255, 255, 255, 0.9);
+  --shadow-deep-inset:
+    inset 8px 8px 16px rgba(140, 130, 120, 0.4),
+    inset -8px -8px 16px rgba(255, 255, 255, 0.9);
+
+  --rim-light: inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+  --rim-shadow: inset -1px -1px 2px rgba(160, 150, 140, 0.3);
+
+  --font-display: 'Montserrat', sans-serif;
+  --font-ui: 'Montserrat', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-ui);
+  line-height: 1.5;
+  overflow-x: hidden;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Morphic primitives */
+.m-slab {
+  background: var(--bg-color);
+  border-radius: 32px;
+  box-shadow: var(--shadow-soft), var(--rim-light), var(--rim-shadow);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.m-slab:hover {
+  box-shadow: var(--shadow-hover), var(--rim-light), var(--rim-shadow);
+  transform: translateY(-2px);
+}
+
+.m-inset {
+  background: var(--bg-color);
+  border-radius: 24px;
+  box-shadow: var(--shadow-deep-inset);
+}
+
+.m-pill {
+  background: var(--bg-color);
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft), var(--rim-light);
+  padding: 12px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-main);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  border: none;
+}
+
+.m-pill:active {
+  box-shadow: var(--shadow-inset);
+  transform: scale(0.98);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
+}
