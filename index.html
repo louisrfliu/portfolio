@@ -914,6 +914,29 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .sig-finding p { font-size: 15px; color: var(--ink); line-height: 1.75; margin: 0; }
 .sig-finding em { color: var(--accent); font-style: italic; }
+
+/* ── Signals v3 ── */
+.sig-card-stack { padding: 0 var(--gutter) 80px; max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+.sig-info-card { background: var(--bg-card); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.sig-info-card .sig-ic-header { display: flex; align-items: center; gap: 12px; }
+.sig-info-card .sig-ic-header span { font-size: clamp(18px,2vw,24px); font-weight: 600; color: var(--ink); }
+.sig-info-card ol { list-style: decimal; padding-left: 24px; margin: 0; }
+.sig-info-card ol li { font-size: 15px; color: var(--ink-muted); line-height: 1.75; margin-bottom: 6px; }
+.sig-info-card ol ol { list-style: lower-alpha; padding-left: 20px; }
+.sig-hifi-row { display: flex; gap: 24px; align-items: stretch; padding: 0 var(--gutter) 120px; max-width: 1280px; margin: 0 auto; }
+@media (max-width: 900px) { .sig-hifi-row { flex-direction: column; } }
+.sig-hifi-row .img-side { flex-shrink: 0; width: 55%; border: 1px solid var(--ink-line); border-radius: 16px; overflow: hidden; aspect-ratio: 691/549; background: var(--bg-card); }
+.sig-hifi-row .img-side img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sig-hifi-row .text-side { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; padding-left: 8px; }
+.sig-hifi-row .text-side h4 { font-size: clamp(18px,2vw,24px); font-weight: 700; color: var(--ink); line-height: 1.2; margin: 0; }
+.sig-hifi-row .text-side p { font-size: 15px; color: var(--ink-muted); line-height: 1.75; margin: 0; flex: 1; }
+.sig-ri-card { border-radius: 0 8px 8px 0; padding: 24px; display: flex; flex-direction: column; gap: 8px; }
+.sig-ri-card.amber { background: rgba(255,174,44,0.12); border-left: 4px solid var(--accent); }
+.sig-ri-card.green { background: rgba(105,153,93,0.12); border-left: 4px solid rgb(105,153,93); }
+.sig-ri-card .ri-lbl { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--ink); }
+.sig-ri-card p { font-size: 14px; color: var(--ink-muted); line-height: 1.6; margin: 0; }
+.sig-ri-card ol { list-style: decimal; padding-left: 20px; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+.sig-ri-card li { font-size: 14px; color: var(--ink-muted); line-height: 1.6; }
     </style>
     <script
       src="https://unpkg.com/react@18.3.1/umd/react.development.js"
@@ -1576,147 +1599,345 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
       ============================================================ */
 
       function SignalsCase({ navigate }) {
-        const decisions = [
-          {
-            insight: "Signals demand immediate attention",
-            decision: "Featured in main nav, visible on landing for all users",
-          },
-          {
-            insight: "Explainability drives adoption",
-            decision: "All event types and conditions shown in one view — no extra clicks",
-          },
-          {
-            insight: "Signals must fit existing workflows",
-            decision: "Surfaced inside downstream apps so sellers never lose context",
-          },
+        const hiFindings = [
+          { num: "No.1", text: "A signal is an alert that demands immediate attention and prompts a timely decision." },
+          { num: "No.2", text: "Roles closest to the go-to-market activities should be able to configure signals." },
+          { num: "No.3", text: "Signals should focus on the metrics users value most and use context to keep each alert relevant and effective." },
+          { num: "No.4", text: "Successful signals drive meaningful outcomes for both the business and the individual, backed by credible, well-governed data." },
+          { num: "No.5", text: "Once a signal is created, teams initiate timely outreach, update records, and reprioritize accounts to advance the right opportunities." },
         ];
 
-        const reflections = [
+        const betaReqs = [
+          "4 types of functioning signals (out of 35 types for GA)",
+          "Fully functional configuration experience",
+          "Ability to find, create, and manage signals with ease",
+          "Ability to estimate potential signal volume during creation",
+          "Have scalability in mind for future improvements",
+        ];
+
+        const hifiFeatures = [
           {
-            label: "Did we solve the problem?",
-            body: "The Beta designs shipped on schedule with a fully functional configuration experience — a meaningful step toward replacing manual, reactive tracking with a scalable, event-driven GTM workflow. Full impact will be measurable post-GA in August 2026.",
+            img: "assets/signals-hifi-nav.png",
+            title: "Signal feature is located on the main navigation bar",
+            body: "Given the time-sensitive nature of Signals, this space will be essential for operations users, frontline sellers, and marketers.",
+            insight: "Signals play a vital role in assessing urgency and driving go-to-market success.",
+            decisions: ["Placing Signals feature on the main navigation bar", "Accessible to all users upon landing"],
           },
           {
-            label: "What this meant for users",
-            body: "Sellers and marketers can now act on real-time business events with context, rather than guessing at timing or doing manual research. The explainability built into each signal directly addresses the frustration of 6sense feeling like a black box.",
+            img: "assets/signals-hifi-config.png",
+            title: "Clear event types and conditions for each Signal",
+            body: "Explainability is essential in the creation, editing, and evaluation of signals. Offering a clear perspective on each signal's configuration is crucial for facilitating downstream usage and resolving issues.",
+            insight: "Explainability to each signal is key to adoption",
+            decisions: ["All selected event types are displayed in the same view without additional clicks", "Configurable conditions are clearly laid out."],
           },
           {
-            label: "What this meant for the business",
-            body: "Signals is 6sense's top priority for 2026. Delivering solid Beta designs on a compressed timeline kept the product roadmap on track and gave engineering a stable foundation to build from.",
-          },
-          {
-            label: "What I'd do differently",
-            body: "I'd push for sharper persona definitions and more discovery-style exploration before the project formally kicked off. Entering concept design with clearer user profiles would have reduced ambiguity in the early stakeholder reviews and likely sharpened the research questions too.",
-          },
-          {
-            label: "Biggest challenge",
-            body: "Balancing speed with quality as the sole owner of research and design, in a quarter shortened by holidays, on a feature that had significant cross-functional visibility. The 4IAB model and proactive documentation were what made it workable.",
+            img: "assets/signals-hifi-downstream.png",
+            title: "Signals are accessible directly within downstream applications where users are present.",
+            body: "Signals should be easily accessible as core data configurations within the workflows of sellers and marketers. Frequent back-n-forth navigation is not ideal.",
+            insight: "Signals must align with users' contexts and workflows, prompting swift and coordinated actions.",
+            decisions: ["Surface configured signals directly within downstream apps for easy consumption", "Display signal configuration details when referenced to help explain the \"whys\" behind them"],
           },
         ];
 
         return (
           <main className="page-fade" id="main-content">
-            <CaseHero
-              timeline="Nov 2025 – Jan 2026"
-              title="Signals expansion"
-              author="Louis · Design Lead · 6sense"
-            />
+
+            {/* ── Hero ── */}
+            <CaseHero timeline="November 2025 - January 2026" title="Signals expansion" author="Louis, 6sense" />
             <CaseImage src="assets/signals-hero.png" />
+            <ContextRow items={[
+              { label: "My role", value: "Design lead" },
+              { label: "Collaboration", value: "Product Management, Data Science, Program Management, UX Research, Content Design, Product Marketing Management" },
+            ]} />
 
-            <ContextRow
-              items={[
-                { label: "My role", value: "Design Lead" },
-                { label: "Team", value: "PM · Data Science · Program Management · UX Research · Content Design · PMM" },
-              ]}
-            />
+            {/* ── Project context ── */}
+            <section className="case-text">
+              <Eyebrow>Project context</Eyebrow>
+              <h2 className="h2">Mastering the Timing of Engagement: A Key to GTM Success</h2>
+              <p className="body">
+                {"6sense is known for its data quality and the GTM impact that it can bring to our customers. However, key outcomes from 6sense data, such as keywords, 6QA, and temperature scores, are "}
+                <span style={{color:"var(--accent)"}}>indirect concepts</span>
+                {" 6sense formulates and makes available to users. The calculations behind the scene are very powerful but at the same time, creating a \""}
+                <span style={{color:"var(--accent)"}}>black box</span>
+                {"\" for all our customers to understand."}
+              </p>
+              <p className="body" style={{marginTop:16}}>
+                {"One key challenge in B2B sales and marketing is knowing "}
+                <span style={{color:"var(--accent)"}}>when to engage</span>
+                {". Without timely triggers like hiring, funding, or tech adoption, teams rely on static lists and generic outreach that could potentially miss key windows of receptivity. Poor timing leads to lower conversion rates, longer sales cycles, weaker ROI, and a brand perception of irrelevance."}
+              </p>
+              <p className="body" style={{marginTop:16}}>
+                {"To improve the transparency and explainability of 6sense data whiling helping users know the best time to act, we're introducing a new feature named Signals, our top priority leading up to general availability in August 2026. The Platform Enablement team will build a centralized interface for users to "}
+                <span style={{color:"var(--accent)"}}>create and manage</span>
+                {" these signals."}
+              </p>
+            </section>
 
-            {/* Context */}
-            <CaseText
-              eyebrow="Context"
-              body={"6sense helps B2B sales and marketing teams identify and act on buying intent. While the platform's predictive data is powerful, it functioned as a \"black box\" — users trusted the outputs but couldn't interpret or act on them with confidence. Signals was identified as the top priority feature leading to GA in August 2026, and I was brought in as design lead to own the experience from research through handoff in one quarter."}
-            />
-
-            {/* Problem */}
-            <section className="sig-problem-section">
-              <div>
-                <Eyebrow>Problem</Eyebrow>
-                <p className="sig-problem-text">GTM teams miss high-value buying windows because they have no scalable way to detect and act on real-time business events like funding rounds, hiring surges, or technology changes.</p>
-              </div>
-              <div className="sig-meta-row">
-                <div>
-                  <div className="sig-meta-label">Goal</div>
-                  <p className="sig-meta-body">Give sales and marketing teams a way to configure, manage, and act on real-time business events — so outreach is timely, relevant, and coordinated.</p>
-                </div>
-                <div>
-                  <div className="sig-meta-label">Audience</div>
-                  <p className="sig-meta-body">Operations users who configure signals, and frontline sellers and marketers who consume them daily.</p>
-                </div>
+            {/* ── Pull quote ── */}
+            <section className="pullquote">
+              <div style={{borderLeft:"4px solid rgba(255,255,255,0.18)",paddingLeft:32,display:"flex",flexDirection:"column",gap:48}}>
+                <h2 className="h3" style={{fontWeight:700,lineHeight:1.3}}>
+                  {"\""}
+                  <span style={{color:"var(--accent)"}}>Signal</span>
+                  {"\" is time-relevant information that helps users make a decision."}
+                </h2>
+                <p className="lede" style={{color:"var(--ink-muted)"}}>
+                  For instance, companies that have just secured a funding round represent a time-sensitive opportunity in the market. When a company completes a new funding round, it often results in increased purchasing power or a heightened need to buy. As a salesperson, recognizing this signal can be crucial for closing new deals.
+                </p>
               </div>
             </section>
 
-            {/* Solution */}
+            {/* ── Baseline alignment ── */}
             <CaseText
-              eyebrow="Solution"
-              title="A centralized hub for real-time GTM triggers"
-              body={"A centralized Signals feature — accessible from the main navigation — where users can create and manage event-based triggers tied to their GTM workflows. The Beta delivered 4 fully functional signal types (of 35 planned for GA), a configuration experience with clear event types and conditions, volume estimation during setup, and signal visibility directly inside downstream sales and marketing tools."}
+              eyebrow="Baseline alignment"
+              title="From Reactive to Proactive: Enabling Event-Driven GTM Strategy"
+              body="GTM teams struggle to act on real-time business events because manual tracking is time-consuming and unscalable. A unified Signal feature will recognize meaningful events, understand when timely personalized outreach is needed, and ensure their efforts are prioritized, accelerated, and ultimately impactful."
             />
-            <CaseImage src="assets/signals-img-4.png" />
+            <div className="sig-card-stack">
+              <div className="sig-info-card">
+                <div className="sig-ic-header"><span>Goal</span></div>
+                <p style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>Ability to act on near real-time business events, triggers for more timely sales and marketing outreach.</p>
+              </div>
+              <div className="sig-info-card">
+                <div className="sig-ic-header"><span>Main themes</span></div>
+                <ol>
+                  <li>Timing and precision<ol><li>Awareness of key market and account events so GTM teams can act at the right moment.</li></ol></li>
+                  <li>Automate GTM actions<ol><li>A way to turn key triggers into timely, consistent actions across their GTM efforts and buying stages.</li></ol></li>
+                  <li>Personalize GTM messaging<ol><li>Tailor messaging and playbooks based on the business event affecting their accounts.</li></ol></li>
+                  <li>Prioritize outreach<ol><li>Focus on accounts and contacts actively progressing in their buying journeys to increase relevance and impact.</li></ol></li>
+                </ol>
+              </div>
+              <div className="sig-info-card">
+                <div className="sig-ic-header"><span>Why</span></div>
+                <p style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>{"GTM teams lack real‑time triggers, they are forced to rely on guesswork instead of timely, automated, high-impact GTM actions."}</p>
+              </div>
+            </div>
 
-            {/* Process header */}
-            <CaseText eyebrow="Process" title="How I got there." />
-
-            {/* Step 01 */}
-            <section className="sig-process-step">
-              <div className="sig-step-num" aria-hidden="true">01</div>
-              <div className="sig-step-content">
-                <h3 className="sig-step-title">Research first, design in parallel</h3>
-                <p className="sig-step-body">With only one quarter and sole ownership of both research and design, I ran 10–12 moderated user interviews while simultaneously sketching early concepts — iterating as insights surfaced rather than waiting for research to close.</p>
-                <div className="sig-finding">
-                  <div className="sig-finding-label">Key research finding</div>
-                  <p>Users treat signals as urgency triggers, not data points. They need to understand the <em>why</em> behind each alert before they'll act on it — making explainability a core design requirement, not a nice-to-have.</p>
+            {/* ── Design preparation / JTBD ── */}
+            <section className="case-text">
+              <Eyebrow>Design preparation</Eyebrow>
+              <h2 className="h2">JTBD</h2>
+              <p className="body">
+                <strong>As</strong>{" GTM team member, "}<strong>I want</strong>{" timely triggers and guidance when key events happen in my accounts, "}<strong>so</strong>{" I can engage more effectively and drive better results."}
+              </p>
+            </section>
+            <div style={{padding:"0 var(--gutter) 32px",maxWidth:1280,margin:"0 auto"}}>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}}>
+                <div style={{background:"rgba(255,174,44,0.12)",borderRadius:16,padding:24,display:"flex",flexDirection:"column",gap:16}}>
+                  <h5 style={{fontSize:"clamp(18px,2vw,24px)",fontWeight:600,color:"var(--ink)",margin:0}}>Problem statement</h5>
+                  <p style={{fontSize:14,color:"var(--ink-muted)",lineHeight:1.6,margin:0}}>
+                    {"GTM teams "}<strong>are</strong>{" frustrated "}<strong>when trying to</strong>{" engage prospects at the right time "}<strong>because</strong>{" staying on top of important market events and reacting quickly involves extensive manual effort that is inefficient and unscalable, "}<strong>which leaves them feeling</strong>{" reactive and struggling to prioritize."}
+                  </p>
                 </div>
-                <div className="signals-table">
-                  <div className="signals-table-head">
-                    <span>Research insight</span>
-                    <span>Design decision</span>
+                <div style={{background:"rgba(255,174,44,0.12)",borderRadius:16,padding:24,display:"flex",flexDirection:"column",gap:16}}>
+                  <h5 style={{fontSize:"clamp(18px,2vw,24px)",fontWeight:600,color:"var(--ink)",margin:0}}>Design hypothesis</h5>
+                  <p style={{fontSize:14,color:"var(--ink-muted)",lineHeight:1.6,margin:0}}>
+                    <strong>{"If "}</strong>{"we build a single, real-time system that automatically identifies and acts on business events, "}<strong>then</strong>{" GTM teams will be able to engage prospects at the right time with personalized, scalable outreach."}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <ListRow label="Wants/Needs" body={"1. Detect meaningful business events in real time.\n2. Reduce time spent on manual tracking and research.\n3. Leverage event details to make outreach more relevant."} />
+            <ListRow label="Outcomes" body={"1. Faster, consistent activation across the funnel.\n2. Increased relevance leading to higher conversion rates.\n3. Increase revenue with well-timed engagement."} />
+            <ListRow label="Concerns" body={"1. Signal accuracy and reliability\n2. Difficulty setting up conditions\n3. Integration with current tools\n4. Data privacy and compliance"} />
+
+            {/* ── Section image ── */}
+            <CaseImage src="assets/signals-s2-hero.png" />
+
+            {/* ── Phase 1: Planning ── */}
+            <section className="case-text">
+              <Eyebrow>Phase 1: Planning and preparations</Eyebrow>
+              <h2 className="h2">Navigating constraints and aligning stakeholders for accelerated delivery</h2>
+              <p className="body">
+                {"To ensure a high experience standard for my designs while pushing this project forward, I documented my "}
+                <span style={{color:"var(--accent)"}}>concerns</span>
+                {" and shared with stakeholders to establish a mutual understanding. Goal was to have my professional opinions documented and communicated. Once it was established, teams could agree to disagree without loosing momentum."}
+              </p>
+            </section>
+            <div style={{padding:"0 var(--gutter) 40px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:32}}>
+              {[
+                { label:"Time", body:"I had one quarter of time to complete both research and designs. This meant that I had to move quickly with certain uncertainties while delivering reasonably high-quality designs by quarter's end." },
+                { label:"Team availability", body:"This project took place in Q4, which runs from November through January, a period that includes three major US holidays. I had to take in the considerations that any team members and potential research participants would take extended time off work." },
+                { label:"Capacity", body:"As the owner of both research and design. This required careful prioritization of what I could and couldn't accomplish." },
+              ].map((item,i) => (
+                <div key={i} style={{display:"flex",gap:48,alignItems:"flex-start"}}>
+                  <div style={{width:200,flexShrink:0,fontSize:"clamp(15px,2vw,18px)",fontWeight:700,color:"var(--ink)",lineHeight:1}}>{item.label}</div>
+                  <p style={{flex:1,fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>{item.body}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{padding:"0 var(--gutter) 80px",maxWidth:1280,margin:"0 auto"}}>
+              <div style={{background:"var(--bg-card)",border:"1px solid var(--ink-line)",borderRadius:16,display:"flex",overflow:"hidden",maxWidth:800}}>
+                <div style={{width:200,flexShrink:0,background:"var(--bg-surface)"}}>
+                  <img src="assets/signals-4iab.png" style={{width:"100%",height:"100%",objectFit:"cover",display:"block"}} alt="" />
+                </div>
+                <div style={{flex:1,padding:24,display:"flex",flexDirection:"column",gap:12}}>
+                  <h5 style={{fontSize:"clamp(18px,2vw,24px)",fontWeight:700,color:"var(--ink)",lineHeight:1.45,margin:0}}>4IAB: collaboration is key to success</h5>
+                  <p style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>Given the rapid pace of this project, effective collaboration among Product Design, Product Management, Software Engineering, and Program Management is essential for its success.</p>
+                  <p style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>We will know this is true when any of the 4 roles feel confident answering questions independently from any cross-functional partners.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* ── Design timeline image + caption ── */}
+            <div style={{padding:"0 var(--gutter) 80px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:32}}>
+              <CaseImage src="assets/signals-timeline.png" />
+              <div style={{padding:"0 clamp(0px,5vw,80px)"}}>
+                <p style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>
+                  {"Given these limitations, I drafted a "}
+                  <span style={{color:"var(--accent)"}}>design timeline</span>
+                  {" to visualize my deliverables and capacity. I led experience planning sessions with cross-functional partners from data science, product management, program management, software engineering, content design, and user research. The goal was to ensure every team understood each other's constraints so we could work together and stay aligned."}
+                </p>
+              </div>
+            </div>
+
+            {/* ── Phase 2: Research preparation ── */}
+            <section className="case-text">
+              <Eyebrow>Phase 2: Research preparation</Eyebrow>
+              <h2 className="h2">Uncovering user mental models to define signals that fit real workflows</h2>
+              <p className="body">In this research, we wanted to understand how users perceive, describe, and think about what we currently call "signals", even though they have not used them before. We aimed to learn who our users are and what their workflow looks like, uncover gaps, pain points, and needs, and better understand where "signals" could meaningfully fit into their workflow.</p>
+              <p className="body" style={{marginTop:16}}>With the help of this research, we were able to compare our findings against the existing JTBDs. This research was conducted through moderated and exploratory interviews to understand our user's mental models.</p>
+            </section>
+            <div style={{padding:"0 var(--gutter) 32px",maxWidth:1280,margin:"0 auto"}}>
+              <div style={{background:"rgba(255,174,44,0.12)",borderRadius:16,padding:24,display:"flex",gap:16,flexWrap:"wrap"}}>
+                {[
+                  {label:"Method",value:"User interviews, cognitive walkthroughs"},
+                  {label:"Sample size",value:"10-12"},
+                  {label:"Session length",value:"45 min"},
+                  {label:"Tool",value:"Userlytics"},
+                ].map((spec,i,arr) => (
+                  <div key={i} style={{flex:1,minWidth:120,display:"flex",flexDirection:"column",gap:16,borderRight:i<arr.length-1?"1px solid rgba(57,70,72,0.8)":"none",paddingRight:i<arr.length-1?16:0}}>
+                    <div style={{fontSize:14,fontWeight:600,color:"var(--ink)"}}>{spec.label}</div>
+                    <p style={{fontSize:14,color:"var(--ink-muted)",lineHeight:1.5,margin:0}}>{spec.value}</p>
                   </div>
-                  {decisions.map((d, i) => (
-                    <div key={i} className="signals-table-row">
-                      <div className="signals-table-insight">{d.insight}</div>
-                      <div className="signals-table-decision">{d.decision}</div>
+                ))}
+              </div>
+            </div>
+            <div style={{padding:"0 var(--gutter) 40px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:24}}>
+              {[
+                { goal:"Goal #1: ", desc:"Explore how participants describe and conceptualize a feature like \"signals\".", questions:[{q:"Question #1",t:"How do users interpret or describe signals or similar concepts?"}] },
+                { goal:"Goal #2: ", desc:"Identify how users can create successful signals.", questions:[{q:"Question #2",t:"Who, in customer's organizations, is responsible for defining signals?"},{q:"Question #3",t:"What is considered when defining signals?"},{q:"Question #4",t:"What makes a signal successful?"}] },
+                { goal:"Goal #3: ", desc:"Uncover the outcomes users expect signals to help them achieve.", questions:[{q:"Question #5",t:"What actions are intended once a signal is created?"}] },
+              ].map((section,i) => (
+                <div key={i}>
+                  <p style={{fontSize:18,fontWeight:700,color:"var(--accent)",margin:"0 0 10px",lineHeight:1}}>
+                    {section.goal}<span style={{color:"var(--ink)",fontWeight:400}}>{section.desc}</span>
+                  </p>
+                  <div style={{paddingLeft:40,display:"flex",flexDirection:"column",gap:8}}>
+                    {section.questions.map((q,j) => (
+                      <p key={j} style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>
+                        <strong style={{color:"var(--ink)"}}>{q.q}</strong>{": "}{q.t}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* ── Research FigJam image + caption ── */}
+            <div style={{padding:"0 var(--gutter) 80px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:32}}>
+              <div style={{padding:"0 clamp(0px,5vw,80px)"}}>
+                <p style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>During each interview, I note down important points from the conversations. After each call, I transferred all notes into a FigJam file where I can collaborate with my researcher and parse each note into individual stickies or groups by similar ideas. We label each idea to identify patterns, then organize these groups into broader themes that inform the overall study findings.</p>
+              </div>
+              <CaseImage src="assets/signals-research.png" />
+            </div>
+
+            {/* ── Key learnings ── */}
+            <section className="case-text">
+              <Eyebrow>Key learnings</Eyebrow>
+              <h2 className="h2">From noise to signal: research insights that will shape our configuration experience</h2>
+            </section>
+            <div style={{padding:"0 var(--gutter) 48px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:20}}>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}}>
+                {hiFindings.slice(0,2).map((f,i) => (
+                  <div key={i} style={{background:"rgba(105,153,93,0.12)",borderRadius:16,padding:24,display:"flex",flexDirection:"column",gap:16}}>
+                    <h5 style={{fontSize:24,fontWeight:600,color:"var(--ink)",margin:0}}>{f.num}</h5>
+                    <p style={{fontSize:14,color:"var(--ink-muted)",lineHeight:1.6,margin:0}}>{f.text}</p>
+                  </div>
+                ))}
+              </div>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}}>
+                {hiFindings.slice(2,4).map((f,i) => (
+                  <div key={i} style={{background:"rgba(105,153,93,0.12)",borderRadius:16,padding:24,display:"flex",flexDirection:"column",gap:16}}>
+                    <h5 style={{fontSize:24,fontWeight:600,color:"var(--ink)",margin:0}}>{f.num}</h5>
+                    <p style={{fontSize:14,color:"var(--ink-muted)",lineHeight:1.6,margin:0}}>{f.text}</p>
+                  </div>
+                ))}
+              </div>
+              <div style={{background:"rgba(105,153,93,0.12)",borderRadius:16,padding:24,display:"flex",flexDirection:"column",gap:16}}>
+                <h5 style={{fontSize:24,fontWeight:600,color:"var(--ink)",margin:0}}>{hiFindings[4].num}</h5>
+                <p style={{fontSize:14,color:"var(--ink-muted)",lineHeight:1.6,margin:0}}>{hiFindings[4].text}</p>
+              </div>
+            </div>
+            <div style={{padding:"0 var(--gutter) 80px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:32}}>
+              <p style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>Based on the insights provided, this research can help inform design decisions in the following ways:</p>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:48}}>
+                {[
+                  { title: ["Signals ", <span style={{color:"var(--accent)"}}>should</span>], items: ["Grab attention and triage urgency","Explain the \"why\" behind the alert","Align to key metrics and goals","Fit users' context and workflows","Drive immediate, coordinated action"] },
+                  { title: ["Signals ", <span style={{color:"var(--accent)"}}>should not</span>], items: ["Vague or unexplained","Create noise or false urgency","Rely on untrusted data","Siloed or hard to share","Ignore ownership and follow-through"] },
+                ].map((col,i) => (
+                  <div key={i} style={{display:"flex",flexDirection:"column",gap:16}}>
+                    <h5 style={{fontSize:24,fontWeight:600,color:"var(--ink)",margin:0}}>{col.title}</h5>
+                    <ol style={{listStyle:"decimal",paddingLeft:24,margin:0,display:"flex",flexDirection:"column",gap:4}}>
+                      {col.items.map((item,j) => <li key={j} style={{fontSize:14,color:"var(--ink-muted)",lineHeight:1.75}}>{item}</li>)}
+                    </ol>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Phase 3: Concept designs ── */}
+            <section className="case-text">
+              <Eyebrow>Phase 3: Concept designs and reviews</Eyebrow>
+              <h2 className="h2">Accelerating Through Collaboration: From Early Concepts to Stakeholder Alignment</h2>
+              <p className="body">{"While scheduling and conducting research calls, I began exploring early flows design concepts in parallel. Given the tight timeline, I needed to start designing before completing research, then iterate quickly as insights emerged.\n\nFor each concept, I documented the user goals that each section addressed and captured decisions from cross-functional reviews. I then increased the fidelity of high-level concepts to help non-design partners visualize what each section could become.\n\nBy collaborating with the Program Manager, I secured two rounds of concept reviews with majority of the internal stakeholders, coming from Data Science, Software Engineering, Product leadership, and Design leadership. These calls kept everyone informed of my progress while allowing me to gather insights and feedback from diverse perspectives.\n\nCombined with research findings, these cross-functional reviews greatly shaped design approaches and moved us closer to the final solution."}</p>
+            </section>
+            <ImageWithCaption src="assets/signals-concept-gtm.png" captionTitle="Transform Your Go-to-Market Process into Effective Signals Configuration" captionBody={"To align the team effectively, I've outlined a high-level journey for a typical go-to-market process. Next, direct focus on the Signals feature and see how it integrates into our users' workflows.\n\nWhile hyper-focused on the details, it is also important to keep the bigger picture in mind"} />
+            <ImageWithCaption src="assets/signals-concept-working.png" captionTitle="Visualize Your Decision-Making Process in Signal Creation" captionBody="During this exercise, I facilitated working sessions with my core teams to thoroughly explore the signals creation process. Our goal was to pinpoint potential use cases and decisions throughout this journey. We can easily make and assess adjustments with teams that share the same mindset." />
+            <ImageWithCaption src="assets/signals-concept-lofi.png" captionTitle="Define Your Page Structure: Key Concepts for Each Area's Purpose" captionBody={"After reviewing the insights and discussions, I developed low-fidelity concepts to help core teams concentrate on the information architecture. The aim was to organize ideas into specific page areas and clarify their purposes. I've also documented the decisions for future reference."} />
+
+            {/* ── Phase 4: High-fidelity ── */}
+            <section className="case-text">
+              <Eyebrow>Phase 4: High-fidelity solutions</Eyebrow>
+              <h2 className="h2">Refining Designs and Building Momentum for Beta Release</h2>
+              <p className="body">As the deliverable for this quarter, my goal was to handoff designs that meet the Beta requirements, which are:</p>
+              <ol style={{listStyle:"decimal",paddingLeft:24,marginTop:16,display:"flex",flexDirection:"column",gap:8}}>
+                {betaReqs.map((r,i) => <li key={i} style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75}}>{r}</li>)}
+              </ol>
+            </section>
+            {hifiFeatures.map((f,i) => (
+              <div key={i} className="sig-hifi-row" style={{paddingBottom: i < hifiFeatures.length-1 ? 120 : 80}}>
+                <div className="img-side">
+                  <img src={f.img} alt="" />
+                </div>
+                <div className="text-side">
+                  <div style={{display:"flex",flexDirection:"column",gap:16,flex:1}}>
+                    <h4>{f.title}</h4>
+                    <p>{f.body}</p>
+                  </div>
+                  <div style={{display:"flex",flexDirection:"column",gap:8}}>
+                    <div className="sig-ri-card amber">
+                      <div className="ri-lbl">Research insight</div>
+                      <p>{f.insight}</p>
                     </div>
-                  ))}
+                    <div className="sig-ri-card green">
+                      <div className="ri-lbl">Design decision</div>
+                      <ol>{f.decisions.map((d,j) => <li key={j}>{d}</li>)}</ol>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </section>
-
-            <CaseImage src="assets/signals-img-3.png" />
-
-            {/* Step 02 */}
-            <section className="sig-process-step">
-              <div className="sig-step-num" aria-hidden="true">02</div>
-              <div className="sig-step-content">
-                <h3 className="sig-step-title">Aligning a large, cross-functional team</h3>
-                <p className="sig-step-body">The project spanned Data Science, Engineering, PM, Program Management, Content Design, and UX Research — all moving fast through Q4 holidays. I introduced a "4IAB" collaboration model, ensuring Design, PM, Engineering, and Program Management could each answer questions independently without bottlenecking on each other. I facilitated experience planning sessions and secured two rounds of stakeholder concept reviews, keeping decisions documented and momentum intact.</p>
-              </div>
-            </section>
-
-            {/* Step 03 */}
-            <section className="sig-process-step">
-              <div className="sig-step-num" aria-hidden="true">03</div>
-              <div className="sig-step-content">
-                <h3 className="sig-step-title">Low-fi before high-fi</h3>
-                <p className="sig-step-body">I ran working sessions to map the full GTM-to-signal workflow, then used low-fidelity concepts to align teams on information architecture before investing in high-fidelity designs. This surfaced structural disagreements early, when they were cheap to resolve.</p>
-              </div>
-            </section>
-
-            <CaseImage src="assets/signals-img-5.png" />
-
-            {/* Reflection */}
-            <CaseText eyebrow="Reflection" title="Looking back." />
-            {reflections.map((r, i) => (
-              <ListRow key={i} label={r.label} body={r.body} />
             ))}
+
+            {/* ── Looking ahead ── */}
+            <section className="case-text">
+              <Eyebrow>Looking ahead</Eyebrow>
+              <h2 className="h2">Maintain forward momentum while addressing knowledge gas</h2>
+            </section>
+            <DualBlocks tone="pink" items={[
+              { title: "What went well", body: "1. close collaboration with the 4IAB concept\n2. decisions are well documented\n3. insights are effectively communciated across all teams" },
+              { title: "What could improve", body: "1. more discovery type explorations at the beginning of the project planning\n2. more concrete persona definition and market preferences to the feature early in the process" },
+            ]} />
 
             <ContactBand navigate={navigate} variant="case" />
             <Footer />
