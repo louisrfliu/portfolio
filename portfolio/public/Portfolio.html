@@ -1753,19 +1753,19 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
                 <span style={{color:"var(--accent)"}}>concerns</span>
                 {" and shared with stakeholders to establish a mutual understanding. Goal was to have my professional opinions documented and communicated. Once it was established, teams could agree to disagree without loosing momentum."}
               </p>
+              <div style={{display:"flex",flexDirection:"column",gap:32,marginTop:32}}>
+                {[
+                  { label:"Time", body:"I had one quarter of time to complete both research and designs. This meant that I had to move quickly with certain uncertainties while delivering reasonably high-quality designs by quarter's end." },
+                  { label:"Team availability", body:"This project took place in Q4, which runs from November through January, a period that includes three major US holidays. I had to take in the considerations that any team members and potential research participants would take extended time off work." },
+                  { label:"Capacity", body:"As the owner of both research and design. This required careful prioritization of what I could and couldn't accomplish." },
+                ].map((item,i) => (
+                  <div key={i} style={{display:"flex",gap:48,alignItems:"flex-start"}}>
+                    <div style={{width:200,flexShrink:0,fontSize:"clamp(15px,2vw,18px)",fontWeight:700,color:"var(--ink)",lineHeight:1}}>{item.label}</div>
+                    <p style={{flex:1,fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>{item.body}</p>
+                  </div>
+                ))}
+              </div>
             </section>
-            <div style={{padding:"0 var(--gutter) 40px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:32}}>
-              {[
-                { label:"Time", body:"I had one quarter of time to complete both research and designs. This meant that I had to move quickly with certain uncertainties while delivering reasonably high-quality designs by quarter's end." },
-                { label:"Team availability", body:"This project took place in Q4, which runs from November through January, a period that includes three major US holidays. I had to take in the considerations that any team members and potential research participants would take extended time off work." },
-                { label:"Capacity", body:"As the owner of both research and design. This required careful prioritization of what I could and couldn't accomplish." },
-              ].map((item,i) => (
-                <div key={i} style={{display:"flex",gap:48,alignItems:"flex-start"}}>
-                  <div style={{width:200,flexShrink:0,fontSize:"clamp(15px,2vw,18px)",fontWeight:700,color:"var(--ink)",lineHeight:1}}>{item.label}</div>
-                  <p style={{flex:1,fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>{item.body}</p>
-                </div>
-              ))}
-            </div>
             <div style={{padding:"0 var(--gutter) 80px",maxWidth:1280,margin:"0 auto"}}>
               <div style={{background:"var(--bg-card)",border:"1px solid var(--ink-line)",borderRadius:16,display:"flex",overflow:"hidden",maxWidth:800}}>
                 <div style={{width:200,flexShrink:0,background:"var(--bg-surface)"}}>
