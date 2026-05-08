@@ -1797,42 +1797,42 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
               <h2 className="h2">Uncovering user mental models to define signals that fit real workflows</h2>
               <p className="body">In this research, we wanted to understand how users perceive, describe, and think about what we currently call "signals", even though they have not used them before. We aimed to learn who our users are and what their workflow looks like, uncover gaps, pain points, and needs, and better understand where "signals" could meaningfully fit into their workflow.</p>
               <p className="body" style={{marginTop:16}}>With the help of this research, we were able to compare our findings against the existing JTBDs. This research was conducted through moderated and exploratory interviews to understand our user's mental models.</p>
-            </section>
-            <div style={{padding:"0 var(--gutter) 32px",maxWidth:1280,margin:"0 auto"}}>
-              <div style={{background:"rgba(255,174,44,0.12)",borderRadius:16,padding:24,display:"flex",gap:16,flexWrap:"wrap"}}>
+              <div style={{marginTop:32}}>
+                <div style={{background:"rgba(255,174,44,0.12)",borderRadius:16,padding:24,display:"flex",gap:16,flexWrap:"wrap"}}>
+                  {[
+                    {label:"Method",value:"User interviews, cognitive walkthroughs"},
+                    {label:"Sample size",value:"10-12"},
+                    {label:"Session length",value:"45 min"},
+                    {label:"Tool",value:"Userlytics"},
+                  ].map((spec,i,arr) => (
+                    <div key={i} style={{flex:1,minWidth:120,display:"flex",flexDirection:"column",gap:16,borderRight:i<arr.length-1?"1px solid rgba(57,70,72,0.8)":"none",paddingRight:i<arr.length-1?16:0}}>
+                      <div style={{fontSize:14,fontWeight:600,color:"var(--ink)"}}>{spec.label}</div>
+                      <p style={{fontSize:14,color:"var(--ink-muted)",lineHeight:1.5,margin:0}}>{spec.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div style={{marginTop:32,display:"flex",flexDirection:"column",gap:24}}>
                 {[
-                  {label:"Method",value:"User interviews, cognitive walkthroughs"},
-                  {label:"Sample size",value:"10-12"},
-                  {label:"Session length",value:"45 min"},
-                  {label:"Tool",value:"Userlytics"},
-                ].map((spec,i,arr) => (
-                  <div key={i} style={{flex:1,minWidth:120,display:"flex",flexDirection:"column",gap:16,borderRight:i<arr.length-1?"1px solid rgba(57,70,72,0.8)":"none",paddingRight:i<arr.length-1?16:0}}>
-                    <div style={{fontSize:14,fontWeight:600,color:"var(--ink)"}}>{spec.label}</div>
-                    <p style={{fontSize:14,color:"var(--ink-muted)",lineHeight:1.5,margin:0}}>{spec.value}</p>
+                  { goal:"Goal #1: ", desc:"Explore how participants describe and conceptualize a feature like \"signals\".", questions:[{q:"Question #1",t:"How do users interpret or describe signals or similar concepts?"}] },
+                  { goal:"Goal #2: ", desc:"Identify how users can create successful signals.", questions:[{q:"Question #2",t:"Who, in customer's organizations, is responsible for defining signals?"},{q:"Question #3",t:"What is considered when defining signals?"},{q:"Question #4",t:"What makes a signal successful?"}] },
+                  { goal:"Goal #3: ", desc:"Uncover the outcomes users expect signals to help them achieve.", questions:[{q:"Question #5",t:"What actions are intended once a signal is created?"}] },
+                ].map((section,i) => (
+                  <div key={i}>
+                    <p style={{fontSize:18,fontWeight:700,color:"var(--accent)",margin:"0 0 10px",lineHeight:1}}>
+                      {section.goal}<span style={{color:"var(--ink)",fontWeight:400}}>{section.desc}</span>
+                    </p>
+                    <div style={{paddingLeft:40,display:"flex",flexDirection:"column",gap:8}}>
+                      {section.questions.map((q,j) => (
+                        <p key={j} style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>
+                          <strong style={{color:"var(--ink)"}}>{q.q}</strong>{": "}{q.t}
+                        </p>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
-            </div>
-            <div style={{padding:"0 var(--gutter) 40px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:24}}>
-              {[
-                { goal:"Goal #1: ", desc:"Explore how participants describe and conceptualize a feature like \"signals\".", questions:[{q:"Question #1",t:"How do users interpret or describe signals or similar concepts?"}] },
-                { goal:"Goal #2: ", desc:"Identify how users can create successful signals.", questions:[{q:"Question #2",t:"Who, in customer's organizations, is responsible for defining signals?"},{q:"Question #3",t:"What is considered when defining signals?"},{q:"Question #4",t:"What makes a signal successful?"}] },
-                { goal:"Goal #3: ", desc:"Uncover the outcomes users expect signals to help them achieve.", questions:[{q:"Question #5",t:"What actions are intended once a signal is created?"}] },
-              ].map((section,i) => (
-                <div key={i}>
-                  <p style={{fontSize:18,fontWeight:700,color:"var(--accent)",margin:"0 0 10px",lineHeight:1}}>
-                    {section.goal}<span style={{color:"var(--ink)",fontWeight:400}}>{section.desc}</span>
-                  </p>
-                  <div style={{paddingLeft:40,display:"flex",flexDirection:"column",gap:8}}>
-                    {section.questions.map((q,j) => (
-                      <p key={j} style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>
-                        <strong style={{color:"var(--ink)"}}>{q.q}</strong>{": "}{q.t}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
+            </section>
 
             {/* ── Research FigJam image + caption ── */}
             <div style={{padding:"0 var(--gutter) 80px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:32}}>
