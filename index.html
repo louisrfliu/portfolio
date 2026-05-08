@@ -267,73 +267,66 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   color: var(--ink-soft); font-variant-numeric: tabular-nums; letter-spacing: 0.06em;
 }
 
-/* ── work rows ── */
-.work-list { list-style: none; margin: 0; padding: 0; }
-.work-row {
-  display: grid;
-  grid-template-columns: 48px 1fr 88px 100px;
-  align-items: center; gap: 28px;
-  padding: 28px 12px;
-  border-bottom: 1px solid var(--ink-line);
-  position: relative; transition: padding 240ms ease, background 240ms ease;
+/* ── work cards ── */
+.work-cards { list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.work-card {
+  border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--ink-line);
+  background: var(--bg-card);
+  position: relative;
+  display: flex; flex-direction: column;
+  transition: border-color 280ms ease, transform 280ms ease, box-shadow 280ms ease;
 }
-.work-row.is-clickable { cursor: pointer; }
-.work-row.is-clickable:hover {
-  padding-left: 24px; padding-right: 24px;
-  background: rgba(255,255,255,0.015);
+.work-card.is-clickable { cursor: pointer; }
+.work-card.is-clickable:hover {
+  border-color: rgba(255,174,44,0.45);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px -16px rgba(0,0,0,0.5);
 }
-.work-row.is-clickable::before {
-  content: ""; position: absolute;
-  left: 0; top: 0; bottom: 0; width: 0;
-  background: var(--accent); transition: width 240ms ease;
-}
-.work-row.is-clickable:hover::before { width: 3px; }
-.work-row.is-disabled { opacity: 0.38; }
-.work-row-num {
-  font-family: "Inter", sans-serif;
-  font-size: 12px; font-weight: 700;
-  color: var(--ink-soft); font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
-}
-.work-row-text { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.work-row-title {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(20px, 2.2vw, 28px);
-  font-weight: 600; letter-spacing: -0.01em;
-  line-height: 1.2; color: var(--ink);
-}
-.work-row-q {
-  font-size: 13px; font-weight: 400;
-  color: var(--ink-soft); line-height: 1.6;
-  letter-spacing: 0; max-width: 600px;
-}
-.work-row-thumb {
-  width: 88px; height: 60px; border-radius: 8px;
+.work-card.is-disabled { opacity: 0.4; }
+.work-card-img {
+  width: 100%; aspect-ratio: 16/10;
   background-size: cover; background-position: center;
   background-color: var(--bg-surface);
-  border: 1px solid var(--ink-line);
-  transform: rotate(-2deg);
-  transition: transform 240ms ease, box-shadow 240ms ease;
+  overflow: hidden;
 }
-.work-row.is-clickable:hover .work-row-thumb {
-  transform: rotate(0deg) scale(1.04);
-  box-shadow: 0 12px 24px -12px rgba(0,0,0,0.5);
+.work-card-img-inner {
+  width: 100%; height: 100%;
+  background-size: cover; background-position: center;
+  transition: transform 400ms ease;
 }
-.work-row-cta {
-  justify-self: end; display: inline-flex; align-items: center; gap: 6px;
-  font-family: "Inter", sans-serif;
-  font-size: 12px; font-weight: 700;
+.work-card.is-clickable:hover .work-card-img-inner { transform: scale(1.04); }
+.work-card-body {
+  padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1;
+}
+.work-card-meta {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.work-card-num {
+  font-family: "Inter", sans-serif; font-size: 11px; font-weight: 700;
+  color: var(--ink-soft); font-variant-numeric: tabular-nums; letter-spacing: 0.1em;
+}
+.work-card-cta {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: "Inter", sans-serif; font-size: 11px; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--ink-soft); white-space: nowrap;
 }
-.work-row-cta .arrow { transition: transform 200ms ease; }
-.work-row.is-clickable:hover .work-row-cta { color: var(--accent); }
-.work-row.is-clickable:hover .work-row-cta .arrow { transform: translateX(6px); }
-.work-row-cta.coming-soon { color: var(--ink-soft); }
+.work-card-cta .arrow { transition: transform 200ms ease; }
+.work-card.is-clickable:hover .work-card-cta { color: var(--accent); }
+.work-card.is-clickable:hover .work-card-cta .arrow { transform: translateX(5px); }
+.work-card-cta.coming-soon { color: var(--ink-soft); opacity: 0.6; }
+.work-card-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(18px, 1.6vw, 22px); font-weight: 600;
+  letter-spacing: -0.01em; line-height: 1.25; color: var(--ink);
+}
+.work-card-q {
+  font-size: 13px; font-weight: 400;
+  color: var(--ink-soft); line-height: 1.65; letter-spacing: 0;
+}
 @media (max-width: 860px) {
-  .work-row { grid-template-columns: 32px 1fr; gap: 14px; padding: 20px 4px; }
-  .work-row-thumb, .work-row-cta { grid-column: 2; justify-self: start; }
-  .work-row-thumb { width: 72px; height: 48px; }
+  .work-cards { grid-template-columns: 1fr; gap: 12px; }
 }
 
 /* ── walkthroughs ── */
@@ -1214,13 +1207,13 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
                 <h2 className="section-label">Selected work</h2>
                 <span className="section-count">0{cards.length}</span>
               </div>
-              <ul className="work-list">
+              <ul className="work-cards">
                 {cards.map((c, i) => {
                   const clickable = !!c.target;
                   return (
                     <li
                       key={i}
-                      className={"work-row " + (clickable ? "is-clickable" : "is-disabled")}
+                      className={"work-card " + (clickable ? "is-clickable" : "is-disabled")}
                       onClick={() => clickable && navigate({ name: c.target })}
                       role={clickable ? "button" : undefined}
                       tabIndex={0}
@@ -1232,20 +1225,19 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
                         }
                       }}
                     >
-                      <span className="work-row-num">{String(i + 1).padStart(2, "0")}</span>
-                      <div className="work-row-text">
-                        <div className="work-row-title">{c.title}</div>
-                        <div className="work-row-q">{c.q}</div>
+                      <div className="work-card-img" aria-hidden="true">
+                        <div className="work-card-img-inner" style={{ backgroundImage: `url(${c.img})` }} />
                       </div>
-                      <div
-                        className="work-row-thumb"
-                        style={{ backgroundImage: `url(${c.img})` }}
-                        aria-hidden="true"
-                      />
-                      <span className={"work-row-cta" + (c.cta === "Coming soon" ? " coming-soon" : "")}>
-                        {c.cta === "Coming soon" ? "Coming soon" : "Read"}
-                        {c.cta !== "Coming soon" && <span className="arrow">→</span>}
-                      </span>
+                      <div className="work-card-body">
+                        <div className="work-card-meta">
+                          <span className="work-card-num">{String(i + 1).padStart(2, "0")}</span>
+                          <span className={"work-card-cta" + (c.cta === "Coming soon" ? " coming-soon" : "")}>
+                            {c.cta === "Coming soon" ? "Coming soon" : <>Read <span className="arrow">→</span></>}
+                          </span>
+                        </div>
+                        <div className="work-card-title">{c.title}</div>
+                        <div className="work-card-q">{c.q}</div>
+                      </div>
                     </li>
                   );
                 })}
