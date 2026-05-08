@@ -916,7 +916,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .sig-finding em { color: var(--accent); font-style: italic; }
 
 /* ── Signals v3 ── */
-.sig-card-stack { padding: 0 var(--gutter) 80px; max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+.sig-card-stack { padding: 0 240px 80px; max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+@media (max-width: 980px) { .sig-card-stack { padding: 0 28px 60px; } }
 .sig-info-card { background: var(--bg-card); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
 .sig-info-card .sig-ic-header { display: flex; align-items: center; gap: 12px; }
 .sig-info-card .sig-ic-header span { font-size: clamp(18px,2vw,24px); font-weight: 600; color: var(--ink); }
@@ -1431,162 +1432,156 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
       function CRMCase({ navigate }) {
         return (
           <main className="page-fade" id="main-content">
-            <CaseHero
-              timeline="May 2025 – July 2025"
-              title="CRM object permissions"
-            />
+            <CaseHero timeline="May 2025 – July 2025" title="CRM object permissions" />
             <CaseImage src="assets/crm-hero.png" />
+            <ContextRow items={[
+              { label: "My role", value: "Design lead" },
+              { label: "Collaboration", value: "Product Management, Content Design" },
+            ]} />
 
-            <ContextRow
-              items={[
-                { label: "My role", value: "Design lead" },
-                { label: "Collaboration", value: "Product Management, Content Design" },
-              ]}
-            />
+            {/* Project context */}
+            <section className="case-text">
+              <Eyebrow>Project context</Eyebrow>
+              <h2 className="h2">Prevent incomplete CRM data ingestion through upfront permission verification</h2>
+              <p className="body">{"Today, Revenue Operations and IT Admins can finish setting up a CRM integration even if they have not granted 6sense permissions to all mandatory CRM objects. As a result, teams often discover "}<span style={{color:"var(--accent)"}}>missing permissions</span>{" later through sync failures or incomplete data ingestion, which creates confusion, delays onboarding, and increases Support and CSM escalations."}</p>
+              <p className="body">{"This project aims to improve the CRM connection experience and proactively prevent setup failures caused by missing mandatory object permissions."}</p>
+              <p className="body">{"The core idea behind the work is to make permission status "}<span style={{color:"var(--accent)"}}>clear and actionable</span>{" during initial setup, and to enforce completion criteria: block users from completing the integration until all mandatory object permissions are verified. The proposed experience includes real-time permission checks, an explicit list of missing objects, and a retry/re-validate mechanism once the admin updates settings."}</p>
+            </section>
 
-            <CaseText
-              eyebrow="Project context"
-              title="Prevent incomplete CRM data ingestion through upfront permission verification"
-              body={"Today, Revenue Operations and IT Admins can finish setting up a CRM integration even if they have not granted 6sense permissions to all mandatory CRM objects. As a result, teams often discover missing permissions later through sync failures or incomplete data ingestion, which creates confusion, delays onboarding, and increases Support and CSM escalations.\n\nThis project aims to improve the CRM connection experience and proactively prevent setup failures caused by missing mandatory object permissions.\n\nThe core idea behind the work is to make permission status clear and actionable during initial setup, and to enforce completion criteria: block users from completing the integration until all mandatory object permissions are verified."}
-            />
+            {/* Current state */}
+            <section className="case-text">
+              <Eyebrow>Current state</Eyebrow>
+              <h2 className="h2">Admins Bypass Critical Permissions Because Required Objects Stay Hidden</h2>
+              <p className="body">{"During onboarding, 6sense internal teams (professional services, customer success) help admins configure CRM integrations. While our KnowledgeBase documents the required data objects for each CRM platform and customer package, permission requirements vary based on the platform and purchased features. Admins must grant 6sense access to all required objects, or downstream application setup will be blocked."}</p>
+              <p className="body">{"Our support team reports this causes approximately "}<span style={{color:"var(--accent)"}}>6-8 cases monthly</span>{" where admins complete CRM integration unaware that required permissions were missing, causing errors that surface during downstream data sync."}</p>
+            </section>
 
-            <CaseText
-              eyebrow="Current state"
-              title="Admins bypass critical permissions because required objects stay hidden"
-              body={"During onboarding, 6sense internal teams (professional services, customer success) help admins configure CRM integrations. While our KnowledgeBase documents the required data objects for each CRM platform and customer package, permission requirements vary based on the platform and purchased features.\n\nOur support team reports this causes approximately 6–8 cases monthly where admins complete CRM integration unaware that required permissions were missing, causing errors that surface during downstream data sync."}
-            />
-
-            <ImageWithCaption
-              src="assets/crm-pain-1.png"
-              noBorder
-              captionTitle="Pain point #1: Low discoverability of help articles makes CRM setup unguided"
-              captionBody="While minimum requirements are clearly documented and available to all customers, admins often must search through numerous support articles to find the information they need. This breaks their workflow and creates friction during the setup process."
-            />
-
-            <ImageWithCaption
-              src="assets/crm-pain-2.png"
-              noBorder
-              captionTitle="Pain point #2: Hidden permissions create a false sense of completion"
-              captionBody={"During the CRM integration setup flow, admins can only see the top 9 data objects, with the remainder hidden behind a \"view all\" button. This design means permission errors don't display on the primary view. Even when errors are present, the main \"Finish\" button remains active and unblocked, creating an illusion of success.\n\nThis problem compounds over time: when customers purchase additional features requiring new data object permissions, these objects appear only within the \"view all\" button."}
-            />
-
+            {/* Pain point #1 */}
             <section className="case-image-with-caption">
-              <div className="caption" style={{ maxWidth: 800 }}>
+              <div className="case-image" style={{padding:0,width:"100%"}}><div className="frame no-border" style={{backgroundImage:"url(assets/crm-pain-1.png)"}} /></div>
+              <div className="caption" style={{maxWidth:800}}>
+                <h4>Pain point #1: Low discoverability of help articles makes CRM setup unguided</h4>
+                <p className="body">{"While minimum requirements are clearly documented and available to all customers, admins often must "}<span style={{color:"var(--accent)"}}>search through numerous support articles</span>{" to find the information they need. This breaks their workflow and creates friction during the setup process."}</p>
+              </div>
+            </section>
+
+            {/* Pain points #2 and #3 — same image */}
+            <section className="case-image-with-caption">
+              <div className="case-image" style={{padding:0,width:"100%"}}><div className="frame no-border" style={{backgroundImage:"url(assets/crm-pain-2.png)"}} /></div>
+              <div className="caption" style={{maxWidth:800}}>
+                <h4>{"Pain point #2: Hidden permissions create a false sense of completion "}</h4>
+                <p className="body">{"During the CRM integration setup flow, admins can only see the top 9 data objects, with the remainder "}<span style={{color:"var(--accent)"}}>{`hidden behind a "view all" button`}</span>{`. This design means permission errors don't display on the primary view. Admins must take an extra step to discover them. Even when errors are present, the main "Finish" button remains active and unblocked, creating an illusion of success. This disconnect leads to "surprises" when integrations fail downstream due to missing permissions.`}</p>
+                <p className="body">{`This problem compounds over time: when customers purchase additional features requiring new data object permissions, these objects appear only within the "view all" button, further burying critical information from immediate visibility.`}</p>
+              </div>
+              <div className="caption" style={{maxWidth:800}}>
                 <h4>Pain point #3: Permission instructions are buried and friction-heavy</h4>
-                <p className="body">
-                  While the Data Sync step includes step-by-step guidance for granting
-                  permissions, the majority of the content is positioned below the fold and
-                  requires scrolling to discover. Even when admins find these instructions,
-                  following them demands multiple clicks because of lack of refresh capability.
-                </p>
+                <p className="body">{"While the Data Sync step includes step-by-step guidance for granting permissions, majority of the content is "}<span style={{color:"var(--accent)"}}>positioned below the fold</span>{" and requires scrolling to discover. Even when admins find these instructions, following them demands multiple clicks because of "}<span style={{color:"var(--accent)"}}>lack of refresh capability</span>{". The current workaround is to exit the CRM connection flow and start over again. This friction compounds the likelihood of errors and abandonment."}</p>
               </div>
             </section>
 
-            <CaseText
-              eyebrow="Design preparation"
-              title="JTBD"
-              body="As an admin, when activating CRM integration with 6sense, I want to make sure 6sense has permissions to all required data objects from my CRM, so I can set up CRM connection successfully and enable downstream onboarding setups."
-            />
-
-            <DualBlocks
-              items={[
-                {
-                  title: "Problem statement",
-                  body: "Admins are often unaware that permissions have not been granted for certain CRM objects because identifying which object lacks the necessary permissions isn't immediately obvious — making them feel confused and delaying fixes for data sync errors.",
-                },
-                {
-                  title: "Design hypothesis",
-                  body: "If we make required data object permission statuses visible at a glance, then admins will be able to stay well-informed during CRM setup and ensure an error-free data connection.",
-                },
-              ]}
-            />
-
-            <ListRow
-              label="Outcomes"
-              body={"Clear visibility of permission status for all required objects\nAbility to identify and fix permission gaps early\nFaster completion of CRM integration\nReduced troubleshooting with internal teams\nA more predictable, reliable setup experience"}
-            />
-            <ListRow
-              label="Concerns"
-              body={"Uncertainty whether all required permissions are captured\nFear of missed objects causing integration failure\nConfusion from technical or ambiguous permission labels\nNeeding help from IT to correct permissions\nRisk of misconfiguration or sync issues due to blind spots"}
-            />
-
-            <CaseText
-              eyebrow="User flow"
-              title="Similar setup flow, less friction"
-              body="Bringing visibility during CRM setup and providing sufficient contextual support is key to a more efficient setup experience and reduces future support cases. From the user flow chart, I identified two areas to improve."
-            />
-
-            <ImageWithCaption
-              src="assets/crm-feature.png"
-              captionTitle="#1 — Enable real-time permission status validation"
-              captionBody="Currently, after granting permissions, admins must re-enter the setup flow to trigger the API call and retrieve updated permission statuses. This is a redundant and frustrating step that breaks the workflow."
-            />
-            <section className="case-image-with-caption" style={{ paddingTop: 0 }}>
-              <div className="caption">
-                <Callout>
-                  <strong>Proposed improvement:</strong> add a refresh button within the Data
-                  Sync step to trigger the API call and immediately fetch updated permission
-                  statuses without requiring admins to restart the setup flow.
-                </Callout>
+            {/* Design preparation / JTBD */}
+            <section className="case-text">
+              <Eyebrow>Design preparation</Eyebrow>
+              <h2 className="h2">JTBD</h2>
+              <p className="body"><strong>As</strong>{" an admin, "}<strong>when</strong>{" activating CRM integration with 6sense, "}<strong>I want to</strong>{" make sure 6sense has permissions to all required data objects from my CRM, "}<strong>so</strong>{" I can set up CRM connection successfully and enable downstream onboarding setups."}</p>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20,marginTop:4}}>
+                {[
+                  { title:"Problem statement", body:<p>{"Admins "}<strong>are</strong>{" often unaware that permissions have not been granted for certain CRM objects "}<strong>because</strong>{" identifying which object lacks the necessary permissions isn't immediately obvious, "}<strong>which makes them feel</strong>{" confused and causing delays in fixing data sync errors."}</p> },
+                  { title:"Design hypothesis", body:<p><strong>If</strong>{" we make required data object permission statuses visible at a glance, "}<strong>then</strong>{" admins will be able to stay well-informed during CRM setup process and ensure an error free data connection."}</p> },
+                ].map((b,i) => (
+                  <div key={i} style={{background:"rgba(255,174,44,0.12)",border:"1px solid var(--ink-line)",borderRadius:16,padding:24,display:"flex",flexDirection:"column",gap:12}}>
+                    <div style={{fontSize:20,fontWeight:700,color:"var(--ink)"}}>{b.title}</div>
+                    <div style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75}}>{b.body}</div>
+                  </div>
+                ))}
               </div>
             </section>
+            <ListRow label="Wants/Needs" body={"1. Quickly understand which CRM objects 6sense can access\n2. Avoid delays caused by hidden or missing permissions\n3. Maintain a smooth CRM integration workflow\n4. Ensure data integrity and security\n5. Feel confident the setup will work as expected"} />
+            <ListRow label="Outcomes" body={"1. Clear visibility of permission status for all required objects\n2. Ability to identify and fix permission gaps early\n3. Faster completion of CRM integration\n4. Reduced troubleshooting with internal teams\n5. A more predictable, reliable setup experience"} />
+            <ListRow label="Concerns" body={"1. Uncertainty whether all required permissions are captured\n2. Fear of missed objects causing integration failure\n3. Confusion from technical or ambiguous permission labels\n4. Needing help from IT to correct permissions\n5. Risk of misconfiguration or sync issues due to blind spots"} />
 
+            {/* User flow */}
+            <section className="case-text">
+              <Eyebrow>User flow</Eyebrow>
+              <h2 className="h2">Similar setup flow, less frictions</h2>
+              <p className="body">{"Based on the project understanding, bringing visibility during CRM setup and provide sufficient contextual support is key to a more efficient setup experience and reduce future support cases. From the user flow chart, I have identified 2 areas to improve:"}</p>
+            </section>
+
+            {/* Feature image + #1 and #2 captions */}
             <section className="case-image-with-caption">
-              <div className="caption">
-                <h4>#2 — Consolidate setup guidance in one accessible location</h4>
-                <p className="body">
-                  Currently, admins seeking setup guidance must piece together information from
-                  multiple sources. Instructions scattered throughout the setup screen and
-                  relevant support articles requiring external searches create friction and
-                  increase the risk of missed best practices.
-                </p>
-                <Callout>
-                  <strong>Proposed improvement:</strong> surface all related documentation
-                  links contextually within the setup flow, allowing admins to access guidance
-                  without leaving the interface.
-                </Callout>
+              <div className="case-image" style={{padding:0,width:"100%"}}><div className="frame" style={{backgroundImage:"url(assets/crm-feature.png)"}} /></div>
+              <div className="caption" style={{maxWidth:800}}>
+                <h4>#1 - Enable real-time permission status validation</h4>
+                <p className="body">{"Currently, after granting permissions, admins must re-enter the setup flow to trigger the API call and retrieve updated permission statuses. This is a redundant and frustrating step that breaks the workflow."}</p>
+                <Callout><em><strong>Proposed improvement:</strong>{" Add a refresh button within the Data Sync step to trigger the API call and immediately fetch updated permission statuses without requiring admins to restart the setup flow."}</em></Callout>
+              </div>
+              <div className="caption" style={{maxWidth:800}}>
+                <h4>#2 - Consolidate setup guidance in one accessible location</h4>
+                <p className="body">{"Currently, admins seeking setup guidance must piece together information from multiple sources. Instructions scattered throughout the setup screen and relevant support articles requiring external searches. This fragmented approach creates friction and increases the risk of missed best practices."}</p>
+                <Callout><em><strong>Proposed improvement:</strong>{" Surfaces all related documentation links contextually within the setup flow, allowing admins to access guidance without leaving the interface or conducting external searches."}</em></Callout>
               </div>
             </section>
 
-            <CaseText
-              eyebrow="Hierarchy and layout"
-              title="Prioritize and separate essential vs. advanced objects"
-              body={"A key improvement is to reorganize how data objects are displayed. Through cross-functional collaboration with product, professional services, and engineering, we identified that all data objects fall into two distinct categories:\n\nEssential — mandatory objects admins must grant permissions to during initial onboarding.\nAdvanced — objects added post-onboarding when customers purchase additional feature suites or upsells."}
-            />
+            {/* Hierarchy and layout */}
+            <section className="case-text">
+              <Eyebrow>Hierarchy and layout</Eyebrow>
+              <h2 className="h2">Prioritize and separate essential vs. advanced objects</h2>
+              <p className="body">{"In order to make permission statuses more discoverable, a key improvement is to reorganize how data objects are displayed. Through cross-functional collaboration with product, professional services, and engineering, we identified that all data objects fall into two distinct categories:"}</p>
+              <ol style={{paddingLeft:24,margin:0,display:"flex",flexDirection:"column",gap:8}}>
+                <li style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75}}><strong style={{color:"var(--ink)"}}>Essential:</strong>{" The mandatory objects admins must grant permissions to during initial onboarding. These objects are critical to core functionality and must be error-free."}</li>
+                <li style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75}}><strong style={{color:"var(--ink)"}}>Advanced: </strong>{"Objects added post-onboarding when customers purchase additional feature suites or opt for upsells requiring new data access permissions."}</li>
+              </ol>
+            </section>
             <CaseImage src="assets/crm-hierarchy.png" />
 
-            <CaseText
-              eyebrow="Call to attention"
-              title="Surface permission errors prominently"
-              body="Once the high-level structure is there, the next consideration is to make sure data objects that do not have the proper permissions granted surface up top for more visibility."
-            />
+            {/* Call to attention */}
+            <section className="case-text">
+              <Eyebrow>Call to attention</Eyebrow>
+              <h2 className="h2">Surface Permission Errors Prominently</h2>
+              <p className="body">{"Once the high level structure is there, the next consideration is to make sure data objects that do not have the proper permissions granted surface up top for more visibility."}</p>
+            </section>
             <CaseImage src="assets/crm-attention.png" />
 
-            <CaseText eyebrow="High-fidelity solutions" title="Bringing it all together" />
+            {/* High-fidelity solutions */}
+            <section className="case-text">
+              <Eyebrow>High-fidelity solutions</Eyebrow>
+              <h2 className="h2">Bringing it all together</h2>
+            </section>
 
-            <CaseText
-              title="Keeping all instructions in context"
-              body={'Displaying contextual help in the drawer when clicking on "how to grant permissions" provides admins with a comprehensive one-page view of everything they need.'}
-            />
-            <CaseText
-              title="Designated section for advanced objects"
-              body="Additional objects that are required after onboarding will be displayed in the Advanced Objects section. These objects do not hinder the initial CRM setup but are crucial for unblocking downstream applications."
-            />
+            {[
+              { img:"assets/crm-hifi-a.png", title:"High visibility to all required objects during onboarding", body:"Present essential data objects directly with their corresponding permission statuses in a straightforward manner, no additional clicks needed.\n\nThe [Recheck permission] button is prominently displayed to initiate an API call with ease when admins are rechecking permission statuses." },
+              { img:"assets/crm-hifi-b.png", title:"Keeping all instructions in context", body:"Displaying contextual help in the drawer when clicking on [how to grant permissions] provides admins with a comprehensive one-page view of everything they need." },
+              { img:"assets/crm-hifi-c.png", title:"Designated section to advanced objects", body:"Additional objects that are required after onboarding will be displayed in the Advanced Objects section. These objects do not hinder the initial CRM setup but are crucial for unblocking downstream applications. By separating these objects, it becomes easier for administrators to prioritize them and manage data connections more efficiently." },
+            ].map((f,i,arr) => (
+              <div key={i} className="sig-hifi-row" style={{padding:`0 64px ${i < arr.length-1 ? 120 : 80}px`}}>
+                <div className="img-side"><img src={f.img} alt="" /></div>
+                <div className="text-side">
+                  <div style={{display:"flex",flexDirection:"column",gap:16,flex:1}}>
+                    <h4>{f.title}</h4>
+                    <p style={{whiteSpace:"pre-line"}}>{f.body}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
 
-            <CaseText eyebrow="Retrospective" title="Strengths and opportunities for growth" />
-            <DualBlocks
-              tone="pink"
-              items={[
-                {
-                  title: "What went well",
-                  body: "Effective cross-functional collaboration that unified internal knowledge and perspectives across teams.\nStrong partnership with content design to establish clear content hierarchy and visual clarity.\nSeamless knowledge transfer from support insights directly into feature enhancements.",
-                },
-                {
-                  title: "What could improve",
-                  body: "Establish more robust success metrics earlier to better measure and demonstrate impact.\nAccelerate feedback loops with the support team to address recurring issues more quickly.",
-                },
-              ]}
-            />
+            {/* Retrospective */}
+            <section className="case-text">
+              <Eyebrow>Retrospective</Eyebrow>
+              <h2 className="h2">Strengths and Opportunities for Growth</h2>
+            </section>
+            <div className="dual-blocks">
+              {[
+                { title:"What went well", items:["Effective cross-functional collaboration that unified internal knowledge and perspectives across teams","Strong partnership with content design to establish clear content hierarchy and visual clarity","Seamless knowledge transfer from support insights directly into feature enhancements and improvements"] },
+                { title:"What could improve", items:["Establish more robust success metrics earlier to better measure and demonstrate impact","Accelerate feedback loops with the support team to address recurring issues more quickly"] },
+              ].map((b,i) => (
+                <div key={i} className="dual-block pink">
+                  <div className="lbl">{b.title}</div>
+                  <ol style={{listStyle:"decimal",paddingLeft:20,margin:0,display:"flex",flexDirection:"column",gap:6}}>
+                    {b.items.map((item,j) => <li key={j} style={{fontSize:14,color:"var(--ink-muted)",lineHeight:1.6}}>{item}</li>)}
+                  </ol>
+                </div>
+              ))}
+            </div>
 
             <ContactBand navigate={navigate} variant="case" />
             <Footer />
@@ -1780,8 +1775,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
             </section>
 
             {/* ── Design timeline image + caption ── */}
-            <div style={{padding:"0 var(--gutter) 80px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:32}}>
-              <CaseImage src="assets/signals-timeline.png" />
+            <CaseImage src="assets/signals-timeline.png" />
+            <div style={{maxWidth:1280,margin:"0 auto",padding:"0 var(--gutter) 80px"}}>
               <div style={{padding:"0 clamp(0px,5vw,80px)"}}>
                 <p style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>
                   {"Given these limitations, I drafted a "}
@@ -1835,19 +1830,19 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
             </section>
 
             {/* ── Research FigJam image + caption ── */}
-            <div style={{padding:"0 var(--gutter) 80px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:32}}>
+            <div style={{maxWidth:1280,margin:"0 auto",padding:"0 var(--gutter)"}}>
               <div style={{padding:"0 clamp(0px,5vw,80px)"}}>
                 <p style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>During each interview, I note down important points from the conversations. After each call, I transferred all notes into a FigJam file where I can collaborate with my researcher and parse each note into individual stickies or groups by similar ideas. We label each idea to identify patterns, then organize these groups into broader themes that inform the overall study findings.</p>
               </div>
-              <CaseImage src="assets/signals-research.png" />
             </div>
+            <CaseImage src="assets/signals-research.png" />
 
             {/* ── Key learnings ── */}
             <section className="case-text">
               <Eyebrow>Key learnings</Eyebrow>
               <h2 className="h2">From noise to signal: research insights that will shape our configuration experience</h2>
             </section>
-            <div style={{padding:"0 var(--gutter) 48px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:20}}>
+            <div style={{padding:"0 240px 48px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:20}}>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}}>
                 {hiFindings.slice(0,2).map((f,i) => (
                   <div key={i} style={{background:"rgba(105,153,93,0.12)",borderRadius:16,padding:24,display:"flex",flexDirection:"column",gap:16}}>
@@ -1869,7 +1864,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
                 <p style={{fontSize:14,color:"var(--ink-muted)",lineHeight:1.6,margin:0}}>{hiFindings[4].text}</p>
               </div>
             </div>
-            <div style={{padding:"0 var(--gutter) 80px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:32}}>
+            <div style={{padding:"0 240px 80px",maxWidth:1280,margin:"0 auto",display:"flex",flexDirection:"column",gap:32}}>
               <p style={{fontSize:15,color:"var(--ink-muted)",lineHeight:1.75,margin:0}}>Based on the insights provided, this research can help inform design decisions in the following ways:</p>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:48}}>
                 {[
