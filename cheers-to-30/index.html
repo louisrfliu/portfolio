@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cheers to 30 — Celebrating Sydney</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --champagne:    #f5e6c8;
+      --champagne-lt: #fdf6eb;
+      --gold:         #c9a84c;
+      --gold-dk:      #a07830;
+      --sage:         #7d9b76;
+      --sage-lt:      #c5d9c0;
+      --sage-dk:      #4f6b49;
+      --ink:          #1c1c1c;
+      --ink-soft:     #3d3d3d;
+      --mist:         #f8f5f0;
+      --white:        #ffffff;
+      --radius:       12px;
+      --shadow:       0 4px 32px rgba(0,0,0,0.08);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      color: var(--ink);
+      background: var(--mist);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: transparent;
+      transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(253, 246, 235, 0.92);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 24px rgba(0,0,0,0.07);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold-dk); }
+
+    /* ── HERO ─────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      overflow: hidden;
+      background: var(--champagne-lt);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.15) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 20% 100%, rgba(125,155,118,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 85% 80%, rgba(201,168,76,0.10) 0%, transparent 55%);
+    }
+
+    .hero-ornament {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      opacity: 0.7;
+    }
+
+    .hero-ornament span {
+      display: block;
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-ornament-icon {
+      font-size: 1.2rem;
+      color: var(--gold);
+    }
+
+    .hero-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage-dk);
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.08;
+      color: var(--ink);
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-dk);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      max-width: 520px;
+      line-height: 1.7;
+      margin: 24px auto 48px;
+      position: relative;
+    }
+
+    .hero-sub strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: var(--ink);
+      color: var(--champagne-lt);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border-radius: 50px;
+      transition: background 0.25s, transform 0.2s;
+      position: relative;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-dk);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary svg { flex-shrink: 0; }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.4;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      animation: bounce 2.2s ease-in-out infinite;
+    }
+
+    .hero-scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: var(--ink);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── SECTION SHARED ───────────────────────────── */
+    .section {
+      padding: 100px 24px;
+    }
+
+    .section-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--gold-dk);
+    }
+
+    .section-lead {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 1.75;
+      max-width: 560px;
+      margin-bottom: 60px;
+    }
+
+    /* ── ITINERARY ────────────────────────────────── */
+    #itinerary {
+      background: var(--white);
+    }
+
+    .days-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .day-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .day-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 48px rgba(0,0,0,0.12);
+    }
+
+    .day-sidebar {
+      padding: 40px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .day-card:nth-child(1) .day-sidebar { background: var(--sage-dk); }
+    .day-card:nth-child(2) .day-sidebar { background: var(--gold-dk); }
+    .day-card:nth-child(3) .day-sidebar { background: var(--ink); }
+    .day-card:nth-child(4) .day-sidebar { background: var(--sage); }
+
+    .day-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.9);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .day-month {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 16px;
+    }
+
+    .day-theme {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.3;
+    }
+
+    .day-body {
+      background: var(--mist);
+      padding: 40px 40px;
+    }
+
+    .day-name {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .day-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .events-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .event-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .event-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--champagne);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .event-content {}
+
+    .event-time {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage-dk);
+      margin-bottom: 2px;
+    }
+
+    .event-desc {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    .event-desc strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ── DETAILS STRIP ────────────────────────────── */
+    #details {
+      background: var(--champagne-lt);
+      padding: 80px 24px;
+    }
+
+    .details-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .detail-icon {
+      font-size: 2rem;
+      opacity: 0.7;
+    }
+
+    .detail-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage-dk);
+    }
+
+    .detail-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    /* ── RSVP ─────────────────────────────────────── */
+    #rsvp {
+      background: var(--ink);
+      padding: 120px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #rsvp::before {
+      content: '30';
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(180px, 35vw, 380px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.03);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .rsvp-inner {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .rsvp-section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .rsvp-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.12;
+      margin-bottom: 20px;
+    }
+
+    .rsvp-title em {
+      font-style: italic;
+      color: var(--champagne);
+    }
+
+    .rsvp-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.75;
+      margin-bottom: 48px;
+    }
+
+    .btn-rsvp {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 52px;
+      background: var(--gold);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border-radius: 50px;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 8px 32px rgba(201,168,76,0.3);
+    }
+
+    .btn-rsvp:hover {
+      background: var(--champagne);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(201,168,76,0.4);
+    }
+
+    .rsvp-note {
+      margin-top: 28px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--champagne);
+      font-weight: 300;
+    }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── FADE-IN ANIMATION ────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE ───────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+
+      .section { padding: 72px 20px; }
+
+      .day-card {
+        grid-template-columns: 1fr;
+      }
+
+      .day-sidebar {
+        padding: 28px 24px;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .day-date { font-size: 2.4rem; margin-bottom: 0; }
+
+      .day-body { padding: 28px 24px; }
+
+      .details-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      #rsvp { padding: 80px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .day-sidebar { flex-wrap: wrap; }
+      .day-month { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">Sydney · 30</a>
+    <ul class="nav-links">
+      <li><a href="#itinerary">Itinerary</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#rsvp">RSVP</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+
+    <p class="hero-eyebrow fade-up">September 17–20, 2026 · Twin Cities, MN</p>
+
+    <div class="hero-ornament fade-up" aria-hidden="true">
+      <span></span>
+      <span class="hero-ornament-icon">✦</span>
+      <span></span>
+    </div>
+
+    <h1 class="hero-title fade-up">
+      Cheers to <em>30</em>:<br>Celebrating Sydney.
+    </h1>
+
+    <p class="hero-sub fade-up">
+      Join us for an unforgettable weekend in the Twin Cities,<br>
+      <strong>September 17th–20th, 2026.</strong>
+    </p>
+
+    <a href="#itinerary" class="btn-primary fade-up" onclick="event.preventDefault(); document.getElementById('itinerary').scrollIntoView({behavior:'smooth'})">
+      View The Itinerary
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M7 1v12M1 7l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <div class="hero-scroll-hint" aria-hidden="true">scroll</div>
+  </section>
+
+  <!-- ITINERARY -->
+  <section id="itinerary" class="section">
+    <div class="section-inner">
+      <p class="section-label fade-up">The Weekend</p>
+      <h2 class="section-title fade-up">Four days of <em>joy,<br>food &amp; togetherness.</em></h2>
+      <p class="section-lead fade-up">Every moment has been planned with love. Here's everything you need to know about the weekend ahead.</p>
+
+      <div class="days-grid">
+
+        <!-- Thursday -->
+        <div class="day-card fade-up">
+          <div class="day-sidebar">
+            <div>
+              <div class="day-date">17</div>
+              <div class="day-month">September</div>
+              <div class="day-theme">"Arrivals &amp; Comfort"</div>
+            </div>
+          </div>
+          <div class="day-body">
+            <div class="day-name">Thursday</div>
+            <div class="day-title">Arrivals &amp; Comfort</div>
+            <ul class="events-list">
+              <li class="event-item">
+                <div class="event-icon">✈️</div>
+                <div class="event-content">
+                  <div class="event-time">Throughout the Day</div>
+                  <div class="event-desc"><strong>Arrival of guests.</strong> Settle in, unpack, and make yourself at home.</div>
+                </div>
+              </li>
+              <li class="event-item">
+                <div class="event-icon">🍛</div>
+                <div class="event-content">
+                  <div class="event-time">Evening</div>
+                  <div class="event-desc"><strong>Ethiopian Feast</strong> — a warm, communal dinner at home. Share stories, share plates, share love.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Friday -->
+        <div class="day-card fade-up">
+          <div class="day-sidebar">
+            <div>
+              <div class="day-date">18</div>
+              <div class="day-month">September</div>
+              <div class="day-theme">"The Birthday &amp; Sushi"</div>
+            </div>
+          </div>
+          <div class="day-body">
+            <div class="day-name">Friday · The Birthday</div>
+            <div class="day-title">The Birthday &amp; Sushi</div>
+            <ul class="events-list">
+              <li class="event-item">
+                <div class="event-icon">💐</div>
+                <div class="event-content">
+                  <div class="event-time">Daytime</div>
+                  <div class="event-desc"><strong>Sydney &amp; Mom's special outing.</strong> A private day for our birthday girl and her mom — adventures TBD, magic guaranteed.</div>
+                </div>
+              </li>
+              <li class="event-item">
+                <div class="event-icon">🍣</div>
+                <div class="event-content">
+                  <div class="event-time">Evening · Adults Only</div>
+                  <div class="event-desc"><strong>Premium Sushi Dinner at Billy Sushi.</strong> An elevated, adults-only evening celebrating the woman of the hour.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Saturday -->
+        <div class="day-card fade-up">
+          <div class="day-sidebar">
+            <div>
+              <div class="day-date">19</div>
+              <div class="day-month">September</div>
+              <div class="day-theme">"Spa &amp; Fiesta"</div>
+            </div>
+          </div>
+          <div class="day-body">
+            <div class="day-name">Saturday</div>
+            <div class="day-title">Spa &amp; Fiesta</div>
+            <ul class="events-list">
+              <li class="event-item">
+                <div class="event-icon">💆</div>
+                <div class="event-content">
+                  <div class="event-time">Daytime · Women</div>
+                  <div class="event-desc"><strong>Women's Spa Day at Anda Spa.</strong> Indulge, relax, and be pampered — because you deserve every minute.</div>
+                </div>
+              </li>
+              <li class="event-item">
+                <div class="event-icon">⛺</div>
+                <div class="event-content">
+                  <div class="event-time">Daytime · Men</div>
+                  <div class="event-desc"><strong>Men's "Dad Camp" at home.</strong> The dads hold it down — lawn games, coffee, and good company.</div>
+                </div>
+              </li>
+              <li class="event-item">
+                <div class="event-icon">💃</div>
+                <div class="event-content">
+                  <div class="event-time">Evening</div>
+                  <div class="event-desc"><strong>Private Bachata Lesson</strong> followed by a festive <strong>Mexican Dinner at El Burrito Mercado.</strong> Shoes optional, dancing mandatory.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sunday -->
+        <div class="day-card fade-up">
+          <div class="day-sidebar">
+            <div>
+              <div class="day-date">20</div>
+              <div class="day-month">September</div>
+              <div class="day-theme">"Farewell Brunch"</div>
+            </div>
+          </div>
+          <div class="day-body">
+            <div class="day-name">Sunday</div>
+            <div class="day-title">Farewell Brunch</div>
+            <ul class="events-list">
+              <li class="event-item">
+                <div class="event-icon">☕</div>
+                <div class="event-content">
+                  <div class="event-time">Casual Morning</div>
+                  <div class="event-desc"><strong>Coffee &amp; pastries at home.</strong> Linger over lattes, swap highlights from the weekend, and share slow, sweet goodbyes before departures.</div>
+                </div>
+              </li>
+              <li class="event-item">
+                <div class="event-icon">✈️</div>
+                <div class="event-content">
+                  <div class="event-time">Throughout the Day</div>
+                  <div class="event-desc">Depart with full hearts and full stomachs. Safe travels, everyone.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILS STRIP -->
+  <section id="details">
+    <div class="details-inner">
+      <div class="detail-item fade-up">
+        <div class="detail-icon">📍</div>
+        <div class="detail-label">Location</div>
+        <div class="detail-value">Twin Cities, MN</div>
+      </div>
+      <div class="detail-item fade-up">
+        <div class="detail-icon">📅</div>
+        <div class="detail-label">Dates</div>
+        <div class="detail-value">Sept 17–20, 2026</div>
+      </div>
+      <div class="detail-item fade-up">
+        <div class="detail-icon">🥂</div>
+        <div class="detail-label">Celebrating</div>
+        <div class="detail-value">Sydney's 30th Birthday</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section id="rsvp">
+    <div class="rsvp-inner">
+      <p class="rsvp-section-label fade-up">You're Invited</p>
+      <h2 class="rsvp-title fade-up">Will you be<br><em>joining us?</em></h2>
+      <p class="rsvp-sub fade-up">
+        We can't wait to celebrate this milestone with the people we love most. Let us know you're coming so we can make sure everything is perfect.
+      </p>
+      <a href="[INSERT GOOGLE FORM LINK HERE]" class="btn-rsvp fade-up" target="_blank" rel="noopener">
+        ✦ &nbsp;Confirm Your Attendance
+      </a>
+      <p class="rsvp-note fade-up">Please respond at your earliest convenience.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-name">Celebrating Sydney · 30</div>
+    <div class="footer-copy">Twin Cities, MN · September 2026 · Made with love</div>
+  </footer>
+
+  <script>
+    // Sticky nav
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Fade-up on scroll — hero elements animate in immediately on load
+    const fadeEls = document.querySelectorAll('.fade-up');
+
+    const animateEl = (el, delay = 0) => {
+      setTimeout(() => el.classList.add('visible'), delay);
+    };
+
+    const heroEls = document.querySelectorAll('#hero .fade-up');
+    heroEls.forEach((el, i) => animateEl(el, 120 + i * 120));
+
+    const nonHeroEls = [...fadeEls].filter(el => !el.closest('#hero'));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const siblings = [...entry.target.parentElement.querySelectorAll('.fade-up:not(.visible)')];
+          const delay = siblings.indexOf(entry.target) * 80;
+          setTimeout(() => entry.target.classList.add('visible'), Math.max(0, delay));
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    nonHeroEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
