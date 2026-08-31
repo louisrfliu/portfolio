@@ -92,8 +92,8 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
 /* ---- Sidebar ---- */
 .side{
-  position:fixed;top:0;left:0;bottom:0;width:var(--nav-w);
-  display:flex;flex-direction:column;
+  position:fixed;top:0;left:0;bottom:0;width:var(--nav-w);height:100vh;
+  display:flex;flex-direction:column;overflow-y:auto;
   padding:30px 26px;
   border-right:1px solid var(--line);
   background:rgba(12,12,13,.72);
@@ -132,7 +132,8 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   color:var(--muted);font-size:13.5px;font-weight:500;letter-spacing:.1px;
   transition:color .35s var(--ease);
 }
-.nav-item .idx{font-family:var(--mono);font-size:10px;color:var(--muted-2);width:14px;transition:color .35s var(--ease)}
+.nav-item .idx{width:16px;height:16px;display:flex;align-items:center;justify-content:center;flex:none;color:var(--muted-2);transition:color .35s var(--ease)}
+.nav-item .idx svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 .nav-item:hover{color:var(--text)}
 .nav-item.active{color:var(--text)}
 .nav-item.active .idx{color:var(--accent)}
@@ -153,7 +154,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .s-link svg{width:15px;height:15px;fill:currentColor}
 
 /* ---- Sidebar collapse ---- */
-.side{overflow:hidden;transition:width .45s var(--ease),padding .45s var(--ease)}
+.side{transition:width .45s var(--ease),padding .45s var(--ease)}
 .main{transition:margin-left .45s var(--ease)}
 .home-marquee{transition:left .45s var(--ease)}
 .brand-txt{max-width:200px;overflow:hidden;white-space:nowrap;transition:opacity .3s var(--ease),max-width .45s var(--ease)}
@@ -161,12 +162,16 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .status-text{overflow:hidden;white-space:nowrap;max-width:160px;display:inline-block;transition:opacity .3s var(--ease),max-width .45s var(--ease)}
 #clock{overflow:hidden;white-space:nowrap;max-height:30px;transition:opacity .3s var(--ease),max-height .45s var(--ease)}
 .side-toggle{
-  width:32px;height:32px;border:1px solid var(--line);border-radius:9px;
-  display:grid;place-items:center;color:var(--muted);flex:none;
-  transition:.4s var(--ease);
+  position:fixed;top:50vh;left:calc(var(--nav-w) - 13px);transform:translateY(-50%);
+  width:26px;height:26px;border:1px solid var(--line-2);border-radius:50%;
+  background:var(--panel);display:grid;place-items:center;color:var(--muted);
+  z-index:45;cursor:pointer;
+  transition:left .45s var(--ease),color .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease);
 }
-.side-toggle:hover{color:var(--text);border-color:var(--line-2)}
-.side-toggle svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--ease)}
+.side-toggle:hover{color:var(--text);border-color:var(--accent-line);background:var(--panel-2)}
+.side-toggle svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--ease)}
+body.side-collapsed .side-toggle svg{transform:rotate(180deg)}
+@media(max-width:900px){.side-toggle{display:none!important}}
 body.side-collapsed{--nav-w:62px}
 body.side-collapsed .side{padding-left:10px;padding-right:10px}
 body.side-collapsed .brand{gap:0;justify-content:center}
@@ -178,7 +183,6 @@ body.side-collapsed .status-text{opacity:0;max-width:0}
 body.side-collapsed #clock{opacity:0;max-height:0}
 body.side-collapsed .side-socials{flex-direction:column;align-items:center}
 body.side-collapsed .side-toggle svg{transform:rotate(180deg)}
-@media(max-width:900px){.side-toggle{display:none}}
 
 /* ---- Mobile top bar ---- */
 .topbar{
@@ -610,10 +614,10 @@ body.cursor-hover .cursor-ring{width:54px;height:54px;border-color:var(--accent)
 
     <nav class="nav" id="nav">
       <div class="nav-pill" id="navPill"></div>
-      <a class="nav-item" data-nav="home"><span class="idx">01</span><span class="nav-label"> Home</span></a>
-      <a class="nav-item" data-nav="works"><span class="idx">02</span><span class="nav-label"> Work</span></a>
-      <a class="nav-item" data-nav="passion"><span class="idx">03</span><span class="nav-label"> Passion</span></a>
-      <a class="nav-item" data-nav="about"><span class="idx">04</span><span class="nav-label"> About</span></a>
+      <a class="nav-item" data-nav="home"><span class="idx"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg></span><span class="nav-label"> Home</span></a>
+      <a class="nav-item" data-nav="works"><span class="idx"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></span><span class="nav-label"> Work</span></a>
+      <a class="nav-item" data-nav="passion"><span class="idx"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></span><span class="nav-label"> Passion</span></a>
+      <a class="nav-item" data-nav="about"><span class="idx"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="nav-label"> About</span></a>
     </nav>
 
     <div class="side-foot">
@@ -626,12 +630,13 @@ body.cursor-hover .cursor-ring{width:54px;height:54px;border-color:var(--accent)
         <a class="s-link" href="assets/Resume_Louis_Liu.pdf" download aria-label="Résumé">
           <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
         </a>
-      <button class="side-toggle" id="sideToggle" aria-label="Collapse sidebar">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </button>
     </div>
   </aside>
   <div class="scrim" id="scrim"></div>
+
+<button class="side-toggle" id="sideToggle" aria-label="Collapse sidebar">
+  <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+</button>
 
   <!-- Main scroll area -->
   <main class="main scroll-area" id="main">
