@@ -374,33 +374,7 @@
     ${footer()}`;
   }
 
-  const WOOD_DESCS = [
-    'A walnut side table with hand-cut dovetails — first time working with figured grain.',
-    'Floating shelves in white oak, fitted to an awkward alcove. The challenge was the compound angles.',
-    'A small jewelry box in cherry with a hand-planed lid and a simple latch. Wedding gift.'
-  ];
-  const PHOTO_DESCS = [
-    'Sunrise over Lake Superior on a solo drive up the North Shore. No plan, just coffee and luck.',
-    "Street market in Chengdu. My grandmother's neighborhood — same vendors, thirty years later.",
-    'Saint Paul in January. Everyone else stayed inside. The light was incredible.',
-    'Golden hour on a farm road outside of Cannon Falls. I pulled over without thinking.',
-    'Fog on the Mississippi at 6am. Shot from the Ford Bridge on a run I almost skipped.'
-  ];
-  const AI_DESCS = [
-    'Exploring how diffusion model latent space can inform UI layout generation without manual prompting.',
-    'Sketching an agent loop that turns ambiguous product briefs into structured design decisions.',
-    "Mapping the latent structure of a design system to find semantic clusters the team hadn't named yet.",
-    'Testing prompt strategies that preserve intent across paraphrase — a reliability problem, not a creativity one.',
-    'Using vision models to audit UI accessibility at scale across a large legacy product surface.',
-    'Combining generation techniques to synthesize realistic edge-case states for usability testing.'
-  ];
-
   function tPassion() {
-    const woodPosts = WOOD.map((src, i) => blogPost('Woodworking', 'Build 0' + (i + 1), WOOD_DESCS[i], '2024', 'Personal', src));
-    const photoPosts = PHOTO.map((src, i) => blogPost('Photography', 'Frame 0' + (i + 1), PHOTO_DESCS[i], '2023-24', 'Film + Digital', src));
-    const aiPosts = AI.map((label, i) => blogPost('AI Exploration', label + ' — Experiment 0' + (i + 1), AI_DESCS[i], '2024-25', 'Experiment', null, label));
-    const passionPosts = PASSION.map(p => blogPost(p.cat, p.title, p.desc, p.year, p.tag, p.img));
-
     return `
     <header class="page-head">
       <span class="eyebrow rv"><span class="ed"></span> Off the clock</span>
@@ -409,15 +383,33 @@
     </header>
 
     <section>
-      <div class="blog-feed">
-        <p class="blog-section-label rv">Personal projects</p>
-        ${passionPosts.join("")}
-        <p class="blog-section-label rv">Woodworking</p>
-        ${woodPosts.join("")}
-        <p class="blog-section-label rv">Photography</p>
-        ${photoPosts.join("")}
-        <p class="blog-section-label rv">AI Exploration</p>
-        ${aiPosts.join("")}
+      <div class="sec-head"><span class="sec-label">Personal projects</span><span class="sec-count">0${PASSION.length}</span></div>
+      <div class="passion-cs">
+        ${PASSION.map(passionCard).join("")}
+      </div>
+    </section>
+
+    <section class="gallery-block">
+      <div class="sec-head"><span class="sec-label">Woodworking</span><span class="sec-count">0${WOOD.length}</span></div>
+      <p class="page-lead rv" style="margin-top:-26px;margin-bottom:34px">Measure twice, cut once. A hobby that balances creativity with a satisfying amount of precision.</p>
+      <div class="gal-grid gal-wood">
+        ${WOOD.map((src, i) => galItem(src, `Build 0${i + 1}`)).join("")}
+      </div>
+    </section>
+
+    <section class="gallery-block">
+      <div class="sec-head"><span class="sec-label">Photography</span><span class="sec-count">0${PHOTO.length}</span></div>
+      <p class="page-lead rv" style="margin-top:-26px;margin-bottom:34px">Moments worth looking back on and saying, "oh yeah, that was cool."</p>
+      <div class="gal-grid gal-photo">
+        ${PHOTO.map((src, i) => galItem(src, `Frame 0${i + 1}`, i === 0 ? "span2" : "")).join("")}
+      </div>
+    </section>
+
+    <section class="gallery-block">
+      <div class="sec-head"><span class="sec-label">AI exploration</span><span class="sec-count">0${AI.length}</span></div>
+      <p class="page-lead rv" style="margin-top:-26px;margin-bottom:34px">Ongoing experiments at the edge of generative tools — interfaces, agents, and what design becomes next.</p>
+      <div class="gal-grid gal-ai">
+        ${AI.map((label, i) => aiItem(label, i)).join("")}
       </div>
     </section>
 
@@ -425,22 +417,25 @@
     ${footer()}`;
   }
 
-  function blogPost(cat, title, desc, year, tag, img, aiLabel) {
-    const thumb = img
-      ? `<div class="blog-post-thumb rv"><div class="ph" style="background-image:url('${img}')"></div></div>`
-      : aiLabel
-        ? `<div class="blog-post-thumb ai-thumb rv"><span>${esc(aiLabel)}</span></div>`
-        : `<div></div>`;
+  function passionCard(p) {
     return `
-    <article class="blog-post rv">
-      <div class="blog-post-text">
-        <span class="blog-post-cat">${esc(cat)}</span>
-        <h3 class="blog-post-title">${esc(title)}</h3>
-        <p class="blog-post-desc">${esc(desc)}</p>
-        <div class="blog-post-meta"><span>${esc(tag)}</span><span>${esc(year)}</span></div>
+    <article class="pcs rv">
+      <div class="pcs-img"><div class="ph" style="background-image:url('${p.img}')"></div></div>
+      <div class="pcs-body">
+        <span class="pcs-cat">${esc(p.cat)}</span>
+        <h3 class="pcs-title">${esc(p.title)}</h3>
+        <p class="pcs-desc">${esc(p.desc)}</p>
+        <div class="pcs-meta"><span>${esc(p.tag)}</span><span>${esc(p.year)}</span></div>
       </div>
-      ${thumb}
     </article>`;
+  }
+
+  function galItem(src, cap, cls) {
+    return `<div class="gal-item rv ${cls || ""}"><div class="ph" style="background-image:url('${src}')"></div><span class="gal-cap">${esc(cap)}</span></div>`;
+  }
+
+  function aiItem(label, i) {
+    return `<div class="gal-item rv"><div class="ai-ph"><span>${esc(label)}</span></div><span class="gal-cap">Experiment 0${i + 1}</span></div>`;
   }
 
   function tAbout() {
