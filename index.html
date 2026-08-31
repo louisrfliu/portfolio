@@ -136,13 +136,8 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .nav-item.active{color:var(--text)}
 .nav-item.active .idx{color:var(--accent)}
 
-.side-foot{margin-top:auto;display:flex;flex-direction:column;gap:18px}
-.status{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.3px;text-transform:uppercase}
-.status .dot{width:7px;height:7px;border-radius:50%;background:#5fcf80;position:relative}
-.status .dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid #5fcf80;animation:ping 2.4s var(--ease) infinite;opacity:0}
-@keyframes ping{0%{transform:scale(.6);opacity:.7}100%{transform:scale(1.8);opacity:0}}
-.clock{font-family:var(--mono);font-size:10.5px;color:var(--muted-2);letter-spacing:.3px}
-.side-socials{display:flex;gap:8px}
+.side-divider{height:1px;background:var(--line);margin:8px 0}
+.side-socials{display:flex;gap:8px;padding:0 8px}
 .s-link{
   width:34px;height:34px;border:1px solid var(--line);border-radius:9px;
   display:grid;place-items:center;color:var(--muted);
@@ -154,21 +149,17 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 /* ---- Sidebar collapse ---- */
 .side{transition:width .45s var(--ease),padding .45s var(--ease)}
 .main{transition:margin-left .45s var(--ease)}
-.home-marquee{transition:left .45s var(--ease)}
 .brand-txt{max-width:200px;overflow:hidden;white-space:nowrap;transition:opacity .3s var(--ease),max-width .45s var(--ease)}
 .nav-label{max-width:120px;overflow:hidden;white-space:nowrap;display:inline-block;transition:opacity .3s var(--ease),max-width .45s var(--ease)}
-.status-text{overflow:hidden;white-space:nowrap;max-width:160px;display:inline-block;transition:opacity .3s var(--ease),max-width .45s var(--ease)}
-#clock{overflow:hidden;white-space:nowrap;max-height:30px;transition:opacity .3s var(--ease),max-height .45s var(--ease)}
 .side-toggle{
-  position:fixed;top:50vh;left:calc(var(--nav-w) - 13px);transform:translateY(-50%);
-  width:26px;height:26px;border:1px solid var(--line-2);border-radius:50%;
-  background:var(--panel);display:grid;place-items:center;color:var(--muted);
-  z-index:45;cursor:pointer;
-  transition:left .45s var(--ease),color .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease);
+  width:100%;height:34px;border:1px solid var(--line);border-radius:9px;
+  background:transparent;display:flex;align-items:center;padding:0 10px;
+  color:var(--muted);cursor:pointer;gap:10px;margin-top:auto;
+  transition:color .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease);
 }
-.side-toggle:hover{color:var(--text);border-color:var(--accent-line);background:var(--panel-2)}
-.side-toggle svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--ease)}
-body.side-collapsed .side-toggle svg{transform:rotate(180deg)}
+.side-toggle-label{font-size:13px;font-weight:500;color:var(--muted);overflow:hidden;white-space:nowrap;max-width:120px;display:inline-block;transition:opacity .3s var(--ease),max-width .45s var(--ease)}
+.side-toggle:hover{color:var(--text);border-color:var(--line-2)}
+.side-toggle svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--ease);flex:none}
 @media(max-width:900px){.side-toggle{display:none!important}}
 body.side-collapsed{--nav-w:62px}
 body.side-collapsed .side{padding-left:10px;padding-right:10px}
@@ -176,10 +167,9 @@ body.side-collapsed .brand{gap:0;justify-content:center}
 body.side-collapsed .brand-txt{opacity:0;max-width:0}
 body.side-collapsed .nav-item{justify-content:center;padding:0;gap:0}
 body.side-collapsed .nav-label{opacity:0;max-width:0}
-body.side-collapsed .status{justify-content:center}
-body.side-collapsed .status-text{opacity:0;max-width:0}
-body.side-collapsed #clock{opacity:0;max-height:0}
-body.side-collapsed .side-socials{flex-direction:column;align-items:center}
+body.side-collapsed .side-socials{padding:0;justify-content:center}
+body.side-collapsed .side-toggle{justify-content:center;padding:0;border-radius:9px}
+body.side-collapsed .side-toggle-label{opacity:0;max-width:0}
 body.side-collapsed .side-toggle svg{transform:rotate(180deg)}
 
 /* ---- Mobile top bar ---- */
@@ -290,20 +280,6 @@ body.is-home .hero-sub .hl{color:var(--accent);font-weight:500}
   body.is-home .portrait{max-width:160px}
 }
 
-/* full-width bottom marquee (home only) */
-.home-marquee{
-  position:fixed;left:var(--nav-w);right:0;bottom:0;z-index:5;
-  display:none;overflow:hidden;padding:16px 0;
-  border-top:1px solid var(--line);
-  background:rgba(12,12,13,.72);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-}
-.home-marquee .marq{padding-left:var(--pad)}
-body.is-home .home-marquee{display:block}
-@media(max-width:900px){
-  .home-marquee{left:0}
-  body.is-home .home-marquee{display:none}
-}
 .peek-row{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:6px}
 @media(max-width:760px){.peek-row{grid-template-columns:1fr}}
 
@@ -618,32 +594,28 @@ body.cursor-hover .cursor-ring{width:54px;height:54px;border-color:var(--accent)
       <a class="nav-item" data-nav="about"><span class="idx"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="nav-label"> About</span></a>
     </nav>
 
-    <div class="side-foot">
-      <div class="status"><span class="dot"></span><span class="status-text"> Available for work</span></div>
-      <div class="clock" id="clock">— · Saint Paul, MN</div>
-      <div class="side-socials">
-        <a class="s-link" href="https://www.linkedin.com/in/louisrfliu" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 11.01-4.13 2.06 2.06 0 01-.01 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .77 0 1.73v20.54C0 23.23.8 24 1.78 24h20.44c.99 0 1.78-.77 1.78-1.73V1.73C24 .77 23.21 0 22.22 0z"/></svg>
-        </a>
-        <a class="s-link" href="assets/Resume_Louis_Liu.pdf" download aria-label="Résumé">
-          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-        </a>
+    <div class="side-divider"></div>
+    <div class="side-socials">
+      <a class="s-link" href="https://www.linkedin.com/in/louisrfliu" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 11.01-4.13 2.06 2.06 0 01-.01 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .77 0 1.73v20.54C0 23.23.8 24 1.78 24h20.44c.99 0 1.78-.77 1.78-1.73V1.73C24 .77 23.21 0 22.22 0z"/></svg>
+      </a>
+      <a class="s-link" href="assets/Resume_Louis_Liu.pdf" download aria-label="Résumé">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      </a>
     </div>
+
+    <button class="side-toggle" id="sideToggle" aria-label="Collapse sidebar">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      <span class="side-toggle-label">Collapse</span>
+    </button>
   </aside>
   <div class="scrim" id="scrim"></div>
-
-<button class="side-toggle" id="sideToggle" aria-label="Collapse sidebar">
-  <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
-</button>
 
   <!-- Main scroll area -->
   <main class="main scroll-area" id="main">
     <div id="view" class="view"></div>
   </main>
 </div>
-
-<!-- Full-width marquee pinned to viewport bottom (home only) -->
-<div class="home-marquee" id="homeMarquee" aria-hidden="true"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>

@@ -879,9 +879,6 @@
   /* ----------------------------------------------------------
      BOOT
   ---------------------------------------------------------- */
-  const hm = $("#homeMarquee");
-  if (hm) hm.innerHTML = `<div class="marq">${marqueeContent()}${marqueeContent()}</div>`;
-
   const initRoute = parseHash();
   current = initRoute.name + (initRoute.id || "");
   render(initRoute);
