@@ -116,22 +116,19 @@
   // layers drive the local filter toolbar.
   const JOURNEY = [
     {
-      version: "v2.6", company: "6sense", role: "Senior Product Designer",
-      timeline: "Oct 2025 — Present", promoted: true, layers: ["6sense", "ai-saas"],
-      tags: ["Platform Architecture", "Scalability", "End-to-End Initiatives"],
-      logs: ["Lead end-to-end platform design initiatives focused on driving consistency, system-level scalability, and seamless user orchestration across the entire enterprise product ecosystem."]
-    },
-    {
-      version: "v2.5", company: "6sense", role: "Product Designer III",
-      timeline: "Oct 2024 — Oct 2025 · 1 yr 1 mo", promoted: true, layers: ["6sense", "ai-saas"],
-      tags: ["System Integrations", "Platform Operations", "Cross-Functional Enablement"],
-      logs: ["Led critical experience improvements for core system integrations and foundational platform initiatives, actively enabling and unblocking cross-functional product teams."]
-    },
-    {
-      version: "v2.0", company: "6sense", role: "User Experience Designer",
-      timeline: "Apr 2022 — Oct 2024 · 2 yrs 7 mos", layers: ["6sense", "ai-saas"],
-      tags: ["Revenue AI™", "Big Data Architecture", "AI–Human Loops"],
-      logs: ["Owned and optimized the end-to-end user experience for <strong>6sense Revenue AI™ for Sales</strong> — a high-stakes enterprise platform utilizing predictive models and big data to streamline sales workflows and lower cognitive load for power users."]
+      version: "v2.0–v2.6", company: "6sense", timeline: "Apr 2022 — Present",
+      layers: ["6sense", "ai-saas"],
+      roles: [
+        { role: "Senior Product Designer", timeline: "Oct 2025 — Present" },
+        { role: "Product Designer III", timeline: "Oct 2024 — Oct 2025" },
+        { role: "User Experience Designer", timeline: "Apr 2022 — Oct 2024" },
+      ],
+      tags: ["Platform Architecture", "Revenue AI™", "System Integrations", "Big Data"],
+      logs: [
+        "Lead end-to-end platform design initiatives focused on driving consistency, system-level scalability, and seamless user orchestration across the entire enterprise product ecosystem.",
+        "Led critical experience improvements for core system integrations and foundational platform initiatives, actively enabling and unblocking cross-functional product teams.",
+        "Owned and optimized the end-to-end user experience for <strong>6sense Revenue AI™ for Sales</strong> — a high-stakes enterprise platform utilizing predictive models and big data to streamline sales workflows and lower cognitive load for power users."
+      ]
     },
     {
       version: "v1.5", company: "Zywave", role: "User Experience Designer",
@@ -486,12 +483,15 @@
   }
 
   function changelogRow(e) {
+    const leftMeta = e.roles
+      ? e.roles.map(r => `<div class="cl-role-row"><span class="cl-role">${esc(r.role)}</span><span class="cl-time">${esc(r.timeline)}</span></div>`).join("")
+      : `<div class="cl-role">${esc(e.role)}</div><div class="cl-time">${esc(e.timeline)}</div>`;
     return `
     <article class="cl-row rv" data-layers="${e.layers.join(" ")}">
       <div class="cl-left">
         <div class="cl-co">${esc(e.company)}</div>
-        <div class="cl-role">${esc(e.role)}</div>
-        <div class="cl-time">${esc(e.timeline)}</div>
+        ${e.roles ? `<div class="cl-time cl-time-total">${esc(e.timeline)}</div>` : ""}
+        <div class="cl-roles">${leftMeta}</div>
       </div>
       <div class="cl-right">
         <ul class="cl-logs">
