@@ -508,7 +508,6 @@
   function contactBand() {
     return `
     <section class="contact">
-      <span class="eyebrow rv" style="justify-content:center"><span class="ed"></span> Let’s build something clear</span>
       <h2 class="contact-h rv" style="margin-top:20px">Have a hard problem<br/>worth <em>designing</em> well?</h2>
       <div class="contact-cta rv">
         <a class="btn solid" href="mailto:louis.rf.liu@gmail.com">Get in touch <span class="arrow">→</span></a>
