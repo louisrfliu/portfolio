@@ -131,7 +131,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   transition:color .35s var(--ease);
 }
 .nav-item .idx{width:16px;height:16px;display:flex;align-items:center;justify-content:center;flex:none;color:var(--muted-2);transition:color .35s var(--ease)}
-.nav-item .idx svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.nav-item .idx svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .nav-item:hover{color:var(--text)}
 .nav-item.active{color:var(--text)}
 .nav-item.active .idx{color:var(--accent)}
@@ -149,7 +149,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   transition:.4s var(--ease);
 }
 .s-link:hover{color:var(--text);border-color:var(--line-2);transform:translateY(-2px)}
-.s-link svg{width:15px;height:15px;fill:currentColor}
+.s-link svg{width:16px;height:16px;fill:currentColor}
 
 /* ---- Sidebar collapse ---- */
 .side{transition:width .45s var(--ease),padding .45s var(--ease)}
@@ -167,7 +167,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   transition:left .45s var(--ease),color .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease);
 }
 .side-toggle:hover{color:var(--text);border-color:var(--accent-line);background:var(--panel-2)}
-.side-toggle svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--ease)}
+.side-toggle svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--ease)}
 body.side-collapsed .side-toggle svg{transform:rotate(180deg)}
 @media(max-width:900px){.side-toggle{display:none!important}}
 body.side-collapsed{--nav-w:62px}
