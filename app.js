@@ -29,14 +29,14 @@
       hmw: "How might we help GTM teams detect and act on business events to engage prospects at the right moment?",
       sections: [
         { k: "Context", h: "Powerful data, hidden behind a black box", p: [
-          `6sense is known for its data quality and the GTM impact it brings. But key outcomes — keywords, 6QA, temperature scores — are formulas the platform calculates behind the scenes. The math is powerful, yet it creates a <span class="hl">“black box”</span> that erodes trust and obscures the right moment to act.`,
+          `6sense is known for its data quality and the GTM impact it brings. But key outcomes — keywords, 6QA, temperature scores — are formulas the platform calculates behind the scenes. The math is powerful, yet it creates a <span class="hl">"black box"</span> that erodes trust and obscures the right moment to act.`,
           `To improve transparency and explainability while helping users know <strong>when</strong> to act, we introduced <strong>Signals</strong> — our top priority leading into general availability in August 2026. The Platform Enablement team is building a centralized interface for users to detect, understand, and respond to business events.`
         ], fig: { src: "assets/signals-hero.png", cap: "Signals — a centralized home for detecting and acting on business events" } },
-        { k: "Discovery", h: "Uncovering how users actually think about “signals”", p: [
+        { k: "Discovery", h: "Uncovering how users actually think about signals", p: [
           `I ran generative research across three goals: how users <strong>describe</strong> a feature like signals, how they <strong>create</strong> successful ones, and what <strong>outcomes</strong> they expect. The aim was to anchor the design in real mental models rather than internal jargon.`
         ], fig: { src: "assets/signals-research.png", cap: "Research synthesis — mapping user mental models to signal definitions" } },
         { k: "Principles", h: "What a signal should — and shouldn’t — be", p: [
-          `Synthesis produced a sharp set of principles. A signal <span class="hl">should</span> grab attention and triage urgency, explain the “why” behind the alert, align to key metrics, fit users’ workflows, and drive immediate, coordinated action. It <span class="hl">should not</span> be vague, create false urgency, rely on untrusted data, sit siloed, or ignore ownership.`
+          `Synthesis produced a sharp set of principles. A signal <span class="hl">should</span> grab attention and triage urgency, explain the "why" behind the alert, align to key metrics, fit users’ workflows, and drive immediate, coordinated action. It <span class="hl">should not</span> be vague, create false urgency, rely on untrusted data, sit siloed, or ignore ownership.`
         ], callout: "From noise to signal — every alert must earn the user’s attention." },
         { k: "Design", h: "Bringing it into the workflow", p: [
           `The feature lives on the main navigation, with clear event types and conditions per signal, and is surfaced directly inside the downstream applications where users already work — meeting people in context rather than forcing a detour.`
@@ -67,7 +67,7 @@
           `Admins are often unaware permissions are missing <strong>because</strong> identifying which object lacks access isn’t obvious, which leaves them confused and slows down fixes.`
         ], fig: { src: "assets/crm-hero.png", cap: "The CRM integration setup where permission gaps go unnoticed" } },
         { k: "Hypothesis", h: "Make status visible at a glance", p: [
-          `<strong>If</strong> we make required-object permission statuses visible at a glance, <strong>then</strong> admins stay informed during setup and ensure an error-free data connection. The job-to-be-done: “make sure 6sense has permission to all required objects, so I can set up the connection successfully.”`
+          `<strong>If</strong> we make required-object permission statuses visible at a glance, <strong>then</strong> admins stay informed during setup and ensure an error-free data connection. The job-to-be-done: "make sure 6sense has permission to all required objects, so I can set up the connection successfully."`
         ], callout: "Surface the error where the work happens — don’t make admins go hunting." },
         { k: "Design", h: "Three moves that fixed it", p: [
           `<strong>High visibility</strong> — essential objects and their permission statuses appear directly, no extra clicks, with a prominent <em>Recheck permission</em> action.`,
@@ -209,7 +209,7 @@
         <div>
           <span class="eyebrow rv"><span class="ed"></span> Saint Paul, Minnesota, USA</span>
           <h1 class="hero-title" data-words>Where complex data meets human <em>intuition.</em></h1>
-          <p class="hero-sub rv"><span class="hl">Senior Product Designer</span> leading 6sense AI Email. I deconstruct complex B2B SaaS domain logic to transform massive revenue datasets into actionable, bulk outreach workflows. My focus is opening the “black box” by architecting trust, transparency, and human control into high-stakes AI systems.</p>
+          <p class="hero-sub rv"><span class="hl">Senior Product Designer</span> leading 6sense AI Email. I deconstruct complex B2B SaaS domain logic to transform massive revenue datasets into actionable, bulk outreach workflows. My focus is opening the "black box" by architecting trust, transparency, and human control into high-stakes AI systems.</p>
           <div class="hero-cta rv">
             <a class="btn solid" data-nav="works">View work <span class="arrow">→</span></a>
             <a class="btn" data-nav="about">About me</a>
@@ -374,52 +374,50 @@
     ${footer()}`;
   }
 
+  const WOOD_DESCS = [
+    'A walnut side table with hand-cut dovetails — first time working with figured grain.',
+    'Floating shelves in white oak, fitted to an awkward alcove. The challenge was the compound angles.',
+    'A small jewelry box in cherry with a hand-planed lid and a simple latch. Wedding gift.'
+  ];
+  const PHOTO_DESCS = [
+    'Sunrise over Lake Superior on a solo drive up the North Shore. No plan, just coffee and luck.',
+    "Street market in Chengdu. My grandmother's neighborhood — same vendors, thirty years later.",
+    'Saint Paul in January. Everyone else stayed inside. The light was incredible.',
+    'Golden hour on a farm road outside of Cannon Falls. I pulled over without thinking.',
+    'Fog on the Mississippi at 6am. Shot from the Ford Bridge on a run I almost skipped.'
+  ];
+  const AI_DESCS = [
+    'Exploring how diffusion model latent space can inform UI layout generation without manual prompting.',
+    'Sketching an agent loop that turns ambiguous product briefs into structured design decisions.',
+    "Mapping the latent structure of a design system to find semantic clusters the team hadn't named yet.",
+    'Testing prompt strategies that preserve intent across paraphrase — a reliability problem, not a creativity one.',
+    'Using vision models to audit UI accessibility at scale across a large legacy product surface.',
+    'Combining generation techniques to synthesize realistic edge-case states for usability testing.'
+  ];
+
   function tPassion() {
-    const woodPosts = WOOD.map((src, i) => blogPost(
-      “Woodworking”, `Build 0${i + 1}`,
-      i === 0 ? “A walnut side table with hand-cut dovetails — first time working with figured grain.” :
-      i === 1 ? “Floating shelves in white oak, fitted to an awkward alcove. The challenge was the compound angles.” :
-               “A small jewelry box in cherry with a hand-planed lid and a simple latch. Wedding gift.”,
-      “2024”, “Personal”, src
-    ));
-    const photoPosts = PHOTO.map((src, i) => blogPost(
-      “Photography”, `Frame 0${i + 1}`,
-      i === 0 ? “Sunrise over Lake Superior on a solo drive up the North Shore. No plan, just coffee and luck.” :
-      i === 1 ? “Street market in Chengdu. My grandmother's neighborhood — same vendors, thirty years later.” :
-      i === 2 ? “Saint Paul in January. Everyone else stayed inside. The light was incredible.” :
-      i === 3 ? “Golden hour on a farm road outside of Cannon Falls. I pulled over without thinking.” :
-               “Fog on the Mississippi at 6am. Shot from the Ford Bridge on a run I almost skipped.”,
-      “2023–24”, “Film + Digital”, src
-    ));
-    const aiPosts = AI.map((label, i) => blogPost(
-      “AI Exploration”, `${label} — Experiment 0${i + 1}`,
-      i === 0 ? “Exploring how diffusion model latent space can inform UI layout generation without manual prompting.” :
-      i === 1 ? “Sketching an agent loop that turns ambiguous product briefs into structured design decisions.” :
-      i === 2 ? “Mapping the latent structure of a design system to find semantic clusters the team hadn't named yet.” :
-      i === 3 ? “Testing prompt strategies that preserve intent across paraphrase — a reliability problem, not a creativity one.” :
-      i === 4 ? “Using vision models to audit UI accessibility at scale across a large legacy product surface.” :
-               “Combining generation techniques to synthesize realistic edge-case states for usability testing.”,
-      “2024–25”, “Experiment”, null, label
-    ));
+    const woodPosts = WOOD.map((src, i) => blogPost('Woodworking', 'Build 0' + (i + 1), WOOD_DESCS[i], '2024', 'Personal', src));
+    const photoPosts = PHOTO.map((src, i) => blogPost('Photography', 'Frame 0' + (i + 1), PHOTO_DESCS[i], '2023-24', 'Film + Digital', src));
+    const aiPosts = AI.map((label, i) => blogPost('AI Exploration', label + ' — Experiment 0' + (i + 1), AI_DESCS[i], '2024-25', 'Experiment', null, label));
     const passionPosts = PASSION.map(p => blogPost(p.cat, p.title, p.desc, p.year, p.tag, p.img));
 
     return `
-    <header class=”page-head”>
-      <span class=”eyebrow rv”><span class=”ed”></span> Off the clock</span>
-      <h1 class=”page-h1” data-words>Things I make when <em>nobody</em> assigns them.</h1>
-      <p class=”page-lead rv”>Self-directed design experiments, plus the woodworking, photography, and AI explorations that keep my hands and curiosity busy.</p>
+    <header class="page-head">
+      <span class="eyebrow rv"><span class="ed"></span> Off the clock</span>
+      <h1 class="page-h1" data-words>Things I make when <em>nobody</em> assigns them.</h1>
+      <p class="page-lead rv">Self-directed design experiments, plus the woodworking, photography, and AI explorations that keep my hands and curiosity busy.</p>
     </header>
 
     <section>
-      <div class=”blog-feed”>
-        <p class=”blog-section-label rv”>Personal projects</p>
-        ${passionPosts.join(“”)}
-        <p class=”blog-section-label rv”>Woodworking</p>
-        ${woodPosts.join(“”)}
-        <p class=”blog-section-label rv”>Photography</p>
-        ${photoPosts.join(“”)}
-        <p class=”blog-section-label rv”>AI Exploration</p>
-        ${aiPosts.join(“”)}
+      <div class="blog-feed">
+        <p class="blog-section-label rv">Personal projects</p>
+        ${passionPosts.join("")}
+        <p class="blog-section-label rv">Woodworking</p>
+        ${woodPosts.join("")}
+        <p class="blog-section-label rv">Photography</p>
+        ${photoPosts.join("")}
+        <p class="blog-section-label rv">AI Exploration</p>
+        ${aiPosts.join("")}
       </div>
     </section>
 
@@ -429,17 +427,17 @@
 
   function blogPost(cat, title, desc, year, tag, img, aiLabel) {
     const thumb = img
-      ? `<div class=”blog-post-thumb rv”><div class=”ph” style=”background-image:url('${img}')”></div></div>`
+      ? `<div class="blog-post-thumb rv"><div class="ph" style="background-image:url('${img}')"></div></div>`
       : aiLabel
-        ? `<div class=”blog-post-thumb ai-thumb rv”><span>${esc(aiLabel)}</span></div>`
+        ? `<div class="blog-post-thumb ai-thumb rv"><span>${esc(aiLabel)}</span></div>`
         : `<div></div>`;
     return `
-    <article class=”blog-post rv”>
-      <div class=”blog-post-text”>
-        <span class=”blog-post-cat”>${esc(cat)}</span>
-        <h3 class=”blog-post-title”>${esc(title)}</h3>
-        <p class=”blog-post-desc”>${esc(desc)}</p>
-        <div class=”blog-post-meta”><span>${esc(tag)}</span><span>${esc(year)}</span></div>
+    <article class="blog-post rv">
+      <div class="blog-post-text">
+        <span class="blog-post-cat">${esc(cat)}</span>
+        <h3 class="blog-post-title">${esc(title)}</h3>
+        <p class="blog-post-desc">${esc(desc)}</p>
+        <div class="blog-post-meta"><span>${esc(tag)}</span><span>${esc(year)}</span></div>
       </div>
       ${thumb}
     </article>`;
