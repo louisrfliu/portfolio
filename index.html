@@ -193,12 +193,12 @@ body.side-collapsed .side-toggle .idx svg{transform:rotate(180deg)}
   background:rgba(12,12,13,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line);
 }
-.burger{width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line);border-radius:10px}
-.burger span{display:block;width:17px;height:1.5px;background:var(--text);transition:.35s var(--ease)}
-.burger span+span{margin-top:5px}
-body.menu-open .burger span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
-body.menu-open .burger span:nth-child(2){opacity:0}
-body.menu-open .burger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.burger{width:44px;height:44px;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:6px;border:none;background:none;cursor:pointer;padding:0}
+.burger span{display:block;height:1.5px;background:var(--text);border-radius:2px;transition:width .35s var(--ease),transform .35s var(--ease),opacity .35s var(--ease)}
+.burger span:nth-child(1){width:22px}
+.burger span:nth-child(2){width:14px}
+body.menu-open .burger span:nth-child(1){width:18px;transform:translateY(7.5px) rotate(45deg)}
+body.menu-open .burger span:nth-child(2){width:18px;transform:translateY(-7.5px) rotate(-45deg)}
 
 /* ---- Main ---- */
 .main{
@@ -286,12 +286,13 @@ body.is-home .hero{min-height:0;height:100vh;height:100dvh;justify-content:cente
 body.is-home .hero-sub{line-height:1.55;max-width:52ch}
 body.is-home .hero-sub .hl{color:var(--accent);font-weight:500}
 @media(max-width:900px){
-  body.is-home .hero{height:calc(100dvh - 60px);padding-top:18px;padding-bottom:14px}
-  body.is-home .hero-grid{gap:18px}
-  body.is-home .hero-title{font-size:clamp(30px,8.4vw,38px);margin-top:16px}
-  body.is-home .hero-sub{margin-top:16px;font-size:14px}
-  body.is-home .hero-cta{margin-top:22px}
-  body.is-home .portrait{max-width:160px}
+  body.is-home .hero{height:auto;padding-top:0;padding-bottom:24px}
+  body.is-home .hero-grid{gap:0;display:flex;flex-direction:column}
+  body.is-home .portrait{order:-1;max-width:100%;width:calc(100% + var(--pad)*2);margin-left:calc(-1*var(--pad));margin-right:calc(-1*var(--pad));border-radius:0;border-left:none;border-right:none;border-top:none;aspect-ratio:4/3;min-height:unset}
+  body.is-home .hero-content{padding:28px 0 0}
+  body.is-home .hero-title{font-size:clamp(30px,8.4vw,38px);margin-top:12px}
+  body.is-home .hero-sub{margin-top:14px;font-size:14px}
+  body.is-home .hero-cta{margin-top:20px}
 }
 
 .peek-row{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:6px}
@@ -541,7 +542,7 @@ body.is-home .hero-sub .hl{color:var(--accent);font-weight:500}
   .scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:30;opacity:0;pointer-events:none;transition:opacity .4s}
   body.menu-open .scrim{opacity:1;pointer-events:auto}
   .hero-grid{grid-template-columns:1fr;gap:40px}
-  .portrait{max-width:280px}
+  .portrait{max-width:280px;min-height:unset}
   .feature{grid-template-columns:1fr}
   .about-hero{grid-template-columns:1fr;gap:36px}
   .about-portrait{max-width:320px}
@@ -571,7 +572,7 @@ body.is-home .hero-sub .hl{color:var(--accent);font-weight:500}
     <div class="brand-mark"><svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.75107e-06 238.5L0 158.5L158.793 0L241.793 5.44748e-06L400 158.5V237.5L240.793 400L161.793 400L3.75107e-06 238.5ZM41.6081 199.5L200 41.108L242.926 84.0341L183.736 143.224L183.736 143.224L135.653 191.307C130.967 195.993 130.967 203.591 135.653 208.278L186.565 259.19L143.932 301.823L41.6081 199.5ZM155.245 313.137L200 357.892L358.392 199.5L254.24 95.3478L209.192 140.395L260.104 191.307C264.79 195.993 264.79 203.591 260.104 208.278L219.092 249.29L219.092 249.29L155.245 313.137Z" fill="currentColor"/></svg></div>
     <div class="brand-txt"><span class="brand-name">Louis Liu</span></div>
   </div>
-  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
 </header>
 
 <div class="app">
