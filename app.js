@@ -508,7 +508,7 @@
   function contactBand() {
     return `
     <section class="contact">
-      <h2 class="contact-h rv" style="margin-top:20px">Have a hard problem<br/>worth <em>designing</em> well?</h2>
+      <h2 class="contact-h rv" style="margin-top:20px">Let's <em>work</em><br/>together.</h2>
       <div class="contact-cta rv">
         <a class="btn solid" href="mailto:louis.rf.liu@gmail.com">Get in touch <span class="arrow">→</span></a>
         <a class="btn" href="https://www.linkedin.com/in/louisrfliu" target="_blank" rel="noreferrer">LinkedIn <span class="arrow">↗</span></a>
