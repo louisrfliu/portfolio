@@ -441,7 +441,7 @@
     return `
     <section class="about-hero">
       <div>
-        <span class="eyebrow rv"><span class="ed"></span> About · Saint Paul, MN</span>
+        <span class="eyebrow rv"><span class="ed"></span> About</span>
         <h1 class="page-h1" data-words>Hi, it’s <em>Louis</em>.</h1>
         <p class="page-lead rv">Born in China, raised between two languages, and now building a wonderfully chaotic life with my family in Saint Paul, MN. I&rsquo;m a Senior Product Designer at 6sense, where I bring the same clarity I practice at the workbench to every product I design.</p>
         <p class="page-lead rv" style="margin-top:18px">I&rsquo;m drawn to the hard, unglamorous problems — data onboarding, permissions, the moments where complexity quietly defeats people. My job is to make those moments feel obvious.</p>
