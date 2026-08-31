@@ -484,8 +484,10 @@ body.is-home .hero-sub .hl{color:var(--accent);font-weight:500}
 .cl-row{
   display:grid;grid-template-columns:248px 1fr;align-items:start;
   border-bottom:1px solid var(--line);
+  position:relative;
   transition:background .3s var(--ease);
 }
+.cl-row::after{content:"";position:absolute;left:248px;top:0;bottom:0;width:1px;background:var(--line)}
 .cl-row.is-hidden{display:none}
 .cl-row:hover{background:rgba(255,255,255,.018)}
 .cl-left{padding:28px 28px 28px 4px;display:flex;flex-direction:column;justify-content:flex-start}
@@ -498,7 +500,7 @@ body.is-home .hero-sub .hl{color:var(--accent);font-weight:500}
 .cl-tags{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px}
 .cl-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.3px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:4px 8px;transition:border-color .25s var(--ease),color .25s var(--ease)}
 .cl-row:hover .cl-tag{border-color:var(--line-2);color:var(--text)}
-.cl-right{padding:28px 0 30px 32px;border-left:1px solid var(--line);position:relative}
+.cl-right{padding:28px 0 30px 32px;position:relative}
 .cl-right::before{content:"";position:absolute;left:-5px;top:32px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--bg);transition:transform .3s var(--ease)}
 .cl-row:hover .cl-right::before{transform:scale(1.35)}
 .cl-logs{list-style:none;display:flex;flex-direction:column;gap:15px}
