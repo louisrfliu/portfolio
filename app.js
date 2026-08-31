@@ -255,8 +255,7 @@
     const sorted = PROJECTS.slice();
     return `
     <header class="page-head">
-      <span class="eyebrow rv"><span class="ed"></span> Work · 2021—2026</span>
-      <h1 class="page-h1" data-words>Selected case studies &amp; <em>shipped</em> work.</h1>
+      <h1 class="page-h1" data-words>My work.</h1>
       <p class="page-lead rv">Three deep dives into how I think, paired with a running log of past projects — most recent first.</p>
     </header>
 
