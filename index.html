@@ -524,11 +524,6 @@ body.is-home .hero-sub .hl{color:var(--accent);font-weight:500}
 /* ============================================================
    CUSTOM CURSOR
 ============================================================ */
-.cursor{position:fixed;top:0;left:0;width:7px;height:7px;border-radius:50%;background:var(--accent);z-index:9999;pointer-events:none;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),background .3s,opacity .3s;mix-blend-mode:difference}
-.cursor-ring{position:fixed;top:0;left:0;width:34px;height:34px;border:1px solid rgba(236,234,230,.4);border-radius:50%;z-index:9998;pointer-events:none;transform:translate(-50%,-50%);transition:width .35s var(--ease),height .35s var(--ease),opacity .3s}
-body.cursor-hover .cursor{width:0;height:0}
-body.cursor-hover .cursor-ring{width:54px;height:54px;border-color:var(--accent);background:var(--accent-soft)}
-@media(hover:none),(pointer:coarse){.cursor,.cursor-ring{display:none!important}}
 
 /* ============================================================
    RESPONSIVE
@@ -565,8 +560,6 @@ body.cursor-hover .cursor-ring{width:54px;height:54px;border-color:var(--accent)
 <body>
 <canvas id="glow-canvas"></canvas>
 <div class="grain"></div>
-<div class="cursor"></div>
-<div class="cursor-ring"></div>
 
 <!-- Mobile topbar -->
 <header class="topbar">
