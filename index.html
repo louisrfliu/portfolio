@@ -137,14 +137,15 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .nav-item.active .idx{color:var(--accent)}
 
 .side-divider{height:1px;background:var(--line);margin:8px 0}
-.side-socials{display:flex;gap:8px;padding:0 8px}
+.side-socials{display:flex;flex-direction:column;gap:0}
 .s-link{
-  width:34px;height:34px;border:1px solid var(--line);border-radius:9px;
-  display:grid;place-items:center;color:var(--muted);
-  transition:.4s var(--ease);
+  position:relative;z-index:1;display:flex;align-items:center;gap:13px;
+  height:38px;padding:0 13px;border-radius:10px;
+  color:var(--muted);font-size:13.5px;font-weight:500;letter-spacing:.1px;
+  transition:color .35s var(--ease);
 }
-.s-link:hover{color:var(--text);border-color:var(--line-2);transform:translateY(-2px)}
-.s-link svg{width:16px;height:16px;fill:currentColor}
+.s-link:hover{color:var(--text)}
+.s-link .idx svg{fill:currentColor;stroke:none}
 
 /* ---- Sidebar collapse ---- */
 .side{transition:width .45s var(--ease),padding .45s var(--ease)}
@@ -167,7 +168,7 @@ body.side-collapsed .brand{gap:0;justify-content:center}
 body.side-collapsed .brand-txt{opacity:0;max-width:0}
 body.side-collapsed .nav-item{justify-content:center;padding:0;gap:0}
 body.side-collapsed .nav-label{opacity:0;max-width:0}
-body.side-collapsed .side-socials{padding:0;justify-content:center}
+body.side-collapsed .s-link{justify-content:center;padding:0;gap:0}
 body.side-collapsed .side-toggle{justify-content:center;padding:0;border-radius:9px}
 body.side-collapsed .side-toggle-label{opacity:0;max-width:0}
 body.side-collapsed .side-toggle svg{transform:rotate(180deg)}
@@ -597,10 +598,12 @@ body.cursor-hover .cursor-ring{width:54px;height:54px;border-color:var(--accent)
     <div class="side-divider"></div>
     <div class="side-socials">
       <a class="s-link" href="https://www.linkedin.com/in/louisrfliu" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 11.01-4.13 2.06 2.06 0 01-.01 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .77 0 1.73v20.54C0 23.23.8 24 1.78 24h20.44c.99 0 1.78-.77 1.78-1.73V1.73C24 .77 23.21 0 22.22 0z"/></svg>
+        <span class="idx"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 11.01-4.13 2.06 2.06 0 01-.01 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .77 0 1.73v20.54C0 23.23.8 24 1.78 24h20.44c.99 0 1.78-.77 1.78-1.73V1.73C24 .77 23.21 0 22.22 0z"/></svg></span>
+        <span class="nav-label">LinkedIn</span>
       </a>
-      <a class="s-link" href="assets/Resume_Louis_Liu.pdf" download aria-label="Résumé">
-        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      <a class="s-link" href="assets/Resume_Louis_Liu.pdf" download aria-label="Download résumé">
+        <span class="idx"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></span>
+        <span class="nav-label">Download résumé</span>
       </a>
     </div>
 
