@@ -216,9 +216,7 @@
           </div>
         </div>
         <div class="portrait rv" data-nav="about" role="img" aria-label="Portrait of Louis Liu">
-          <span class="portrait-swap">placeholder · swap me</span>
           <img src="assets/portrait.jpg" alt="Louis Liu" onerror="this.src='assets/about-portrait.jpg'"/>
-          <span class="portrait-tag">Louis Liu — 2026</span>
         </div>
       </div>
 
