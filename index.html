@@ -152,6 +152,34 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .s-link:hover{color:var(--text);border-color:var(--line-2);transform:translateY(-2px)}
 .s-link svg{width:15px;height:15px;fill:currentColor}
 
+/* ---- Sidebar collapse ---- */
+.side{overflow:hidden;transition:width .45s var(--ease),padding .45s var(--ease)}
+.main{transition:margin-left .45s var(--ease)}
+.home-marquee{transition:left .45s var(--ease)}
+.brand-txt{max-width:200px;overflow:hidden;white-space:nowrap;transition:opacity .3s var(--ease),max-width .45s var(--ease)}
+.nav-label{max-width:120px;overflow:hidden;white-space:nowrap;display:inline-block;transition:opacity .3s var(--ease),max-width .45s var(--ease)}
+.status-text{overflow:hidden;white-space:nowrap;max-width:160px;display:inline-block;transition:opacity .3s var(--ease),max-width .45s var(--ease)}
+#clock{overflow:hidden;white-space:nowrap;max-height:30px;transition:opacity .3s var(--ease),max-height .45s var(--ease)}
+.side-toggle{
+  width:32px;height:32px;border:1px solid var(--line);border-radius:9px;
+  display:grid;place-items:center;color:var(--muted);flex:none;
+  transition:.4s var(--ease);
+}
+.side-toggle:hover{color:var(--text);border-color:var(--line-2)}
+.side-toggle svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--ease)}
+body.side-collapsed{--nav-w:62px}
+body.side-collapsed .side{padding-left:10px;padding-right:10px}
+body.side-collapsed .brand{gap:0;justify-content:center}
+body.side-collapsed .brand-txt{opacity:0;max-width:0}
+body.side-collapsed .nav-item{justify-content:center;padding:0 6px}
+body.side-collapsed .nav-label{opacity:0;max-width:0}
+body.side-collapsed .status{justify-content:center}
+body.side-collapsed .status-text{opacity:0;max-width:0}
+body.side-collapsed #clock{opacity:0;max-height:0}
+body.side-collapsed .side-socials{flex-direction:column;align-items:center}
+body.side-collapsed .side-toggle svg{transform:rotate(180deg)}
+@media(max-width:900px){.side-toggle{display:none}}
+
 /* ---- Mobile top bar ---- */
 .topbar{
   display:none;position:fixed;top:0;left:0;right:0;height:60px;z-index:50;
@@ -582,14 +610,14 @@ body.cursor-hover .cursor-ring{width:54px;height:54px;border-color:var(--accent)
 
     <nav class="nav" id="nav">
       <div class="nav-pill" id="navPill"></div>
-      <a class="nav-item" data-nav="home"><span class="idx">01</span> Home</a>
-      <a class="nav-item" data-nav="works"><span class="idx">02</span> Work</a>
-      <a class="nav-item" data-nav="passion"><span class="idx">03</span> Passion</a>
-      <a class="nav-item" data-nav="about"><span class="idx">04</span> About</a>
+      <a class="nav-item" data-nav="home"><span class="idx">01</span><span class="nav-label"> Home</span></a>
+      <a class="nav-item" data-nav="works"><span class="idx">02</span><span class="nav-label"> Work</span></a>
+      <a class="nav-item" data-nav="passion"><span class="idx">03</span><span class="nav-label"> Passion</span></a>
+      <a class="nav-item" data-nav="about"><span class="idx">04</span><span class="nav-label"> About</span></a>
     </nav>
 
     <div class="side-foot">
-      <div class="status"><span class="dot"></span> Available for work</div>
+      <div class="status"><span class="dot"></span><span class="status-text"> Available for work</span></div>
       <div class="clock" id="clock">— · Saint Paul, MN</div>
       <div class="side-socials">
         <a class="s-link" href="https://www.linkedin.com/in/louisrfliu" target="_blank" rel="noreferrer" aria-label="LinkedIn">
@@ -598,7 +626,9 @@ body.cursor-hover .cursor-ring{width:54px;height:54px;border-color:var(--accent)
         <a class="s-link" href="assets/Resume_Louis_Liu.pdf" download aria-label="Résumé">
           <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
         </a>
-      </div>
+      <button class="side-toggle" id="sideToggle" aria-label="Collapse sidebar">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
     </div>
   </aside>
   <div class="scrim" id="scrim"></div>

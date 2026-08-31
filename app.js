@@ -859,6 +859,24 @@
   })();
 
   /* ----------------------------------------------------------
+     SIDEBAR COLLAPSE
+  ---------------------------------------------------------- */
+  (function sideCollapse() {
+    const KEY = "side-collapsed";
+    function apply(on) {
+      document.body.classList.toggle("side-collapsed", on);
+      setTimeout(() => { moveNavPill(); ScrollTrigger && ScrollTrigger.refresh(); }, 480);
+    }
+    try { if (localStorage.getItem(KEY) === "1") apply(true); } catch (_) {}
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest("#sideToggle")) return;
+      const next = !document.body.classList.contains("side-collapsed");
+      try { localStorage.setItem(KEY, next ? "1" : "0"); } catch (_) {}
+      apply(next);
+    });
+  })();
+
+  /* ----------------------------------------------------------
      BOOT
   ---------------------------------------------------------- */
   const hm = $("#homeMarquee");
