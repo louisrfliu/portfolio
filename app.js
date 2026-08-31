@@ -736,8 +736,8 @@
   (function magnetic() {
     if (window.matchMedia("(pointer:coarse)").matches || reduce || !gsap) return;
     document.addEventListener("mousemove", (e) => {
-      const t = e.target.closest(".btn, .s-link");
-      $$(".btn, .s-link").forEach((b) => {
+      const t = e.target.closest(".btn");
+      $$(".btn").forEach((b) => {
         if (b === t) {
           const r = b.getBoundingClientRect();
           const mx = e.clientX - (r.left + r.width / 2);
