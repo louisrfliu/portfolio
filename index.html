@@ -161,7 +161,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 }
 .side-toggle-label{font-size:13.5px;font-weight:500;overflow:hidden;white-space:nowrap;max-width:120px;display:inline-block;transition:opacity .3s var(--ease),max-width .45s var(--ease)}
 .side-toggle:hover{color:var(--text);background:var(--panel-2)}
-.side-toggle svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--ease);flex:none}
+.side-toggle .idx svg{fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--ease)}
 @media(max-width:900px){.side-toggle{display:none!important}}
 body.side-collapsed{--nav-w:62px}
 body.side-collapsed .side{padding-left:10px;padding-right:10px;overflow:visible}
@@ -183,7 +183,7 @@ body.side-collapsed .nav-label{opacity:0;max-width:0}
 body.side-collapsed .s-link{justify-content:center;padding:0;gap:0}
 body.side-collapsed .side-toggle{justify-content:center;padding:0;border-radius:9px}
 body.side-collapsed .side-toggle-label{opacity:0;max-width:0}
-body.side-collapsed .side-toggle svg{transform:rotate(180deg)}
+body.side-collapsed .side-toggle .idx svg{transform:rotate(180deg)}
 
 /* ---- Mobile top bar ---- */
 .topbar{
@@ -613,7 +613,7 @@ body.is-home .hero-sub .hl{color:var(--accent);font-weight:500}
     </div>
 
     <button class="side-toggle" id="sideToggle" aria-label="Collapse sidebar">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      <span class="idx"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></span>
       <span class="side-toggle-label">Collapse</span>
     </button>
   </aside>
