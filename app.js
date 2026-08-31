@@ -445,7 +445,6 @@
         <p class="page-lead rv">Born in China, raised between two languages, and now building a wonderfully chaotic life with my family in Saint Paul, MN. I&rsquo;m a Senior Product Designer at 6sense, where I bring the same clarity I practice at the workbench to every product I design.</p>
         <p class="page-lead rv" style="margin-top:18px">I&rsquo;m drawn to the hard, unglamorous problems — data onboarding, permissions, the moments where complexity quietly defeats people. My job is to make those moments feel obvious.</p>
         <div class="about-links rv">
-          <a class="btn solid" href="assets/Resume_Louis_Liu.pdf" download>Download résumé <span class="arrow">↓</span></a>
           <a class="btn" href="https://www.linkedin.com/in/louisrfliu" target="_blank" rel="noreferrer">LinkedIn <span class="arrow">↗</span></a>
         </div>
       </div>
