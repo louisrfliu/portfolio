@@ -209,7 +209,7 @@
         <div>
           <span class="eyebrow rv"><span class="ed"></span> Saint Paul, Minnesota, USA</span>
           <h1 class="hero-title" data-words>Where complex data meets human <em>intuition.</em></h1>
-          <p class="hero-sub rv"><span class="hl">Senior Product Designer</span> leading 6sense AI Email. I deconstruct complex B2B SaaS domain logic to transform massive revenue datasets into actionable, bulk outreach workflows. My focus is opening the "black box" by architecting trust, transparency, and human control into high-stakes AI systems.</p>
+          <p class="hero-sub rv"><span class="hl">Senior Product Designer</span> leading 6sense AI Email. My focus is opening the "black box" by architecting trust, transparency, and human control into high-stakes AI systems.</p>
           <div class="hero-cta rv">
             <a class="btn solid" data-nav="works">View work <span class="arrow">→</span></a>
             <a class="btn" data-nav="about">About me</a>
