@@ -754,14 +754,14 @@
     if (!THREE || !canvas) return;
     if (window.matchMedia("(pointer:coarse)").matches && window.innerWidth < 720) {
       // cheap CSS fallback on small mobile for performance
-      canvas.style.background = "radial-gradient(60% 50% at 70% 12%, rgba(232,160,92,.10), transparent 60%)";
+      canvas.style.background = "radial-gradient(60% 50% at 70% 12%, rgba(255,174,50,.10), transparent 60%)";
       return;
     }
     let renderer, scene, camera, mat, raf;
     try {
       renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
     } catch (e) {
-      canvas.style.background = "radial-gradient(60% 50% at 70% 12%, rgba(232,160,92,.10), transparent 60%)";
+      canvas.style.background = "radial-gradient(60% 50% at 70% 12%, rgba(255,174,50,.10), transparent 60%)";
       return;
     }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
