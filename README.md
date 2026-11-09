@@ -18,14 +18,14 @@ content.
 | `#/` | Landing — single non-scrollable viewport: hook, tagline, portrait |
 | `#/works` | Work — top 3 case studies + reverse-chron project list |
 | `#/case/<id>` | Case study detail with prev/next navigation |
-| `#/passion` | Passion — personal projects + woodworking / photography / AI galleries |
+| `#/life` | Life — woodworking / photography / outdoors / events board (old `#/passion` and `#/hobby` links redirect) |
 | `#/about` | About — bio, journey, philosophy, résumé + LinkedIn |
 
 ## Editing content
 All content lives in the data objects at the top of **`app.js`**:
 - `CASES` — the three featured case studies (title, desc, date, images, sections).
 - `PROJECTS` — the "All projects" list (most-recent-first).
-- `PASSION`, `WOOD`, `PHOTO`, `AI` — passion projects and galleries.
+- `PIN_CATS`, `PINS` — Life board categories and images.
 
 ## Swap the portrait
 The landing hero uses **`assets/portrait.jpg`** (marked with a subtle

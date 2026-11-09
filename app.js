@@ -20,7 +20,8 @@
       desc: "A centralized system that turns powerful-but-opaque 6sense data into explainable business events, so GTM teams know exactly when and why to act.",
       date: "Nov 2025 — Jan 2026",
       year: 2026,
-      thumb: "assets/home-card-signals.png",
+      thumb: "assets/signals-thumb.jpg",
+      thumbPos: "center 62%", // keep the laptop screen in frame when cropped
       hero: "assets/signals-hero.png",
       role: "Lead Product Designer",
       team: "PM · Eng · Content · Research",
@@ -54,7 +55,8 @@
       desc: "Surfacing hidden CRM permission gaps at a glance, so admins can self-diagnose and fix sync errors before they cascade into failed onboarding.",
       date: "2025",
       year: 2025,
-      thumb: "assets/home-card-crm.png",
+      thumb: "assets/crm-thumb.jpg",
+      thumbPos: "center 55%", // keep the laptop screen in frame when cropped
       hero: "assets/crm-hero.png",
       role: "Product Designer",
       team: "PM · Eng · Content · Support",
@@ -87,7 +89,8 @@
       desc: "Helping admins confidently classify their data for 6sense predictive models during onboarding — a system for clarity under complexity.",
       date: "2024",
       year: 2024,
-      thumb: "assets/home-card-taxonomy.png",
+      thumb: "assets/taxonomy-thumb.jpg",
+      thumbPos: "center 52%", // keep the laptop screen in frame when cropped
       hero: "assets/home-card-taxonomy.png",
       comingSoon: true,
       hmw: "How might we empower admins to confidently classify their data for 6sense predictive models during onboarding?"
@@ -103,13 +106,48 @@
     { name: "Intelligent farming · FurrowTechnik", sub: "Precise control during field work", tag: "Prototype", date: "2021", href: "https://xd.adobe.com/view/11e5b7e0-ddb7-45db-972d-78c451c8c679-44b6/?fullscreen" }
   ];
 
-  const PASSION = [
-    { cat: "Personal · Tooling", title: "Workbench Companion", desc: "A small offline app I sketched to plan woodworking cut lists — minimizing waste from a single board with a visual nesting layout.", year: "2024", tag: "Concept", img: "assets/wood-2.jpg" },
-    { cat: "Personal · Type", title: "Field Notes System", desc: "A personal note-taking system blending analog index cards with a lightweight digital catalog — designed around how I actually think on walks.", year: "2023", tag: "System", img: "assets/travel-3.jpg" }
-  ];
 
-  const WOOD = ["assets/wood-1.jpg", "assets/wood-2.jpg", "assets/wood-3.jpg"];
-  const PHOTO = ["assets/travel-1.jpg", "assets/travel-2.jpg", "assets/travel-3.jpg", "assets/travel-4.jpg", "assets/travel-5.jpg"];
+  // Life board — one Pinterest-style feed; order interleaves the categories.
+  // Outdoors = me doing something out there (snowboarding, hiking, camping); Photography = the view.
+  const PIN_CATS = {
+    wood: { label: "Woodworking", note: "Measure twice, cut once. A hobby that balances creativity with a satisfying amount of precision." },
+    photo: { label: "Photography", note: "Moments worth looking back on and saying, \u201coh yeah, that was cool.\u201d" },
+    outdoors: { label: "Outdoors", note: "Snowboarding, hiking, and camping: any excuse to get out and see what\u2019s over the next ridge." },
+    events: { label: "Events", note: "Conferences and game days: the crowds, the energy, and a photo to prove I was there." }
+  };
+  const PINS = [
+    { cat: "wood", src: "assets/wood-1.jpg", title: "Holiday string art" },
+    { cat: "outdoors", src: "assets/travel-10.jpg", title: "Past the beginner line" },
+    { cat: "photo", src: "assets/travel-19.jpg", title: "Tea terraces from above" },
+    { cat: "events", src: "assets/event-1.jpg", title: "Figma Config" },
+    { cat: "photo", src: "assets/travel-3.jpg", title: "Terraced village in the mist" },
+    { cat: "wood", src: "assets/wood-5.jpg", title: "Stocking holders on the mantel" },
+    { cat: "outdoors", src: "assets/travel-11.jpg", title: "Bootpack to the ridge" },
+    { cat: "photo", src: "assets/travel-17.jpg", title: "Tiered waterfall" },
+    { cat: "outdoors", src: "assets/travel-18.jpg", title: "Afternoon sail" },
+    { cat: "wood", src: "assets/wood-2.jpg", title: "Entryway organizer" },
+    { cat: "photo", src: "assets/travel-7.jpg", title: "Cholla garden at dusk" },
+    { cat: "photo", src: "assets/travel-20.jpg", title: "Space Needle from above" },
+    { cat: "events", src: "assets/event-2.jpg", title: "Outside the Bucks\u2019 arena" },
+    { cat: "outdoors", src: "assets/travel-14.jpg", title: "Selfie-stick run" },
+    { cat: "wood", src: "assets/wood-4.jpg", title: "String art in the clamps" },
+    { cat: "photo", src: "assets/travel-12.jpg", title: "Peaks in black and white" },
+    { cat: "photo", src: "assets/travel-1.jpg", title: "Wildflowers" },
+    { cat: "outdoors", src: "assets/travel-8.jpg", title: "Desert campsite" },
+    { cat: "photo", src: "assets/travel-21.jpg", title: "Village under the clouds" },
+    { cat: "photo", src: "assets/travel-16.jpg", title: "Bridge from above" },
+    { cat: "events", src: "assets/event-3.jpg", title: "On the field at AT&T Stadium" },
+    { cat: "wood", src: "assets/wood-3.jpg", title: "Farmhouse end table" },
+    { cat: "photo", src: "assets/travel-2.jpg", title: "Sculpture at golden hour" },
+    { cat: "outdoors", src: "assets/travel-15.jpg", title: "Hiking in through the trees" },
+    { cat: "photo", src: "assets/travel-22.jpg", title: "Lines from above" },
+    { cat: "wood", src: "assets/wood-6.jpg", title: "Fresh-cut log slices" },
+    { cat: "photo", src: "assets/travel-9.jpg", title: "Interchange from above" },
+    { cat: "outdoors", src: "assets/travel-13.jpg", title: "Summit break" },
+    { cat: "photo", src: "assets/travel-5.jpg", title: "Drone over open water" },
+    { cat: "photo", src: "assets/travel-6.jpg", title: "Painted hills" },
+    { cat: "photo", src: "assets/travel-4.jpg", title: "Stone alley" }
+  ];
 
   // Experience exactly as listed on assets/Resume_Louis_Liu.pdf — shown on the home bento.
   const RESUME = [
@@ -188,7 +226,7 @@
     { k: "physical", label: "Physical / Logistics Systems" }
   ];
 
-  const ROUTES = { home: "Index", works: "Work", passion: "Passion", about: "About" };
+  const ROUTES = { home: "Index", works: "Work", life: "Life", about: "About" };
 
   /* ----------------------------------------------------------
      HELPERS
@@ -224,7 +262,7 @@
       const coming = cs.comingSoon;
       return `
       <article class="bento-tile bento-case b-p${i + 1} ${coming ? "coming" : ""} rv" ${coming ? "" : `data-nav="case/${cs.id}"`}>
-        <div class="ph" style="background-image:url('${cs.thumb}')"></div>
+        <div class="ph" style="background-image:url('${cs.thumb}')${cs.thumbPos ? `;background-position:${cs.thumbPos}` : ""}"></div>
         <span class="bento-num">0${i + 1}</span>
         ${coming ? `<span class="bento-soon">Coming soon</span>` : `<span class="bento-go" aria-hidden="true">→</span>`}
         <div class="bento-case-body">
@@ -284,14 +322,17 @@
       <div class="feature-img">
         <span class="feature-num">0${i + 1}</span>
         ${coming ? `<span class="feature-tag">Coming soon</span>` : ""}
-        <div class="ph" style="background-image:url('${c.thumb}')"></div>
+        <div class="ph" style="background-image:url('${c.thumb}')${c.thumbPos ? `;background-position:${c.thumbPos}` : ""}"></div>
       </div>
       <div class="feature-body">
         <span class="feature-cat">${esc(c.cat)}</span>
         <h3 class="feature-title">${esc(c.title)}</h3>
         <p class="feature-desc">${esc(c.desc)}</p>
+        <div class="feature-meta">
+          ${c.role ? `<span>${esc(c.role)}</span>` : ""}
+          <span>${esc(c.date)}</span>
+        </div>
         <div class="feature-foot">
-          <span class="feature-date">${esc(c.date)}</span>
           ${coming
             ? `<span class="feature-read cs">In progress</span>`
             : `<span class="feature-read">Read case <span class="arrow">→</span></span>`}
@@ -420,34 +461,22 @@
     ${footer()}`;
   }
 
-  function tPassion() {
+  function tLife() {
     return `
     <header class="page-head">
       <span class="eyebrow rv"><span class="ed"></span> Off the clock</span>
-      <h1 class="page-h1" data-words>Things I make when <em>nobody</em> assigns them.</h1>
-      <p class="page-lead rv">Self-directed design experiments, plus the woodworking and photography that keep my hands and curiosity busy.</p>
+      <h1 class="page-h1" data-words>Where curiosity gets to <em>wander.</em></h1>
+      <p class="page-lead rv">Woodworking, photography, time outdoors, and the odd event: the places I go to explore, experiment, and make things just to see what happens.</p>
     </header>
 
-    <section>
-      <div class="sec-head"><span class="sec-label">Personal projects</span><span class="sec-count">0${PASSION.length}</span></div>
-      <div class="passion-cs">
-        ${PASSION.map(passionCard).join("")}
+    <section class="board">
+      <div class="board-bar rv" role="group" aria-label="Filter">
+        ${pinChip("all", "All", PINS.length, true)}
+        ${Object.entries(PIN_CATS).map(([k, c]) => pinChip(k, c.label, PINS.filter((p) => p.cat === k).length)).join("")}
       </div>
-    </section>
-
-    <section class="gallery-block">
-      <div class="sec-head"><span class="sec-label">Woodworking</span><span class="sec-count">0${WOOD.length}</span></div>
-      <p class="page-lead rv" style="margin-top:-26px;margin-bottom:34px">Measure twice, cut once. A hobby that balances creativity with a satisfying amount of precision.</p>
-      <div class="gal-grid gal-wood">
-        ${WOOD.map((src, i) => galItem(src, `Build 0${i + 1}`)).join("")}
-      </div>
-    </section>
-
-    <section class="gallery-block">
-      <div class="sec-head"><span class="sec-label">Photography</span><span class="sec-count">0${PHOTO.length}</span></div>
-      <p class="page-lead rv" style="margin-top:-26px;margin-bottom:34px">Moments worth looking back on and saying, "oh yeah, that was cool."</p>
-      <div class="gal-grid gal-photo">
-        ${PHOTO.map((src, i) => galItem(src, `Frame 0${i + 1}`, i === 0 ? "span2" : "")).join("")}
+      <p class="board-note" aria-live="polite"></p>
+      <div class="pins">
+        ${PINS.map(pinItem).join("")}
       </div>
     </section>
 
@@ -455,51 +484,111 @@
     ${footer()}`;
   }
 
-  function passionCard(p) {
-    return `
-    <article class="pcs rv">
-      <div class="pcs-img"><div class="ph" style="background-image:url('${p.img}')"></div></div>
-      <div class="pcs-body">
-        <span class="pcs-cat">${esc(p.cat)}</span>
-        <h3 class="pcs-title">${esc(p.title)}</h3>
-        <p class="pcs-desc">${esc(p.desc)}</p>
-        <div class="pcs-meta"><span>${esc(p.tag)}</span><span>${esc(p.year)}</span></div>
-      </div>
-    </article>`;
+  function pinChip(key, label, n, on) {
+    return `<button type="button" class="chip${on ? " on" : ""}" data-pin-filter="${key}" aria-pressed="${!!on}">${esc(label)}<span class="chip-n">${n}</span></button>`;
   }
 
-  function galItem(src, cap, cls) {
-    return `<div class="gal-item rv ${cls || ""}"><div class="ph" style="background-image:url('${src}')"></div><span class="gal-cap">${esc(cap)}</span></div>`;
+  function pinItem(p, i) {
+    return `
+    <figure class="pin rv" data-cat="${p.cat}">
+      <button type="button" class="pin-media" data-pin="${i}" aria-label="View ${esc(p.title)}">
+        <img src="${p.src}" alt="${esc(p.title)}" decoding="async">
+        <span class="pin-zoom" aria-hidden="true">\u2197</span>
+      </button>
+      <figcaption class="pin-cap"><span class="pin-title">${esc(p.title)}</span><span class="pin-cat">${esc(PIN_CATS[p.cat].label)}</span></figcaption>
+    </figure>`;
   }
+
+  /* Life board: category filter + lightbox (delegated, so it survives re-renders) */
+  (function lifeBoard() {
+    let box, img, cap, cur = -1;
+    const visible = () => $$(".pin").filter((el) => !el.hidden).map((el) => +el.querySelector("[data-pin]").dataset.pin);
+    function build() {
+      box = document.createElement("div");
+      box.className = "pin-box";
+      box.hidden = true;
+      box.setAttribute("role", "dialog");
+      box.setAttribute("aria-modal", "true");
+      box.innerHTML = `<button type="button" class="pin-box-x" aria-label="Close">\u2715</button>
+        <button type="button" class="pin-box-nav prev" aria-label="Previous">\u2190</button>
+        <figure><img alt=""><figcaption></figcaption></figure>
+        <button type="button" class="pin-box-nav next" aria-label="Next">\u2192</button>`;
+      document.body.appendChild(box);
+      img = box.querySelector("img"); cap = box.querySelector("figcaption");
+    }
+    function show(i) {
+      if (!box) build();
+      cur = i; const p = PINS[i];
+      img.src = p.src; img.alt = p.title;
+      cap.innerHTML = `<span class="pin-title">${esc(p.title)}</span><span class="pin-cat">${esc(PIN_CATS[p.cat].label)}</span>`;
+      box.hidden = false;
+      requestAnimationFrame(() => box.classList.add("open"));
+      document.body.classList.add("pin-open");
+      box.querySelector(".pin-box-x").focus();
+    }
+    function close() {
+      if (!box || box.hidden) return;
+      box.classList.remove("open");
+      document.body.classList.remove("pin-open");
+      setTimeout(() => { if (!box.classList.contains("open")) box.hidden = true; }, 250);
+    }
+    function step(d) {
+      const v = visible(); if (!v.length) return;
+      const k = v.indexOf(cur);
+      show(v[(k + d + v.length) % v.length]);
+    }
+    function filter(key) {
+      $$(".chip[data-pin-filter]").forEach((c) => { const on = c.dataset.pinFilter === key; c.classList.toggle("on", on); c.setAttribute("aria-pressed", on); });
+      $$(".pin").forEach((el) => {
+        el.hidden = key !== "all" && el.dataset.cat !== key;
+        if (!el.hidden) { el.style.opacity = 1; el.style.transform = "none"; }
+      });
+      const note = $(".board-note");
+      if (note) note.textContent = PIN_CATS[key] ? PIN_CATS[key].note : "";
+      if (ScrollTrigger) ScrollTrigger.refresh();
+    }
+    document.addEventListener("click", (e) => {
+      const chip = e.target.closest("[data-pin-filter]");
+      if (chip) return filter(chip.dataset.pinFilter);
+      const pin = e.target.closest("[data-pin]");
+      if (pin) return show(+pin.dataset.pin);
+      if (!box || box.hidden) return;
+      if (e.target.closest(".pin-box-nav")) return step(e.target.closest(".next") ? 1 : -1);
+      if (e.target.closest(".pin-box-x") || !e.target.closest(".pin-box img")) close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (!box || box.hidden) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowRight") step(1);
+      else if (e.key === "ArrowLeft") step(-1);
+    });
+    window.addEventListener("hashchange", close);
+  })();
 
   function tAbout() {
     return `
     <section class="about-hero">
-      <div>
-                <h1 class="page-h1" data-words>Hi, it’s <em>Louis</em>.</h1>
+      <div class="about-portrait rv"><img src="assets/about-portrait.jpg" alt="Louis Liu"/></div>
+      <div class="about-intro">
+        <h1 class="page-h1" data-words>Hi, it’s <em>Louis.</em></h1>
         <p class="page-lead rv">Born in China, raised between two languages, and now building a wonderfully chaotic life with my family in Saint Paul, MN. I&rsquo;m a Senior Product Designer at 6sense, where I bring the same clarity I practice at the workbench to every product I design.</p>
         <p class="page-lead rv" style="margin-top:18px">I&rsquo;m drawn to the hard, unglamorous problems — data onboarding, permissions, the moments where complexity quietly defeats people. My job is to make those moments feel obvious.</p>
+        <div class="about-facts rv">
+          <div class="fact"><div class="fact-k">Based in</div><div class="fact-v">Saint Paul, MN</div></div>
+          <div class="fact"><div class="fact-k">Languages</div><div class="fact-v">English · 中文</div></div>
+          <div class="fact"><div class="fact-k">Currently</div><div class="fact-v">Senior PD @ 6sense</div></div>
+          <div class="fact"><div class="fact-k">Off the clock</div><div class="fact-v">Woodworking · Travel</div></div>
+        </div>
         <div class="about-links rv">
           <a class="btn" href="https://www.linkedin.com/in/louisrfliu" target="_blank" rel="noreferrer">LinkedIn <span class="arrow">↗</span></a>
+          <a class="btn" href="assets/Resume_Louis_Liu.pdf" download>Download résumé <span class="arrow">↓</span></a>
         </div>
-      </div>
-      <div>
-        <div class="about-portrait rv"><img src="assets/about-portrait.jpg" alt="Louis Liu"/></div>
-      </div>
-      <div class="about-facts rv">
-        <div class="fact"><div class="fact-k">Based in</div><div class="fact-v">Saint Paul, MN</div></div>
-        <div class="fact"><div class="fact-k">Languages</div><div class="fact-v">English · 中文</div></div>
-        <div class="fact"><div class="fact-k">Currently</div><div class="fact-v">Senior PD @ 6sense</div></div>
-        <div class="fact"><div class="fact-k">Off the clock</div><div class="fact-v">Woodworking · Travel</div></div>
       </div>
     </section>
 
     <section class="journey" id="journey">
-      <div class="sec-head cl-head">
+      <div class="sec-head">
         <span class="sec-label">Professional journey</span>
-        <a class="cl-download" href="assets/Resume_Louis_Liu.pdf" download>
-          <span aria-hidden="true">📄</span> Download résumé
-        </a>
       </div>
 
       <div class="cl-list">
@@ -566,6 +655,7 @@
     if (!h) return { name: "home" };
     const parts = h.split("/");
     if (parts[0] === "case") return { name: "case", id: parts[1] };
+    if (parts[0] === "passion" || parts[0] === "hobby") return { name: "life" }; // old links
     if (ROUTES[parts[0]]) return { name: parts[0] };
     if (CASES.some((c) => c.id === parts[0])) return { name: "case", id: parts[0] };
     return { name: "home" };
@@ -621,7 +711,7 @@
     let html;
     switch (route.name) {
       case "works": html = tWorks(); break;
-      case "passion": html = tPassion(); break;
+      case "life": html = tLife(); break;
       case "about": html = tAbout(); break;
       case "case": html = tCase(route.id); break;
       default: html = tHome();
@@ -635,7 +725,7 @@
       main.scrollTop = 0;
       window.scrollTo(0, 0);
       document.body.classList.toggle("is-home", route.name === "home");
-      ["works", "passion", "about"].forEach((n) => document.body.classList.toggle("is-" + n, route.name === n));
+      ["works", "life", "about"].forEach((n) => document.body.classList.toggle("is-" + n, route.name === n));
       fitBento();
       setActiveNav(route);
       if (animatable) animateIn(route); else showStatic();
