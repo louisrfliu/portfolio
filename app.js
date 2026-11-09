@@ -110,7 +110,6 @@
 
   const WOOD = ["assets/wood-1.jpg", "assets/wood-2.jpg", "assets/wood-3.jpg"];
   const PHOTO = ["assets/travel-1.jpg", "assets/travel-2.jpg", "assets/travel-3.jpg", "assets/travel-4.jpg", "assets/travel-5.jpg"];
-  const AI = ["Diffusion", "Agents", "Latent", "Prompts", "Vision", "Synthesis"];
 
   // Experience exactly as listed on assets/Resume_Louis_Liu.pdf — shown on the home bento.
   const RESUME = [
@@ -304,7 +303,7 @@
   function tWorks() {
     const sorted = PROJECTS.slice();
     return `
-    <header class="page-head motif motif-fret">
+    <header class="page-head">
       <h1 class="page-h1" data-words>My work.</h1>
       <p class="page-lead rv">Three deep dives into how I think, paired with a running log of past projects — most recent first.</p>
     </header>
@@ -423,10 +422,10 @@
 
   function tPassion() {
     return `
-    <header class="page-head motif motif-clouds">
+    <header class="page-head">
       <span class="eyebrow rv"><span class="ed"></span> Off the clock</span>
       <h1 class="page-h1" data-words>Things I make when <em>nobody</em> assigns them.</h1>
-      <p class="page-lead rv">Self-directed design experiments, plus the woodworking, photography, and AI explorations that keep my hands and curiosity busy.</p>
+      <p class="page-lead rv">Self-directed design experiments, plus the woodworking and photography that keep my hands and curiosity busy.</p>
     </header>
 
     <section>
@@ -452,14 +451,6 @@
       </div>
     </section>
 
-    <section class="gallery-block">
-      <div class="sec-head"><span class="sec-label">AI exploration</span><span class="sec-count">0${AI.length}</span></div>
-      <p class="page-lead rv" style="margin-top:-26px;margin-bottom:34px">Ongoing experiments at the edge of generative tools — interfaces, agents, and what design becomes next.</p>
-      <div class="gal-grid gal-ai">
-        ${AI.map((label, i) => aiItem(label, i)).join("")}
-      </div>
-    </section>
-
     ${contactBand()}
     ${footer()}`;
   }
@@ -481,13 +472,9 @@
     return `<div class="gal-item rv ${cls || ""}"><div class="ph" style="background-image:url('${src}')"></div><span class="gal-cap">${esc(cap)}</span></div>`;
   }
 
-  function aiItem(label, i) {
-    return `<div class="gal-item rv"><div class="ai-ph"><span>${esc(label)}</span></div><span class="gal-cap">Experiment 0${i + 1}</span></div>`;
-  }
-
   function tAbout() {
     return `
-    <section class="about-hero motif motif-coins">
+    <section class="about-hero">
       <div>
                 <h1 class="page-h1" data-words>Hi, it’s <em>Louis</em>.</h1>
         <p class="page-lead rv">Born in China, raised between two languages, and now building a wonderfully chaotic life with my family in Saint Paul, MN. I&rsquo;m a Senior Product Designer at 6sense, where I bring the same clarity I practice at the workbench to every product I design.</p>
@@ -648,6 +635,7 @@
       main.scrollTop = 0;
       window.scrollTo(0, 0);
       document.body.classList.toggle("is-home", route.name === "home");
+      ["works", "passion", "about"].forEach((n) => document.body.classList.toggle("is-" + n, route.name === n));
       fitBento();
       setActiveNav(route);
       if (animatable) animateIn(route); else showStatic();
