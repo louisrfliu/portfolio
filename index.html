@@ -624,19 +624,20 @@ body.pin-open{overflow:hidden}
 /* ============================================================
    ABOUT
 ============================================================ */
-/* About hero: square photo beside the intro; the quick facts sit in a row under the intro text,
-   followed by the LinkedIn + résumé buttons. Stacks below 1100px. */
-.about-hero{display:grid;grid-template-columns:minmax(280px,440px) minmax(0,1fr);column-gap:clamp(36px,3.5vw,64px);row-gap:36px;align-items:center;padding:118px 0 0}
+/* About hero: photo beside the intro; the quick facts sit in a row under the intro text,
+   followed by the LinkedIn + résumé buttons. Side by side, the photo always matches the intro's
+   height (the text sets the row height; the image fills it and crops). Stacks below 1100px. */
+.about-hero{display:grid;grid-template-columns:minmax(280px,440px) minmax(0,1fr);column-gap:clamp(36px,3.5vw,64px);row-gap:36px;align-items:stretch;padding:118px 0 0}
 .about-intro .page-h1{margin-top:0}
 .about-intro .page-lead{max-width:76ch}
 .about-hero .about-facts{margin-top:32px;grid-template-columns:repeat(4,minmax(0,1fr));max-width:880px}
 @media(max-width:1500px){.about-hero .about-facts{grid-template-columns:repeat(2,minmax(0,1fr));max-width:620px}}
 @media(max-width:1100px){
   .about-hero{grid-template-columns:1fr;align-items:start}
-  .about-portrait{max-width:320px}
+  .about-portrait{max-width:320px;aspect-ratio:1/1}
 }
-.about-portrait{aspect-ratio:1/1;border-radius:16px;overflow:hidden;border:1px solid var(--line);position:relative;background:var(--panel)}
-.about-portrait img{width:100%;height:100%;object-fit:cover;filter:grayscale(.2)}
+.about-portrait{border-radius:16px;overflow:hidden;border:1px solid var(--line);position:relative;background:var(--panel)}
+.about-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:grayscale(.2)}
 .about-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .fact{background:var(--bg);padding:20px 22px}
 .fact-k{font-family:var(--sans);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted-2)}

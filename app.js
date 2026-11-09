@@ -116,37 +116,37 @@
     events: { label: "Events", note: "Conferences and game days: the crowds, the energy, and a photo to prove I was there." }
   };
   const PINS = [
-    { cat: "wood", src: "assets/wood-1.jpg", title: "Holiday string art" },
-    { cat: "outdoors", src: "assets/travel-10.jpg", title: "Past the beginner line" },
-    { cat: "photo", src: "assets/travel-19.jpg", title: "Tea terraces from above" },
-    { cat: "events", src: "assets/event-1.jpg", title: "Figma Config" },
-    { cat: "photo", src: "assets/travel-3.jpg", title: "Terraced village in the mist" },
-    { cat: "wood", src: "assets/wood-5.jpg", title: "Stocking holders on the mantel" },
-    { cat: "outdoors", src: "assets/travel-11.jpg", title: "Bootpack to the ridge" },
-    { cat: "photo", src: "assets/travel-17.jpg", title: "Tiered waterfall" },
-    { cat: "outdoors", src: "assets/travel-18.jpg", title: "Afternoon sail" },
-    { cat: "wood", src: "assets/wood-2.jpg", title: "Entryway organizer" },
-    { cat: "photo", src: "assets/travel-7.jpg", title: "Cholla garden at dusk" },
-    { cat: "photo", src: "assets/travel-20.jpg", title: "Space Needle from above" },
-    { cat: "events", src: "assets/event-2.jpg", title: "Outside the Bucks\u2019 arena" },
-    { cat: "outdoors", src: "assets/travel-14.jpg", title: "Selfie-stick run" },
-    { cat: "wood", src: "assets/wood-4.jpg", title: "String art in the clamps" },
-    { cat: "photo", src: "assets/travel-12.jpg", title: "Peaks in black and white" },
-    { cat: "photo", src: "assets/travel-1.jpg", title: "Wildflowers" },
-    { cat: "outdoors", src: "assets/travel-8.jpg", title: "Desert campsite" },
-    { cat: "photo", src: "assets/travel-21.jpg", title: "Village under the clouds" },
-    { cat: "photo", src: "assets/travel-16.jpg", title: "Bridge from above" },
-    { cat: "events", src: "assets/event-3.jpg", title: "On the field at AT&T Stadium" },
-    { cat: "wood", src: "assets/wood-3.jpg", title: "Farmhouse end table" },
-    { cat: "photo", src: "assets/travel-2.jpg", title: "Sculpture at golden hour" },
-    { cat: "outdoors", src: "assets/travel-15.jpg", title: "Hiking in through the trees" },
-    { cat: "photo", src: "assets/travel-22.jpg", title: "Lines from above" },
-    { cat: "wood", src: "assets/wood-6.jpg", title: "Fresh-cut log slices" },
-    { cat: "photo", src: "assets/travel-9.jpg", title: "Interchange from above" },
-    { cat: "outdoors", src: "assets/travel-13.jpg", title: "Summit break" },
-    { cat: "photo", src: "assets/travel-5.jpg", title: "Drone over open water" },
-    { cat: "photo", src: "assets/travel-6.jpg", title: "Painted hills" },
-    { cat: "photo", src: "assets/travel-4.jpg", title: "Stone alley" }
+    { cat: "wood", src: "assets/wood-1.jpg", w: 1440, h: 1440, title: "Holiday string art" },
+    { cat: "outdoors", src: "assets/travel-10.jpg", w: 886, h: 886, title: "Past the beginner line" },
+    { cat: "photo", src: "assets/travel-19.jpg", w: 1024, h: 768, title: "Tea terraces from above" },
+    { cat: "events", src: "assets/event-1.jpg", w: 768, h: 1024, title: "Figma Config" },
+    { cat: "photo", src: "assets/travel-3.jpg", w: 2995, h: 2995, title: "Terraced village in the mist" },
+    { cat: "wood", src: "assets/wood-5.jpg", w: 886, h: 886, title: "Stocking holders on the mantel" },
+    { cat: "outdoors", src: "assets/travel-11.jpg", w: 1024, h: 768, title: "Bootpack to the ridge" },
+    { cat: "photo", src: "assets/travel-17.jpg", w: 1024, h: 767, title: "Tiered waterfall" },
+    { cat: "outdoors", src: "assets/travel-18.jpg", w: 1024, h: 768, title: "Afternoon sail" },
+    { cat: "wood", src: "assets/wood-2.jpg", w: 3024, h: 4032, title: "Entryway organizer" },
+    { cat: "photo", src: "assets/travel-7.jpg", w: 1086, h: 724, title: "Cholla garden at dusk" },
+    { cat: "photo", src: "assets/travel-20.jpg", w: 1182, h: 665, title: "Space Needle from above" },
+    { cat: "events", src: "assets/event-2.jpg", w: 768, h: 1024, title: "Outside the Bucks\u2019 arena" },
+    { cat: "outdoors", src: "assets/travel-14.jpg", w: 1159, h: 678, title: "Selfie-stick run" },
+    { cat: "wood", src: "assets/wood-4.jpg", w: 886, h: 886, title: "String art in the clamps" },
+    { cat: "photo", src: "assets/travel-12.jpg", w: 886, h: 886, title: "Peaks in black and white" },
+    { cat: "photo", src: "assets/travel-1.jpg", w: 2496, h: 1664, title: "Wildflowers" },
+    { cat: "outdoors", src: "assets/travel-8.jpg", w: 1024, h: 768, title: "Desert campsite" },
+    { cat: "photo", src: "assets/travel-21.jpg", w: 1024, h: 768, title: "Village under the clouds" },
+    { cat: "photo", src: "assets/travel-16.jpg", w: 1024, h: 768, title: "Bridge from above" },
+    { cat: "events", src: "assets/event-3.jpg", w: 768, h: 1024, title: "On the field at AT&T Stadium" },
+    { cat: "wood", src: "assets/wood-3.jpg", w: 4032, h: 3024, title: "Farmhouse end table" },
+    { cat: "photo", src: "assets/travel-2.jpg", w: 4032, h: 3024, title: "Sculpture at golden hour" },
+    { cat: "outdoors", src: "assets/travel-15.jpg", w: 768, h: 1024, title: "Hiking in through the trees" },
+    { cat: "photo", src: "assets/travel-22.jpg", w: 1182, h: 665, title: "Lines from above" },
+    { cat: "wood", src: "assets/wood-6.jpg", w: 768, h: 1024, title: "Fresh-cut log slices" },
+    { cat: "photo", src: "assets/travel-9.jpg", w: 1182, h: 665, title: "Interchange from above" },
+    { cat: "outdoors", src: "assets/travel-13.jpg", w: 1024, h: 768, title: "Summit break" },
+    { cat: "photo", src: "assets/travel-5.jpg", w: 4096, h: 2304, title: "Drone over open water" },
+    { cat: "photo", src: "assets/travel-6.jpg", w: 360, h: 480, title: "Painted hills" },
+    { cat: "photo", src: "assets/travel-4.jpg", w: 4032, h: 3024, title: "Stone alley" }
   ];
 
   // Experience exactly as listed on assets/Resume_Louis_Liu.pdf — shown on the home bento.
@@ -345,8 +345,9 @@
     const sorted = PROJECTS.slice();
     return `
     <header class="page-head">
-      <h1 class="page-h1" data-words>My work.</h1>
-      <p class="page-lead rv">Three deep dives into how I think, paired with a running log of past projects — most recent first.</p>
+      <span class="eyebrow rv"><span class="ed"></span> Selected work</span>
+      <h1 class="page-h1" data-words>Complexity, <em>untangled.</em></h1>
+      <p class="page-lead rv">How I turn messy enterprise problems into products people can actually use. Three deep dives, then the full log.</p>
     </header>
 
     <section style="padding-bottom:30px">
@@ -492,7 +493,7 @@
     return `
     <figure class="pin rv" data-cat="${p.cat}">
       <button type="button" class="pin-media" data-pin="${i}" aria-label="View ${esc(p.title)}">
-        <img src="${p.src}" alt="${esc(p.title)}" decoding="async">
+        <img src="${p.src}" width="${p.w}" height="${p.h}" alt="${esc(p.title)}" decoding="async">
         <span class="pin-zoom" aria-hidden="true">\u2197</span>
       </button>
       <figcaption class="pin-cap"><span class="pin-title">${esc(p.title)}</span><span class="pin-cat">${esc(PIN_CATS[p.cat].label)}</span></figcaption>
