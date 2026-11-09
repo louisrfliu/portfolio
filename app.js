@@ -112,6 +112,24 @@
   const PHOTO = ["assets/travel-1.jpg", "assets/travel-2.jpg", "assets/travel-3.jpg", "assets/travel-4.jpg", "assets/travel-5.jpg"];
   const AI = ["Diffusion", "Agents", "Latent", "Prompts", "Vision", "Synthesis"];
 
+  // Experience exactly as listed on assets/Resume_Louis_Liu.pdf — shown on the home bento.
+  const RESUME = [
+    { company: "6sense", roles: [
+      { title: "Senior Product Designer", place: "Remote", dates: "Oct 2025 – Present" },
+      { title: "Product Designer III", place: "Remote", dates: "Oct 2024 – Oct 2025" },
+      { title: "User Experience Designer", place: "Remote", dates: "Apr 2022 – Oct 2024" }
+    ] },
+    { company: "Zywave", roles: [
+      { title: "User Experience Designer", place: "Remote", dates: "Mar 2021 – Apr 2022" }
+    ] },
+    { company: "Dawn Equipment", roles: [
+      { title: "User Experience Designer", place: "Madison, WI", dates: "Aug 2020 – Mar 2021" }
+    ] },
+    { company: "Kerry EAS Logistics", roles: [
+      { title: "Management Trainee, Key Account Associate", place: "Beijing, China", dates: "Aug 2017 – Aug 2018" }
+    ] }
+  ];
+
   // Professional journey — rendered as an enterprise changelog.
   // layers drive the local filter toolbar.
   const JOURNEY = [
@@ -203,23 +221,55 @@
      PAGE TEMPLATES
   ---------------------------------------------------------- */
   function tHome() {
+    const tile = (cs, i) => {
+      const coming = cs.comingSoon;
+      return `
+      <article class="bento-tile bento-case b-p${i + 1} ${coming ? "coming" : ""} rv" ${coming ? "" : `data-nav="case/${cs.id}"`}>
+        <div class="ph" style="background-image:url('${cs.thumb}')"></div>
+        <span class="bento-num">0${i + 1}</span>
+        ${coming ? `<span class="bento-soon">Coming soon</span>` : `<span class="bento-go" aria-hidden="true">→</span>`}
+        <div class="bento-case-body">
+          <span class="bento-meta">Case study · ${cs.year}</span>
+          <h2 class="bento-case-title">${esc(cs.title)}</h2>
+        </div>
+      </article>`;
+    };
+    // Same pattern as the About page's Professional journey (one row per role: company, title,
+    // timeline, an amber dot on a vertical rail, a divider between rows), minus the descriptions.
+    const exp = RESUME.flatMap((co) => co.roles.map((r) => ({ co, r }))).map(({ co, r }) => `
+      <li class="xp-row">
+        <span class="xp-dot" aria-hidden="true"></span>
+        <div class="xp-text">
+          <div class="xp-co-name">${esc(co.company)}</div>
+          <div class="xp-title">${esc(r.title)}</div>
+          <div class="xp-when">${esc(r.dates)} · ${esc(r.place)}</div>
+        </div>
+      </li>`).join("");
     return `
-    <section class="hero">
-      <div class="hero-grid">
-        <div class="hero-content">
-          <span class="eyebrow rv"><span class="ed"></span> Saint Paul, Minnesota, USA</span>
-          <h1 class="hero-title" data-words>Where complex data meets human <em>intuition.</em></h1>
-          <p class="hero-sub rv"><span class="hl">Senior Product Designer</span> leading 6sense AI Email. I deconstruct complex B2B SaaS domain logic to transform massive revenue datasets into actionable, bulk outreach workflows.</p>
-          <div class="hero-cta rv">
+    <section class="bento">
+      <div class="bento-tile b-stmt rv">
+        <span class="eyebrow"><span class="ed"></span> Saint Paul, Minnesota, USA</span>
+        <div>
+          <h1 class="bento-title" data-words>Where complex data meets human <em>intuition.</em></h1>
+          <p class="bento-sub"><span class="hl">Senior Product Designer</span> leading 6sense AI Email. I deconstruct complex B2B SaaS domain logic to transform massive revenue datasets into actionable, bulk outreach workflows.</p>
+          <div class="hero-cta">
             <a class="btn solid" data-nav="works">View work <span class="arrow">→</span></a>
             <a class="btn" data-nav="about">About me</a>
           </div>
         </div>
-        <div class="portrait rv" data-nav="about" role="img" aria-label="Portrait of Louis Liu">
-          <img src="assets/portrait.jpg" alt="Louis Liu" onerror="this.src='assets/about-portrait.jpg'"/>
-        </div>
       </div>
-
+      <div class="bento-tile b-port rv" data-nav="about" role="img" aria-label="Portrait of Louis Liu">
+        <img src="assets/portrait.jpg" alt="Louis Liu" onerror="this.src='assets/about-portrait.jpg'"/>
+        <span class="bento-chip">About me →</span>
+      </div>
+      <div class="bento-tile b-exp rv">
+        <div class="xp-head">
+          <span class="bento-meta">Experience</span>
+          <a class="xp-dl" href="assets/Resume_Louis_Liu.pdf" download>Résumé ↓</a>
+        </div>
+        <ol class="xp-list">${exp}</ol>
+      </div>
+      ${CASES.slice(0, 3).map(tile).join("")}
     </section>`;
   }
 
@@ -254,7 +304,7 @@
   function tWorks() {
     const sorted = PROJECTS.slice();
     return `
-    <header class="page-head">
+    <header class="page-head motif motif-fret">
       <h1 class="page-h1" data-words>My work.</h1>
       <p class="page-lead rv">Three deep dives into how I think, paired with a running log of past projects — most recent first.</p>
     </header>
@@ -373,7 +423,7 @@
 
   function tPassion() {
     return `
-    <header class="page-head">
+    <header class="page-head motif motif-clouds">
       <span class="eyebrow rv"><span class="ed"></span> Off the clock</span>
       <h1 class="page-h1" data-words>Things I make when <em>nobody</em> assigns them.</h1>
       <p class="page-lead rv">Self-directed design experiments, plus the woodworking, photography, and AI explorations that keep my hands and curiosity busy.</p>
@@ -437,7 +487,7 @@
 
   function tAbout() {
     return `
-    <section class="about-hero">
+    <section class="about-hero motif motif-coins">
       <div>
                 <h1 class="page-h1" data-words>Hi, it’s <em>Louis</em>.</h1>
         <p class="page-lead rv">Born in China, raised between two languages, and now building a wonderfully chaotic life with my family in Saint Paul, MN. I&rsquo;m a Senior Product Designer at 6sense, where I bring the same clarity I practice at the workbench to every product I design.</p>
@@ -534,6 +584,52 @@
     return { name: "home" };
   }
 
+  /* Desktop: the portrait (square) and the experience card each take half the grid's height,
+     so the right column is exactly that wide. The experience card's type and spacing scale to
+     fill its half; only on very short windows (below 75%) does the grid grow instead. */
+  function fitBento() {
+    const b = view.querySelector(".bento");
+    if (!b) return;
+    b.style.removeProperty("height");
+    const exp = b.querySelector(".b-exp"), head = exp.querySelector(".xp-head"), list = exp.querySelector(".xp-list");
+    if (window.innerWidth <= 1100) { b.style.removeProperty("--side-col"); exp.style.removeProperty("--xp-s"); return; }
+    const cs = getComputedStyle(b);
+    const gap = parseFloat(cs.rowGap) || 0;
+    const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+    let half = Math.floor((b.clientHeight - pad - gap) / 2);
+    b.style.setProperty("--side-col", half + "px");
+    // Natural height of the experience card at this size.
+    const items = list.children, first = items[0], last = items[items.length - 1];
+    const need = () => {
+      const lcs = getComputedStyle(list);
+      return Math.ceil(head.offsetHeight + (last.offsetTop + last.offsetHeight - first.offsetTop)
+        + parseFloat(lcs.paddingTop) + parseFloat(lcs.paddingBottom) + 2);
+    };
+    // Size the card's type and spacing so the list fills its half: the largest scale between
+    // 75% and 120% that still fits (binary search), so spare room becomes larger text, not gaps.
+    const setScale = (v) => exp.style.setProperty("--xp-s", v.toFixed(3));
+    let lo = 0.75, hi = 1.2;
+    setScale(hi);
+    if (need() <= half) lo = hi;
+    else {
+      for (let i = 0; i < 8; i++) {
+        const mid = (lo + hi) / 2;
+        setScale(mid);
+        if (need() <= half) lo = mid; else hi = mid;
+      }
+    }
+    setScale(lo);
+    const finalNeed = need();
+    // Still too tall at 75% (very short windows): grow the grid and let the page scroll a little.
+    if (finalNeed > half) {
+      half = finalNeed;
+      b.style.setProperty("--side-col", half + "px");
+      b.style.height = (half * 2 + gap + pad) + "px";
+    }
+  }
+  window.addEventListener("resize", () => requestAnimationFrame(fitBento));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitBento);
+
   function render(route) {
     let html;
     switch (route.name) {
@@ -552,6 +648,7 @@
       main.scrollTop = 0;
       window.scrollTo(0, 0);
       document.body.classList.toggle("is-home", route.name === "home");
+      fitBento();
       setActiveNav(route);
       if (animatable) animateIn(route); else showStatic();
       bindLinks();
@@ -840,16 +937,32 @@
   ---------------------------------------------------------- */
   (function sideCollapse() {
     const KEY = "side-collapsed";
+    const btn = $("#sideToggle");
+    const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+    const keys = isMac ? "⌘ \\" : "Ctrl \\";
+    const kbd = $("#sideKbd");
+    if (kbd) kbd.textContent = keys;
     function apply(on) {
       document.body.classList.toggle("side-collapsed", on);
-      setTimeout(() => { moveNavPill(); ScrollTrigger && ScrollTrigger.refresh(); }, 480);
+      if (btn) {
+        btn.setAttribute("aria-label", on ? "Expand sidebar" : "Collapse sidebar");
+        btn.setAttribute("data-tip", `Expand · ${keys}`);
+      }
+      setTimeout(() => { moveNavPill(); fitBento(); ScrollTrigger && ScrollTrigger.refresh(); }, 480);
     }
-    try { if (localStorage.getItem(KEY) === "1") apply(true); } catch (_) {}
-    document.addEventListener("click", (e) => {
-      if (!e.target.closest("#sideToggle")) return;
+    function toggle() {
       const next = !document.body.classList.contains("side-collapsed");
       try { localStorage.setItem(KEY, next ? "1" : "0"); } catch (_) {}
       apply(next);
+    }
+    apply((() => { try { return localStorage.getItem(KEY) === "1"; } catch (_) { return false; } })());
+    document.addEventListener("click", (e) => { if (e.target.closest("#sideToggle")) toggle(); });
+    // ⌘\ (Ctrl+\ elsewhere) collapses / expands, like most sidebar apps. Desktop layout only.
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "\\" || !(e.metaKey || e.ctrlKey) || e.altKey || e.shiftKey) return;
+      if (window.innerWidth <= 900) return;
+      e.preventDefault();
+      toggle();
     });
   })();
 
