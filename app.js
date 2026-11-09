@@ -669,7 +669,7 @@
     if (!b) return;
     b.style.removeProperty("height");
     const exp = b.querySelector(".b-exp"), head = exp.querySelector(".xp-head"), list = exp.querySelector(".xp-list");
-    if (window.innerWidth <= 1100) { b.style.removeProperty("--side-col"); exp.style.removeProperty("--xp-s"); return; }
+    if (window.innerWidth <= 1100) { b.style.removeProperty("--side-col"); exp.style.removeProperty("--xp-s"); exp.classList.remove("xp-tight"); return; }
     const cs = getComputedStyle(b);
     const gap = parseFloat(cs.rowGap) || 0;
     const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
@@ -683,9 +683,9 @@
         + parseFloat(lcs.paddingTop) + parseFloat(lcs.paddingBottom) + 2);
     };
     // Size the card's type and spacing so the list fills its half: the largest scale between
-    // 75% and 120% that still fits (binary search), so spare room becomes larger text, not gaps.
+    // 60% and 120% that still fits (binary search), so spare room becomes larger text, not gaps.
     const setScale = (v) => exp.style.setProperty("--xp-s", v.toFixed(3));
-    let lo = 0.75, hi = 1.2;
+    let lo = 0.6, hi = 1.2;
     setScale(hi);
     if (need() <= half) lo = hi;
     else {
@@ -696,16 +696,18 @@
       }
     }
     setScale(lo);
-    const finalNeed = need();
-    // Still too tall at 75% (very short windows): grow the grid and let the page scroll a little.
-    if (finalNeed > half) {
-      half = finalNeed;
-      b.style.setProperty("--side-col", half + "px");
-      b.style.height = (half * 2 + gap + pad) + "px";
-    }
+    // The desktop home is locked to one screen (no page scroll). If the list still doesn't fit
+    // at 60% (very short windows), let just the experience list scroll inside its card.
+    exp.classList.toggle("xp-tight", need() > half);
   }
   window.addEventListener("resize", () => requestAnimationFrame(fitBento));
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitBento);
+
+  // Jump (not smooth-scroll — .main has scroll-behavior:smooth) to the top of the page.
+  function toTop() {
+    main.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }
 
   function render(route) {
     let html;
@@ -722,8 +724,7 @@
     const done = () => {
       ScrollTrigger && ScrollTrigger.getAll().forEach((t) => t.kill());
       view.innerHTML = html;
-      main.scrollTop = 0;
-      window.scrollTo(0, 0);
+      toTop();
       document.body.classList.toggle("is-home", route.name === "home");
       ["works", "life", "about"].forEach((n) => document.body.classList.toggle("is-" + n, route.name === n));
       fitBento();
@@ -838,6 +839,8 @@
     if (navEl) {
       e.preventDefault();
       const to = navEl.dataset.nav;
+      // Clicking the page you're already on doesn't change the hash, so scroll back up here.
+      if (location.hash.replace(/^#\/?/, "") === to) { main.scrollTo({ top: 0, behavior: "smooth" }); closeMenu(); return; }
       location.hash = "#/" + to;
       return;
     }

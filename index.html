@@ -398,6 +398,13 @@ body.is-home .view{max-width:none;padding:0 var(--bento-g)}
    rail, dividers between rows. Sizes scale with --xp-s, which fitBento() sets so the list
    fills its half of the screen. */
 .xp-list{list-style:none;flex:1;min-height:0;display:flex;flex-direction:column;padding:0 var(--space-5) calc(8px*var(--xp-s,1))}
+.b-exp.xp-tight .xp-list{overflow-y:auto;scrollbar-width:thin}
+/* Desktop home is exactly one screen: no page scroll, and no 640px floor that forced it on short windows.
+   Tablet/phone (stacked cards) keep normal scrolling. */
+@media(min-width:1101px){
+  body.is-home .main{overflow-y:hidden}
+  body.is-home .bento{min-height:0}
+}
 .xp-row{
   --xp-pad:calc(8px*var(--xp-s,1));
   display:grid;grid-template-columns:22px minmax(0,1fr);column-gap:10px;align-items:start;
