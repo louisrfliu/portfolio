@@ -12,219 +12,8 @@
   /* ----------------------------------------------------------
      DATA
   ---------------------------------------------------------- */
-  const CASES = [
-    {
-      id: "signals",
-      title: "Signals expansion",
-      cat: "B2B SaaS · GTM Intelligence",
-      desc: "A centralized system that turns powerful-but-opaque 6sense data into explainable business events, so GTM teams know exactly when and why to act.",
-      date: "Nov 2025 — Jan 2026",
-      year: 2026,
-      thumb: "assets/signals-thumb.jpg",
-      thumbPos: "center 62%", // keep the laptop screen in frame when cropped
-      hero: "assets/signals-hero.png",
-      role: "Lead Product Designer",
-      team: "PM · Eng · Content · Research",
-      timeline: "Nov 2025 – Jan 2026",
-      platform: "6sense Platform",
-      hmw: "How might we help GTM teams detect and act on business events to engage prospects at the right moment?",
-      sections: [
-        { k: "Context", h: "Powerful data, hidden behind a black box", p: [
-          `6sense is known for its data quality and the GTM impact it brings. But key outcomes — keywords, 6QA, temperature scores — are formulas the platform calculates behind the scenes. The math is powerful, yet it creates a <span class="hl">"black box"</span> that erodes trust and obscures the right moment to act.`,
-          `To improve transparency and explainability while helping users know <strong>when</strong> to act, we introduced <strong>Signals</strong> — our top priority leading into general availability in August 2026. The Platform Enablement team is building a centralized interface for users to detect, understand, and respond to business events.`
-        ], fig: { src: "assets/signals-hero.png", cap: "Signals — a centralized home for detecting and acting on business events" } },
-        { k: "Discovery", h: "Uncovering how users actually think about signals", p: [
-          `I ran generative research across three goals: how users <strong>describe</strong> a feature like signals, how they <strong>create</strong> successful ones, and what <strong>outcomes</strong> they expect. The aim was to anchor the design in real mental models rather than internal jargon.`
-        ], fig: { src: "assets/signals-research.png", cap: "Research synthesis — mapping user mental models to signal definitions" } },
-        { k: "Principles", h: "What a signal should — and shouldn’t — be", p: [
-          `Synthesis produced a sharp set of principles. A signal <span class="hl">should</span> grab attention and triage urgency, explain the "why" behind the alert, align to key metrics, fit users’ workflows, and drive immediate, coordinated action. It <span class="hl">should not</span> be vague, create false urgency, rely on untrusted data, sit siloed, or ignore ownership.`
-        ], callout: "From noise to signal — every alert must earn the user’s attention." },
-        { k: "Design", h: "Bringing it into the workflow", p: [
-          `The feature lives on the main navigation, with clear event types and conditions per signal, and is surfaced directly inside the downstream applications where users already work — meeting people in context rather than forcing a detour.`
-        ], two: ["assets/signals-hifi-nav.png", "assets/signals-hifi-config.png"] },
-        { k: "Reflection", h: "What went well, what I’d sharpen", p: [
-          `<strong>What went well:</strong> close collaboration with the 4IAB concept team, well-documented decisions, and insights communicated effectively across teams.`,
-          `<strong>What I’d improve:</strong> more discovery-style exploration at the start of planning, and more concrete persona and market definition brought into the process earlier.`
-        ] }
-      ]
-    },
-    {
-      id: "crm",
-      title: "CRM object permissions",
-      cat: "B2B SaaS · Onboarding",
-      desc: "Surfacing hidden CRM permission gaps at a glance, so admins can self-diagnose and fix sync errors before they cascade into failed onboarding.",
-      date: "2025",
-      year: 2025,
-      thumb: "assets/crm-thumb.jpg",
-      thumbPos: "center 55%", // keep the laptop screen in frame when cropped
-      hero: "assets/crm-hero.png",
-      role: "Product Designer",
-      team: "PM · Eng · Content · Support",
-      timeline: "2025",
-      platform: "6sense Onboarding",
-      hmw: "How might we empower admins to independently diagnose CRM permission statuses?",
-      sections: [
-        { k: "Problem", h: "Permissions fail silently", p: [
-          `Today, RevOps and IT admins can finish a CRM integration even if they haven’t granted 6sense permission to every mandatory object. Teams discover <span class="hl">missing permissions</span> later — through sync failures or incomplete data ingestion — which creates confusion, delays onboarding, and increases Support and CSM escalations.`,
-          `Admins are often unaware permissions are missing <strong>because</strong> identifying which object lacks access isn’t obvious, which leaves them confused and slows down fixes.`
-        ], fig: { src: "assets/crm-hero.png", cap: "The CRM integration setup where permission gaps go unnoticed" } },
-        { k: "Hypothesis", h: "Make status visible at a glance", p: [
-          `<strong>If</strong> we make required-object permission statuses visible at a glance, <strong>then</strong> admins stay informed during setup and ensure an error-free data connection. The job-to-be-done: "make sure 6sense has permission to all required objects, so I can set up the connection successfully."`
-        ], callout: "Surface the error where the work happens — don’t make admins go hunting." },
-        { k: "Design", h: "Three moves that fixed it", p: [
-          `<strong>High visibility</strong> — essential objects and their permission statuses appear directly, no extra clicks, with a prominent <em>Recheck permission</em> action.`,
-          `<strong>Help in context</strong> — instructions live in a drawer, giving admins one comprehensive view of everything they need.`,
-          `<strong>Separate advanced objects</strong> — non-blocking objects move to their own section so admins can prioritize what matters for initial setup.`
-        ], two: ["assets/crm-hifi-a.png", "assets/crm-hifi-c.png"] },
-        { k: "Reflection", h: "Strengths & growth", p: [
-          `<strong>What went well:</strong> cross-functional collaboration unified internal knowledge; a strong partnership with content design established clear hierarchy; support insights flowed directly into improvements.`,
-          `<strong>What could improve:</strong> establish robust success metrics earlier, and accelerate feedback loops with support to catch recurring issues faster.`
-        ] }
-      ]
-    },
-    {
-      id: "taxonomy",
-      title: "Taxonomy for predictive models",
-      cat: "B2B SaaS · Data Onboarding",
-      desc: "Helping admins confidently classify their data for 6sense predictive models during onboarding — a system for clarity under complexity.",
-      date: "2024",
-      year: 2024,
-      thumb: "assets/taxonomy-thumb.jpg",
-      thumbPos: "center 52%", // keep the laptop screen in frame when cropped
-      hero: "assets/home-card-taxonomy.png",
-      comingSoon: true,
-      hmw: "How might we empower admins to confidently classify their data for 6sense predictive models during onboarding?"
-    }
-  ];
-
-  // Past projects (reverse-chron). Case studies link internally; walkthroughs open external prototypes.
-  const PROJECTS = [
-    { name: "Signals expansion", sub: "GTM intelligence, made explainable", tag: "Case study", date: "2026", to: "case/signals" },
-    { name: "CRM object permissions", sub: "Self-diagnosing onboarding", tag: "Case study", date: "2025", to: "case/crm" },
-    { name: "Taxonomy for predictive models", sub: "Classifying data with confidence", tag: "Soon", date: "2024", to: "case/taxonomy" },
-    { name: "Insurance content display", sub: "Regulatory info for brokers, simplified", tag: "Prototype", date: "2022", href: "https://xd.adobe.com/view/b7440248-60d6-4353-903f-31ead172239c-e217/" },
-    { name: "Intelligent farming · FurrowTechnik", sub: "Precise control during field work", tag: "Prototype", date: "2021", href: "https://xd.adobe.com/view/11e5b7e0-ddb7-45db-972d-78c451c8c679-44b6/?fullscreen" }
-  ];
-
-
-  // Life board — one Pinterest-style feed; order interleaves the categories.
-  // Outdoors = me doing something out there (snowboarding, hiking, camping); Photography = the view.
-  const PIN_CATS = {
-    wood: { label: "Woodworking", note: "Measure twice, cut once. A hobby that balances creativity with a satisfying amount of precision." },
-    photo: { label: "Photography", note: "Moments worth looking back on and saying, \u201coh yeah, that was cool.\u201d" },
-    outdoors: { label: "Outdoors", note: "Snowboarding, hiking, and camping: any excuse to get out and see what\u2019s over the next ridge." },
-    events: { label: "Events", note: "Conferences and game days: the crowds, the energy, and a photo to prove I was there." }
-  };
-  const PINS = [
-    { cat: "wood", src: "assets/wood-1.jpg", w: 1440, h: 1440, title: "Holiday string art" },
-    { cat: "outdoors", src: "assets/travel-10.jpg", w: 886, h: 886, title: "Past the beginner line" },
-    { cat: "photo", src: "assets/travel-19.jpg", w: 1024, h: 768, title: "Tea terraces from above" },
-    { cat: "events", src: "assets/event-1.jpg", w: 768, h: 1024, title: "Figma Config" },
-    { cat: "photo", src: "assets/travel-3.jpg", w: 2995, h: 2995, title: "Terraced village in the mist" },
-    { cat: "wood", src: "assets/wood-5.jpg", w: 886, h: 886, title: "Stocking holders on the mantel" },
-    { cat: "outdoors", src: "assets/travel-11.jpg", w: 1024, h: 768, title: "Bootpack to the ridge" },
-    { cat: "photo", src: "assets/travel-17.jpg", w: 1024, h: 767, title: "Tiered waterfall" },
-    { cat: "outdoors", src: "assets/travel-18.jpg", w: 1024, h: 768, title: "Afternoon sail" },
-    { cat: "wood", src: "assets/wood-2.jpg", w: 3024, h: 4032, title: "Entryway organizer" },
-    { cat: "photo", src: "assets/travel-7.jpg", w: 1086, h: 724, title: "Cholla garden at dusk" },
-    { cat: "photo", src: "assets/travel-20.jpg", w: 1182, h: 665, title: "Space Needle from above" },
-    { cat: "events", src: "assets/event-2.jpg", w: 768, h: 1024, title: "Outside the Bucks\u2019 arena" },
-    { cat: "outdoors", src: "assets/travel-14.jpg", w: 1159, h: 678, title: "Selfie-stick run" },
-    { cat: "wood", src: "assets/wood-4.jpg", w: 886, h: 886, title: "String art in the clamps" },
-    { cat: "photo", src: "assets/travel-12.jpg", w: 886, h: 886, title: "Peaks in black and white" },
-    { cat: "photo", src: "assets/travel-1.jpg", w: 2496, h: 1664, title: "Wildflowers" },
-    { cat: "outdoors", src: "assets/travel-8.jpg", w: 1024, h: 768, title: "Desert campsite" },
-    { cat: "photo", src: "assets/travel-21.jpg", w: 1024, h: 768, title: "Village under the clouds" },
-    { cat: "photo", src: "assets/travel-16.jpg", w: 1024, h: 768, title: "Bridge from above" },
-    { cat: "events", src: "assets/event-3.jpg", w: 768, h: 1024, title: "On the field at AT&T Stadium" },
-    { cat: "wood", src: "assets/wood-3.jpg", w: 4032, h: 3024, title: "Farmhouse end table" },
-    { cat: "photo", src: "assets/travel-2.jpg", w: 4032, h: 3024, title: "Sculpture at golden hour" },
-    { cat: "outdoors", src: "assets/travel-15.jpg", w: 768, h: 1024, title: "Hiking in through the trees" },
-    { cat: "photo", src: "assets/travel-22.jpg", w: 1182, h: 665, title: "Lines from above" },
-    { cat: "wood", src: "assets/wood-6.jpg", w: 768, h: 1024, title: "Fresh-cut log slices" },
-    { cat: "photo", src: "assets/travel-9.jpg", w: 1182, h: 665, title: "Interchange from above" },
-    { cat: "outdoors", src: "assets/travel-13.jpg", w: 1024, h: 768, title: "Summit break" },
-    { cat: "photo", src: "assets/travel-5.jpg", w: 4096, h: 2304, title: "Drone over open water" },
-    { cat: "photo", src: "assets/travel-6.jpg", w: 360, h: 480, title: "Painted hills" },
-    { cat: "photo", src: "assets/travel-4.jpg", w: 4032, h: 3024, title: "Stone alley" }
-  ];
-
-  // Experience exactly as listed on assets/Resume_Louis_Liu.pdf — shown on the home bento.
-  const RESUME = [
-    { company: "6sense", roles: [
-      { title: "Senior Product Designer", place: "Remote", dates: "Oct 2025 – Present" },
-      { title: "Product Designer III", place: "Remote", dates: "Oct 2024 – Oct 2025" },
-      { title: "User Experience Designer", place: "Remote", dates: "Apr 2022 – Oct 2024" }
-    ] },
-    { company: "Zywave", roles: [
-      { title: "User Experience Designer", place: "Remote", dates: "Mar 2021 – Apr 2022" }
-    ] },
-    { company: "Dawn Equipment", roles: [
-      { title: "User Experience Designer", place: "Madison, WI", dates: "Aug 2020 – Mar 2021" }
-    ] },
-    { company: "Kerry EAS Logistics", roles: [
-      { title: "Management Trainee, Key Account Associate", place: "Beijing, China", dates: "Aug 2017 – Aug 2018" }
-    ] }
-  ];
-
-  // Professional journey — rendered as an enterprise changelog.
-  // layers drive the local filter toolbar.
-  const JOURNEY = [
-    {
-      version: "v2.6", company: "6sense", role: "Senior Product Designer",
-      timeline: "Oct 2025 — Present", promoted: true, layers: ["6sense", "ai-saas"],
-      tags: ["Platform Architecture", "Scalability", "End-to-End Initiatives"],
-      logs: ["Lead end-to-end platform design initiatives focused on driving consistency, system-level scalability, and seamless user orchestration across the entire enterprise product ecosystem."]
-    },
-    {
-      version: "v2.5", company: "6sense", role: "Product Designer III",
-      timeline: "Oct 2024 — Oct 2025 · 1 yr 1 mo", promoted: true, layers: ["6sense", "ai-saas"],
-      tags: ["System Integrations", "Platform Operations", "Cross-Functional Enablement"],
-      logs: ["Led critical experience improvements for core system integrations and foundational platform initiatives, actively enabling and unblocking cross-functional product teams."]
-    },
-    {
-      version: "v2.0", company: "6sense", role: "User Experience Designer",
-      timeline: "Apr 2022 — Oct 2024 · 2 yrs 7 mos", layers: ["6sense", "ai-saas"],
-      tags: ["Revenue AI™", "Big Data Architecture", "AI–Human Loops"],
-      logs: ["Owned and optimized the end-to-end user experience for <strong>6sense Revenue AI™ for Sales</strong> — a high-stakes enterprise platform utilizing predictive models and big data to streamline sales workflows and lower cognitive load for power users."]
-    },
-    {
-      version: "v1.5", company: "Zywave", role: "User Experience Designer",
-      timeline: "Mar 2021 — Apr 2022 · 1 yr 2 mos", layers: ["ai-saas"],
-      tags: ["B2B SaaS", "Design Token Systems", "Multi-Tenant Architecture"],
-      logs: [
-        "Operated as a shared core design expert across 4 distinct cross-functional mission teams to uncover complex user friction nodes and deliver high-fidelity platform solutions.",
-        "Designed and maintained robust SaaS quoting and configuration solutions deployed to over <strong>15,000 insurance brokers</strong> for complex employee benefit proposals.",
-        "Audited, updated, and scaled design standards within Zywave’s proprietary design system, ensuring absolute UI consistency and component health across the entire enterprise software suite."
-      ]
-    },
-    {
-      version: "v1.0", company: "Dawn Equipment Company", role: "Founding Product Designer",
-      timeline: "Aug 2020 — Mar 2021 · 8 mos", layers: ["physical"],
-      tags: ["Founding Designer", "IoT / Hardware Interfaces", "Native Tablet UI"],
-      logs: [
-        "Established the internal design function as the founding in-house designer, partnering with a lean development team to evaluate legacy systems and architect scalable digital improvements.",
-        "Designed the native tablet application interface utilized by <strong>70+ agricultural operators</strong> to monitor and control complex heavy machinery telemetry in real time.",
-        "Orchestrated a comprehensive redesign of the digital platform, boosting product visibility and introducing unified post-sale technical support workflows."
-      ]
-    },
-    {
-      version: "v0.5", company: "Kerry Logistics", role: "Associate Key Account Manager · Management Trainee",
-      timeline: "Aug 2017 — Aug 2018 · 1 yr 1 mo", layers: ["physical"],
-      tags: ["Operations Infrastructure", "Data Analytics", "Systems Optimization"],
-      logs: [
-        "<span class=\"cl-lead\">System Optimization</span> Performed deep data and spatial analysis on outbound shipping dock workflows; led an operational floor redesign with a team of 3 that <strong>doubled daily processing capacity</strong> from 6 to 12 truckloads.",
-        "<span class=\"cl-lead\">Data Management</span> Owned monthly warehousing inbound/outbound telemetry logs for <strong>33 enterprise key accounts</strong> within the northern logistics node."
-      ]
-    }
-  ];
-
-  const JOURNEY_FILTERS = [
-    { k: "all", label: "All Layers" },
-    { k: "6sense", label: "6sense Nodes Only" },
-    { k: "ai-saas", label: "Enterprise AI/SaaS" },
-    { k: "physical", label: "Physical / Logistics Systems" }
-  ];
+  // Content lives in content.js (loaded before this file).
+  const { CASES, PROJECTS, PIN_CATS, PINS, RESUME, JOURNEY, JOURNEY_FILTERS } = window.PORTFOLIO;
 
   const ROUTES = { home: "Index", works: "Work", life: "Life", about: "About" };
 
@@ -396,6 +185,7 @@
     <article class="case-wrap">
       <div class="case-top">
         <a class="case-back" data-nav="works"><span class="a">←</span> All work</a>
+        <div class="case-hero-img rv"><img src="${c.hero}" alt="${esc(c.title)}"/></div>
         <h1 class="case-title" data-words>${esc(c.title)}</h1>
         <div class="case-meta rv">
           <div class="cm"><span class="cm-k">Role</span><span class="cm-v">${esc(c.role)}</span></div>
@@ -403,13 +193,12 @@
           <div class="cm"><span class="cm-k">Timeline</span><span class="cm-v">${esc(c.timeline)}</span></div>
           <div class="cm"><span class="cm-k">Platform</span><span class="cm-v">${esc(c.platform)}</span></div>
         </div>
-        <div class="case-hero-img rv"><img src="${c.hero}" alt="${esc(c.title)}"/></div>
       </div>
 
       <div class="case-body">
-        <div class="case-section rv">
-          <div class="case-klabel">How might we</div>
-          <p class="case-p" style="font-size:21px;line-height:1.55;color:var(--text)">${esc(c.hmw)}</p>
+        <div class="case-hmw rv">
+          <span class="eyebrow"><span class="ed"></span> The challenge</span>
+          <p>${hmwText(c.hmw)}</p>
         </div>
         ${c.sections.map(caseSection).join("")}
 
@@ -426,16 +215,38 @@
     ${footer()}`;
   }
 
-  function caseSection(s) {
+  // A section whose paragraphs all open with "<strong>Label:</strong>" (At a glance, Reflection)
+  // renders as a grid of labelled cards so it can be scanned instead of read.
+  const LEAD_RE = /^\s*<strong>([^<]+?):<\/strong>\s*([\s\S]*)$/;
+  function caseBody(paras) {
+    const leads = paras.map((t) => t.match(LEAD_RE));
+    if (paras.length > 1 && leads.every(Boolean)) {
+      return `<div class="case-cards${paras.length === 2 ? " two" : ""}">${leads.map((m) =>
+        `<div class="case-card"><div class="case-card-k">${m[1]}</div><p>${m[2]}</p></div>`).join("")}</div>`;
+    }
+    return paras.map((para) => `<p class="case-p">${para}</p>`).join("");
+  }
+
+  // Set the opening "How might we" in the accent italic, like the page headlines.
+  function hmwText(t) {
+    const m = String(t).match(/^(how might we)\b([\s\S]*)$/i);
+    return m ? `<em>${esc(m[1])}</em>${esc(m[2])}` : esc(t);
+  }
+
+  function caseSection(s, i) {
+    const n = String(i + 1).padStart(2, "0");
     const figs = s.fig ? `<figure class="case-fig"><img src="${s.fig.src}" alt=""/><figcaption>${esc(s.fig.cap)}</figcaption></figure>` : "";
     const two = s.two ? `<div class="case-two">${s.two.map((src) => `<figure class="case-fig" style="margin:0"><img src="${src}" alt=""/></figure>`).join("")}</div>` : "";
     const call = s.callout ? `<div class="callout"><p>${esc(s.callout)}</p></div>` : "";
     return `
     <section class="case-section rv">
-      <div class="case-klabel">${esc(s.k)}</div>
-      <h2 class="case-h2">${esc(s.h)}</h2>
-      ${s.p.map((para) => `<p class="case-p">${para}</p>`).join("")}
-      ${call}${figs}${two}
+      <div class="case-rail" aria-hidden="true"><span class="case-num">${n}</span><span class="case-klabel">${esc(s.k)}</span></div>
+      <div class="case-content">
+        <div class="case-klabel case-klabel-inline">${n} · ${esc(s.k)}</div>
+        <h2 class="case-h2">${esc(s.h)}</h2>
+        ${caseBody(s.p)}
+        ${call}${figs}${two}
+      </div>
     </section>`;
   }
 
@@ -447,7 +258,7 @@
         <a class="case-back" data-nav="works"><span class="a">←</span> All work</a>
         <h1 class="case-title" data-words>${esc(c.title)}</h1>
         <div class="case-body" style="padding-top:50px">
-          <div class="case-section rv">
+          <div class="case-section case-plain rv">
             <div class="case-klabel">In progress</div>
             <p class="case-p" style="font-size:20px;color:var(--text)">${esc(c.hmw)}</p>
             <p class="case-p">This case study is being written up. In the meantime, take a look at the other two deep dives.</p>
@@ -775,7 +586,7 @@
     $$("[data-words]").forEach((el) => {
       // preserve <em> by splitting around it
       const words = splitWordsPreserve(el);
-      gsap.set(words, { yPercent: 110 });
+      gsap.set(words, { yPercent: 125 });
       gsap.to(words, { yPercent: 0, duration: 0.9, ease: "power4.out", stagger: 0.045, delay: 0.1 });
     });
 
@@ -808,6 +619,8 @@
       wrap.style.display = "inline-block";
       wrap.style.overflow = "hidden";
       wrap.style.verticalAlign = "top";
+      wrap.style.paddingBottom = "0.15em"; // room for descenders; negative margin keeps line spacing
+      wrap.style.marginBottom = "-0.15em";
       const inner = document.createElement("span");
       inner.style.display = "inline-block";
       if (isEl) inner.appendChild(content); else inner.textContent = content;

@@ -22,7 +22,7 @@ content.
 | `#/about` | About — bio, journey, philosophy, résumé + LinkedIn |
 
 ## Editing content
-All content lives in the data objects at the top of **`app.js`**:
+All content lives in **`content.js`** (loaded before `app.js`, which only renders it):
 - `CASES` — the three featured case studies (title, desc, date, images, sections).
 - `PROJECTS` — the "All projects" list (most-recent-first).
 - `PIN_CATS`, `PINS` — Life board categories and images.
