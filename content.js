@@ -17,7 +17,7 @@ window.PORTFOLIO = (function () {
       thumb: "assets/signals-thumb.jpg",
       thumbPos: "center 62%", // keep the laptop screen in frame when cropped
       hero: "assets/signals-hero.png",
-      role: "Product Designer",
+      role: "Lead Product Designer",
       team: "PM · Eng · Content design · UX research",
       timeline: "Nov 2025 – Jan 2026 (beta)",
       platform: "6sense Platform",
@@ -67,33 +67,46 @@ window.PORTFOLIO = (function () {
       id: "crm",
       title: "CRM object permissions",
       cat: "B2B SaaS · Onboarding",
-      desc: "Surfacing hidden CRM permission gaps at a glance, so admins can self-diagnose and fix sync errors before they cascade into failed onboarding.",
-      date: "2025",
+      desc: "A permission check admins can’t miss: CRM setup now verifies the objects 6sense needs before it lets admins finish, so integrations stop failing silently after onboarding.",
+      date: "Feb — Apr 2025",
       year: 2025,
       thumb: "assets/crm-thumb.jpg",
       thumbPos: "center 55%", // keep the laptop screen in frame when cropped
       hero: "assets/crm-hero.png",
       role: "Product Designer",
       team: "PM · Eng · Content · Support",
-      timeline: "2025",
+      timeline: "Feb – Apr 2025 (3 months)",
       platform: "6sense Onboarding",
       hmw: "How might we empower admins to independently diagnose CRM permission statuses?",
       sections: [
-        { k: "Problem", h: "Permissions fail silently", p: [
-          `Today, RevOps and IT admins can finish a CRM integration even if they haven’t granted 6sense permission to every mandatory object. Teams discover <span class="hl">missing permissions</span> later — through sync failures or incomplete data ingestion — which creates confusion, delays onboarding, and increases Support and CSM escalations.`,
-          `Admins are often unaware permissions are missing <strong>because</strong> identifying which object lacks access isn’t obvious, which leaves them confused and slows down fixes.`
-        ], fig: { src: "assets/crm-hero.png", cap: "The CRM integration setup where permission gaps go unnoticed" } },
-        { k: "Hypothesis", h: "Make status visible at a glance", p: [
-          `<strong>If</strong> we make required-object permission statuses visible at a glance, <strong>then</strong> admins stay informed during setup and ensure an error-free data connection. The job-to-be-done: "make sure 6sense has permission to all required objects, so I can set up the connection successfully."`
-        ], callout: "Surface the error where the work happens — don’t make admins go hunting." },
-        { k: "Design", h: "Three moves that fixed it", p: [
-          `<strong>High visibility</strong> — essential objects and their permission statuses appear directly, no extra clicks, with a prominent <em>Recheck permission</em> action.`,
-          `<strong>Help in context</strong> — instructions live in a drawer, giving admins one comprehensive view of everything they need.`,
-          `<strong>Separate advanced objects</strong> — non-blocking objects move to their own section so admins can prioritize what matters for initial setup.`
-        ], two: ["assets/crm-hifi-a.png", "assets/crm-hifi-c.png"] },
-        { k: "Reflection", h: "Strengths & growth", p: [
+        { k: "At a glance", h: "Stop setups that look finished but don’t work", p: [
+          `<strong>Problem:</strong> Admins connecting their CRM could finish setup without granting 6sense access to the objects it needs. The permission check ran, but its results sat where admins didn’t look, so the integration failed after setup and customers took the same error to Support.`,
+          `<strong>Solution:</strong> A verify step in CRM setup that separates essential from advanced objects, shows each object’s status, offers step-by-step help and a recheck in place, and blocks finishing until every essential object has permission.`,
+          `<strong>Impact:</strong> [TODO: impact after launch, with a number if possible]`,
+          `<strong>Constraint:</strong> No new system capabilities. The job was to surface what the system already knew, at the moment admins needed it. And it had to work for every CRM we support: Salesforce, Microsoft Dynamics and HubSpot.`
+        ] },
+        { k: "Context", h: "The check ran. Admins never saw it", p: [
+          `I owned the design end to end, from understanding the problem through ideation, final iteration and testing, over three months in early 2025.`,
+          `When a customer connects their CRM during onboarding, 6sense checks its permission on each CRM object. Which objects matter depends on the customer’s CRM platform and the package their org purchased.`,
+          `The check already worked. The problem was where its results showed up. The minimum requirements lived in an internal doc, and setup showed “a minimum of 71 objects” with prose instructions, while Finish was always available. Admins missed the gaps, finished setup, and the integration then didn’t work.`,
+          `Customer Support kept raising it: many customers came to them to triage the same <span class="hl">permission error</span> after setup. [TODO: ticket count or share of onboarding tickets]`
+        ], callout: "Surface the error where the work happens. Don’t make admins go hunting.", fig: { src: "assets/crm-pain-2.png", cap: "Before: a 71-object requirement explained in prose, with Finish always available" } },
+        { k: "Decision 1", h: "Split objects by what blocks the customer", p: [
+          `Not every object matters equally. <strong>Essential objects</strong> unlock the features the customer purchased; without them, those features won’t work. <strong>Advanced objects</strong> make the experience better or the data more complete, but don’t block basic functions, and admins can come back to them any time.`,
+          `Those lists already existed for each CRM and package, but setup treated every object the same. I brought the distinction into the UI: essential objects first, advanced objects in their own section. Because the split comes from the data, the same pattern works for Salesforce, Dynamics and HubSpot, and for every package.`
+        ], fig: { src: "assets/crm-hifi-c.png", cap: "Advanced objects sit in their own section and don’t stop setup" } },
+        { k: "Decision 2", h: "Block finishing on essentials only", p: [
+          `Surfacing errors better wasn’t enough on its own. If admins could still finish with essential objects missing, the integration would still fail later. So Finish stays disabled while any essential object lacks permission.`,
+          `Advanced objects never block. Setup says so plainly: missing them won’t stop you from finishing, but you’ll need them to properly use some 6sense features. That stops the silent failure without holding admins back on nice-to-haves.`,
+          `[TODO: alternatives weighed, such as a warning only or finishing with a banner, and any pushback]`
+        ], fig: { src: "assets/crm-hifi-a.png", cap: "Three essential objects need permission, so Finish stays disabled" } },
+        { k: "Decision 3", h: "Fix it without leaving setup", p: [
+          `Each object shows its own status, with missing permissions flagged in red, so admins see exactly what’s wrong instead of scanning a long list.`,
+          `“How to grant permission” opens a drawer with numbered steps for their CRM. Admins grant access in the CRM, come back, and recheck in place. Contacting Support is the last resort, not the first step.`
+        ], fig: { src: "assets/crm-hifi-b.png", cap: "Step-by-step instructions in a drawer, without leaving setup" } },
+        { k: "Reflection", h: "What went well, what I’d sharpen", p: [
           `<strong>What went well:</strong> cross-functional collaboration unified internal knowledge; a strong partnership with content design established clear hierarchy; support insights flowed directly into improvements.`,
-          `<strong>What could improve:</strong> establish robust success metrics earlier, and accelerate feedback loops with support to catch recurring issues faster.`
+          `<strong>What I’d improve:</strong> establish robust success metrics earlier, and accelerate feedback loops with support to catch recurring issues faster.`
         ] }
       ]
     },
